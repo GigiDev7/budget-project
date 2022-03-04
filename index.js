@@ -5,6 +5,7 @@ const userRouter = require("./routes/user");
 const accountRouter = require("./routes/account");
 const expansesRouter = require("./routes/expanses");
 const incomesRouter = require("./routes/incomes");
+const categoryRouter = require("./routes/categories");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/api/user", userRouter);
 app.use("/api/myaccount", accountRouter);
 app.use("/api/expanses", expansesRouter);
 app.use("/api/incomes", incomesRouter);
+app.use("/api/category", categoryRouter);
 
 //server
 const PORT = 5000;
