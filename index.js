@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
 //routers
 const userRouter = require("./routes/user");
@@ -10,6 +12,7 @@ const categoryRouter = require("./routes/categories");
 const app = express();
 
 //middlewares
+app.use(cors());
 app.use(express.json());
 
 //routes
@@ -20,7 +23,7 @@ app.use("/api/incomes", incomesRouter);
 app.use("/api/category", categoryRouter);
 
 //server
-const PORT = 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
