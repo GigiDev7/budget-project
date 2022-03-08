@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const protectAuth = require("./middlewares/protectAuth");
 
 //routers
 const userRouter = require("./routes/user");
@@ -17,6 +18,9 @@ app.use(express.json());
 
 //routes
 app.use("/api/user", userRouter);
+//protecting other routes, checking authorization
+app.use(protectAuth);
+
 app.use("/api/myaccount", accountRouter);
 app.use("/api/expanses", expansesRouter);
 app.use("/api/incomes", incomesRouter);
