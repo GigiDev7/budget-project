@@ -24,9 +24,7 @@ const loginUser = async (userData) => {
 
 const registerUser = async (userData) => {
   //check if emails is not registered already in DB
-
-  const token = createToken(/* userId*/);
-  return { token /* user */ };
+  // create new user
 };
 
 module.exports = {
