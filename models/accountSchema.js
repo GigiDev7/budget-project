@@ -12,7 +12,7 @@ const accountSchema = new mongoose.Schema(
     currency: {
       type: String,
     },
-    createdBy: {
+    userId: {
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
