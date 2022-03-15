@@ -1,5 +1,12 @@
-const getAllAccounts = (req, res) => {
-  res.status(200).send("all user accounts");
+const { findAllAccounts, addAcount } = require("../services/account");
+
+const getAllAccounts = async (req, res) => {
+  try {
+    const accounts = await findAllAccounts(req.userId);
+    res.status(200).json(accounts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 const getSingleAccount = (req, res) => {
@@ -7,9 +14,13 @@ const getSingleAccount = (req, res) => {
   res.status(200).send(`single account ${accountId}`);
 };
 
-const createAccount = (req, res) => {
-  // get data from req.body
-  res.status(201).send("created");
+const createAccount = async (req, res) => {
+  try {
+    const account = await addAcount(req.userId, req.body);
+    res.status(201).json(account);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 const updateAccount = (req, res) => {
