@@ -3,6 +3,7 @@ const {
   addAcount,
   findSingleAccount,
   findAccountAndUpdate,
+  findAccountAndDelete,
 } = require("../services/account");
 
 const getAllAccounts = async (req, res) => {
@@ -44,8 +45,13 @@ const updateAccount = async (req, res) => {
 };
 
 const deleteAccount = async (req, res) => {
-  const { accountId } = req.params;
-  res.status(200).send(`deleted ${accountId}`);
+  try {
+    const { accountId } = req.params;
+    await findAccountAndDelete(accountId);
+    res.status(204).send("Deleted");
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 const getAccountSum = async (req, res) => {

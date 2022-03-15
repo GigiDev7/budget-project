@@ -23,9 +23,14 @@ const findAccountAndUpdate = async (accountId, data) => {
   return account;
 };
 
+const findAccountAndDelete = async (accountId) => {
+  await Account.findByIdAndDelete(accountId);
+};
+
 module.exports = {
   findAllAccounts,
   addAcount,
   findSingleAccount,
   findAccountAndUpdate,
+  findAccountAndDelete,
 };
