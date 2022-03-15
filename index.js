@@ -6,8 +6,7 @@ const protectAuth = require("./middlewares/protectAuth");
 //routers
 const userRouter = require("./routes/user");
 const accountRouter = require("./routes/account");
-const expansesRouter = require("./routes/expanses");
-const incomesRouter = require("./routes/incomes");
+const transactionsRouter = require("./routes/transactions");
 const categoryRouter = require("./routes/categories");
 
 const app = express();
@@ -22,8 +21,7 @@ app.use("/api/user", userRouter);
 app.use(protectAuth);
 
 app.use("/api/myaccount", accountRouter);
-app.use("/api/expanses", expansesRouter);
-app.use("/api/incomes", incomesRouter);
+app.use("/api/transactions", transactionsRouter);
 app.use("/api/category", categoryRouter);
 
 //server

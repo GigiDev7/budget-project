@@ -27,6 +27,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -155,180 +175,6 @@
 			]
 		},
 		{
-			"name": "Expenses",
-			"item": [
-				{
-					"name": "Get Expanses",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/expanses/77",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"expanses",
-								"77"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Expanse",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/expanses/77",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"expanses",
-								"77"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Expanse",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/expanses/77/79",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"expanses",
-								"77",
-								"79"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Expanse",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/expanses/77/78",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"expanses",
-								"77",
-								"78"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Incomes",
-			"item": [
-				{
-					"name": "Get Incomes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/incomes/77",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"incomes",
-								"77"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Income",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/incomes/77",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"incomes",
-								"77"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Income",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/incomes/77/78",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"incomes",
-								"77",
-								"78"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Income",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/incomes/77/78",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"incomes",
-								"77",
-								"78"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Categories",
 			"item": [
 				{
@@ -404,6 +250,114 @@
 								"api",
 								"category",
 								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/transactions/12",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"transactions",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/transactions/12/12",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"transactions",
+								"12",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/transactions/12",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"transactions",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Transaction",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/transactions/12/12",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"transactions",
+								"12",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Transaction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/transactions/12/12",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"transactions",
+								"12",
+								"12"
 							]
 						}
 					},
