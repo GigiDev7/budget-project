@@ -23,7 +23,7 @@ const login = async (req, res) => {
     const user = await loginUser(req.body);
     //checking if user exists in DB
     if (!user) {
-      return res.status(400).json({ message: "No user found with such email" });
+      return res.status(400).json({ message: "Wrong user email or password" });
     }
     //checking if passwords are correct
     const isPasswordCorrect = await comparePasswords(
@@ -31,7 +31,7 @@ const login = async (req, res) => {
       user.password
     );
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: "Incorrect password" });
+      return res.status(400).json({ message: "Wrong user email or password" });
     }
 
     const token = createToken(user._id);
