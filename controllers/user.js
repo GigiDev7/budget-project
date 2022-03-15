@@ -5,6 +5,19 @@ const {
   comparePasswords,
 } = require("../services/user");
 
+const handleError = (error) => {
+  const errors = { email: "", password: "" };
+
+  if (error.code === 11000) {
+    errors.email = "Email already exists";
+    return errors;
+  }
+
+  errors.email = error?.errors?.email?.message;
+  errors.password = error?.errors?.password?.message;
+  return errors;
+};
+
 const login = async (req, res) => {
   try {
     const user = await loginUser(req.body);
@@ -12,7 +25,6 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "No user found with such email" });
     }
-    console.log(user, req.body);
     //checking if passwords are correct
     const isPasswordCorrect = await comparePasswords(
       req.body.password,
@@ -25,7 +37,6 @@ const login = async (req, res) => {
     const token = createToken(user._id);
     res.status(200).json({ email: user.email, id: user._id, token });
   } catch (err) {
-    console.log(err);
     res.status(400).json(err);
   }
 };
@@ -35,8 +46,8 @@ const register = async (req, res) => {
     await registerUser(req.body);
     res.status(200).send("registered");
   } catch (err) {
-    console.log(err);
-    res.status(400).json(err);
+    const errors = handleError(err);
+    res.status(400).json(errors);
   }
 };
 
