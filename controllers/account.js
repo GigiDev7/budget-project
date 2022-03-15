@@ -1,4 +1,8 @@
-const { findAllAccounts, addAcount } = require("../services/account");
+const {
+  findAllAccounts,
+  addAcount,
+  findSingleAccount,
+} = require("../services/account");
 
 const getAllAccounts = async (req, res) => {
   try {
@@ -9,9 +13,14 @@ const getAllAccounts = async (req, res) => {
   }
 };
 
-const getSingleAccount = (req, res) => {
-  const { accountId } = req.params;
-  res.status(200).send(`single account ${accountId}`);
+const getSingleAccount = async (req, res) => {
+  try {
+    const { accountId } = req.params;
+    const account = await findSingleAccount(accountId);
+    res.status(200).json(account);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 const createAccount = async (req, res) => {

@@ -11,7 +11,13 @@ const addAcount = async (userId, data) => {
   return account;
 };
 
+const findSingleAccount = (accountId) => {
+  const account = Account.findById(accountId);
+  return account;
+};
+
 module.exports = {
   findAllAccounts,
   addAcount,
+  findSingleAccount,
 };
