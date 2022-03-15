@@ -2,6 +2,7 @@ const {
   findAllAccounts,
   addAcount,
   findSingleAccount,
+  findAccountAndUpdate,
 } = require("../services/account");
 
 const getAllAccounts = async (req, res) => {
@@ -32,18 +33,22 @@ const createAccount = async (req, res) => {
   }
 };
 
-const updateAccount = (req, res) => {
-  //get data from req.body
-  const { accountId } = req.params;
-  res.status(200).send(`updated ${accountId}`);
+const updateAccount = async (req, res) => {
+  try {
+    const { accountId } = req.params;
+    const account = await findAccountAndUpdate(accountId, req.body);
+    res.status(200).json(account);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
-const deleteAccount = (req, res) => {
+const deleteAccount = async (req, res) => {
   const { accountId } = req.params;
   res.status(200).send(`deleted ${accountId}`);
 };
 
-const getAccountSum = (req, res) => {
+const getAccountSum = async (req, res) => {
   const { accountId } = req.params;
   res.status(200).send("account sum");
 };

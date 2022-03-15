@@ -16,8 +16,16 @@ const findSingleAccount = (accountId) => {
   return account;
 };
 
+const findAccountAndUpdate = async (accountId, data) => {
+  const account = await Account.findByIdAndUpdate(accountId, data, {
+    new: true,
+  });
+  return account;
+};
+
 module.exports = {
   findAllAccounts,
   addAcount,
   findSingleAccount,
+  findAccountAndUpdate,
 };
