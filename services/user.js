@@ -1,10 +1,11 @@
+const User = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-//function to create JWT token
-const createToken = (/*userId*/) => {
+const createToken = (userId) => {
   const token = jwt.sign(
     {
-      /* user id from mongo DB */
+      userId,
     },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES }
@@ -12,22 +13,23 @@ const createToken = (/*userId*/) => {
   return token;
 };
 
+const comparePasswords = async (password, hashedPassword) => {
+  const isPasswordCorrect = await bcrypt.compare(password, hashedPassword);
+  return isPasswordCorrect;
+};
+
 const loginUser = async (userData) => {
-  // make DB query
-  // check if we have user in DB
-  // compare bcrypted passwords
-
-  const token = createToken(/* userId*/);
-
-  return { token /* user */ };
+  const user = await User.findOne({ email: userData.email });
+  return user;
 };
 
 const registerUser = async (userData) => {
-  //check if emails is not registered already in DB
-  // create new user
+  await User.create(userData);
 };
 
 module.exports = {
   loginUser,
   registerUser,
+  createToken,
+  comparePasswords,
 };

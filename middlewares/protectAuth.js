@@ -10,7 +10,7 @@ const protectAuth = (req, res, next) => {
     if (err) {
       return res.status(401).json({ message: "Invalid token" });
     }
-    /* req.userId = decodedData.id */ //--- I uncomment this line when i encode user id in jwt, and atach this to req object to use it in next middleware
+    req.userId = decodedData.id;
     next();
   });
 };
