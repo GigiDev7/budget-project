@@ -27,10 +27,16 @@ const findTransactionAndDelete = async (transactionId) => {
   await Transaction.findByIdAndDelete(transactionId);
 };
 
+const findTransactionsByCategory = async (accountId, category) => {
+  const transactions = await Transaction.find({ accountId, category });
+  return transactions;
+};
+
 module.exports = {
   findAllTransactions,
   addTransaction,
   findSingleTransaction,
   findTransactionAndUpdate,
   findTransactionAndDelete,
+  findTransactionsByCategory,
 };

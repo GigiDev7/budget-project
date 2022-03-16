@@ -4,12 +4,19 @@ const {
   findSingleTransaction,
   findTransactionAndUpdate,
   findTransactionAndDelete,
+  findTransactionsByCategory,
 } = require("../services/transactions");
 
 const getTransactions = async (req, res) => {
   try {
     const { accountId } = req.params;
-    const transactions = await findAllTransactions(accountId);
+    const { category } = req.query;
+    let transactions;
+    if (category) {
+      transactions = await findTransactionsByCategory(accountId, category);
+      return res.status(200).json(transactions);
+    }
+    transactions = await findAllTransactions(accountId);
     res.status(200).json(transactions);
   } catch (err) {
     res.status(500).json(err);
