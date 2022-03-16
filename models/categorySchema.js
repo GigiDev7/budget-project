@@ -9,10 +9,10 @@ const categorySchema = new mongoose.Schema(
     type: {
       type: String,
       required: [true, "Category type is required"],
-    },
-    enum: {
-      values: ["income", "expanse"],
-      message: "{VALUE} is not supported",
+      enum: {
+        values: ["income", "expanse"],
+        message: "{VALUE} is not supported",
+      },
     },
     userId: {
       type: mongoose.Types.ObjectId,
