@@ -11,8 +11,27 @@
 				{
 					"name": "Login User",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzBjN2E0M2U4YWRiMDQzNGJiZDJhYyIsImlhdCI6MTY0NzM2NDAxOCwiZXhwIjoxNjQ3MzY3NjE4fQ.iK7fUEpkfvpvYR3O8UC3gCEazhkt64522soIDAUpN3s",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gigi@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:5000/api/user/login",
 							"host": [
@@ -29,10 +48,19 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Register User",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gigi@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:5000/api/user/register",
 							"host": [
@@ -56,6 +84,16 @@
 				{
 					"name": "Get All Personal Accounts",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -75,8 +113,27 @@
 				{
 					"name": "Create Personal Account",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"my account\",\r\n    \"description\": \"dummy account\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:5000/api/myaccount",
 							"host": [
@@ -94,10 +151,20 @@
 				{
 					"name": "Get Single Account",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/myaccount/77",
+							"raw": "localhost:5000/api/myaccount/6231a8cb3e5bd3362746973b",
 							"host": [
 								"localhost"
 							],
@@ -105,7 +172,7 @@
 							"path": [
 								"api",
 								"myaccount",
-								"77"
+								"6231a8cb3e5bd3362746973b"
 							]
 						}
 					},
@@ -114,10 +181,20 @@
 				{
 					"name": "Delete Account",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzBjN2E0M2U4YWRiMDQzNGJiZDJhYyIsImlhdCI6MTY0NzM2NDAxOCwiZXhwIjoxNjQ3MzY3NjE4fQ.iK7fUEpkfvpvYR3O8UC3gCEazhkt64522soIDAUpN3s",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/myaccount/77",
+							"raw": "localhost:5000/api/myaccount/6230c93463d158222303909c",
 							"host": [
 								"localhost"
 							],
@@ -125,7 +202,7 @@
 							"path": [
 								"api",
 								"myaccount",
-								"77"
+								"6230c93463d158222303909c"
 							]
 						}
 					},
@@ -134,10 +211,29 @@
 				{
 					"name": "Update Account",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzBjN2E0M2U4YWRiMDQzNGJiZDJhYyIsImlhdCI6MTY0NzM2NDAxOCwiZXhwIjoxNjQ3MzY3NjE4fQ.iK7fUEpkfvpvYR3O8UC3gCEazhkt64522soIDAUpN3s",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"updated account\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:5000/api/myaccount/77",
+							"raw": "localhost:5000/api/myaccount/6230c93463d158222303909c",
 							"host": [
 								"localhost"
 							],
@@ -145,7 +241,7 @@
 							"path": [
 								"api",
 								"myaccount",
-								"77"
+								"6230c93463d158222303909c"
 							]
 						}
 					},
@@ -154,10 +250,20 @@
 				{
 					"name": "Get Sum Of Account",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/myaccount/12/sum",
+							"raw": "localhost:5000/api/myaccount/6231a8cb3e5bd3362746973b/sum",
 							"host": [
 								"localhost"
 							],
@@ -165,7 +271,7 @@
 							"path": [
 								"api",
 								"myaccount",
-								"12",
+								"6231a8cb3e5bd3362746973b",
 								"sum"
 							]
 						}
@@ -263,10 +369,20 @@
 				{
 					"name": "Get Transactions",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/transactions/12",
+							"raw": "localhost:5000/api/transactions/6231a8cb3e5bd3362746973b",
 							"host": [
 								"localhost"
 							],
@@ -274,7 +390,7 @@
 							"path": [
 								"api",
 								"transactions",
-								"12"
+								"6231a8cb3e5bd3362746973b"
 							]
 						}
 					},
@@ -283,10 +399,20 @@
 				{
 					"name": "Get Single Transaction",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/transactions/12/12",
+							"raw": "localhost:5000/api/transactions/transaction/6231a9dff5b88cdb62729f1c",
 							"host": [
 								"localhost"
 							],
@@ -294,8 +420,8 @@
 							"path": [
 								"api",
 								"transactions",
-								"12",
-								"12"
+								"transaction",
+								"6231a9dff5b88cdb62729f1c"
 							]
 						}
 					},
@@ -304,10 +430,29 @@
 				{
 					"name": "Create Transaction",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"expanse\",\r\n    \"title\": \"first expanse\",\r\n    \"amount\": 200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:5000/api/transactions/12",
+							"raw": "localhost:5000/api/transactions/6231a8cb3e5bd3362746973b",
 							"host": [
 								"localhost"
 							],
@@ -315,7 +460,7 @@
 							"path": [
 								"api",
 								"transactions",
-								"12"
+								"6231a8cb3e5bd3362746973b"
 							]
 						}
 					},
@@ -324,10 +469,29 @@
 				{
 					"name": "Update Transaction",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" :\"my first income\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:5000/api/transactions/12/12",
+							"raw": "localhost:5000/api/transactions/transaction/6231a9dff5b88cdb62729f1c",
 							"host": [
 								"localhost"
 							],
@@ -335,8 +499,8 @@
 							"path": [
 								"api",
 								"transactions",
-								"12",
-								"12"
+								"transaction",
+								"6231a9dff5b88cdb62729f1c"
 							]
 						}
 					},
@@ -345,10 +509,20 @@
 				{
 					"name": "Delete Transaction",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/transactions/12/12",
+							"raw": "localhost:5000/api/transactions/transaction/6231aa0ef5b88cdb62729f20",
 							"host": [
 								"localhost"
 							],
@@ -356,8 +530,8 @@
 							"path": [
 								"api",
 								"transactions",
-								"12",
-								"12"
+								"transaction",
+								"6231aa0ef5b88cdb62729f20"
 							]
 						}
 					},
