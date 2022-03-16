@@ -10,10 +10,14 @@ const {
 const getTransactions = async (req, res) => {
   try {
     const { accountId } = req.params;
-    const { category } = req.query;
+    const { category, type } = req.query;
     let transactions;
-    if (category) {
-      transactions = await findTransactionsByCategory(accountId, category);
+    if (category && type) {
+      transactions = await findTransactionsByCategory(
+        accountId,
+        category,
+        type
+      );
       return res.status(200).json(transactions);
     }
     transactions = await findAllTransactions(accountId);

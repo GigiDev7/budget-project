@@ -27,8 +27,8 @@ const findTransactionAndDelete = async (transactionId) => {
   await Transaction.findByIdAndDelete(transactionId);
 };
 
-const findTransactionsByCategory = async (accountId, category) => {
-  const transactions = await Transaction.find({ accountId, category });
+const findTransactionsByCategory = async (accountId, category, type) => {
+  const transactions = await Transaction.find({ accountId, category, type });
   return transactions;
 };
 
