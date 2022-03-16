@@ -2,6 +2,7 @@ const {
   findAllTransactions,
   addTransaction,
   findSingleTransaction,
+  findTransactionAndUpdate,
 } = require("../services/transactions");
 
 const getTransactions = async (req, res) => {
@@ -34,9 +35,14 @@ const getTransaction = async (req, res) => {
   }
 };
 
-const updateTransaction = (req, res) => {
-  const { accountId, transactionId } = req.params;
-  res.status(200).send("updated transaction");
+const updateTransaction = async (req, res) => {
+  try {
+    const { transactionId } = req.params;
+    const transaction = await findTransactionAndUpdate(transactionId, req.body);
+    res.status(200).json(transaction);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 const deleteTransaction = (req, res) => {

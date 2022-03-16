@@ -16,8 +16,16 @@ const findSingleTransaction = async (transactionId) => {
   return transaction;
 };
 
+const findTransactionAndUpdate = async (transactionId, data) => {
+  const transaction = await Transaction.findByIdAndUpdate(transactionId, data, {
+    new: true,
+  });
+  return transaction;
+};
+
 module.exports = {
   findAllTransactions,
   addTransaction,
   findSingleTransaction,
+  findTransactionAndUpdate,
 };
