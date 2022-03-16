@@ -11,7 +11,13 @@ const addTransaction = async (accountId, data, userId) => {
   return transaction;
 };
 
+const findSingleTransaction = async (transactionId) => {
+  const transaction = await Transaction.findById(transactionId);
+  return transaction;
+};
+
 module.exports = {
   findAllTransactions,
   addTransaction,
+  findSingleTransaction,
 };
