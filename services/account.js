@@ -30,7 +30,7 @@ const findAccountAndDelete = async (accountId) => {
 
 const calculateAccountSum = async (accountId) => {
   const transactions = await Transaction.find({ accountId });
-  const sum = transactions.reduce((acc, el) => acc + el, 0);
+  const sum = transactions.reduce((acc, el) => acc + el.amount, 0);
   return sum;
 };
 

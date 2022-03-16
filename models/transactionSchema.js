@@ -18,7 +18,7 @@ const transactionSchema = new mongoose.Schema(
     currency: {
       type: String,
     },
-    ammount: {
+    amount: {
       type: Number,
     },
     accountId: {
