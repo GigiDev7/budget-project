@@ -3,6 +3,7 @@ const {
   addTransaction,
   findSingleTransaction,
   findTransactionAndUpdate,
+  findTransactionAndDelete,
 } = require("../services/transactions");
 
 const getTransactions = async (req, res) => {
@@ -45,9 +46,14 @@ const updateTransaction = async (req, res) => {
   }
 };
 
-const deleteTransaction = (req, res) => {
-  const { accountId, transactionId } = req.params;
-  res.status(200).send("deleted transaction");
+const deleteTransaction = async (req, res) => {
+  try {
+    const { transactionId } = req.params;
+    await findTransactionAndDelete(transactionId);
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 module.exports = {

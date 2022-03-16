@@ -49,7 +49,7 @@ const deleteAccount = async (req, res) => {
   try {
     const { accountId } = req.params;
     await findAccountAndDelete(accountId);
-    res.status(204).send("Deleted");
+    res.status(204).send();
   } catch (err) {
     res.status(500).json(err);
   }

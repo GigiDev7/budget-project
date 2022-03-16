@@ -23,9 +23,14 @@ const findTransactionAndUpdate = async (transactionId, data) => {
   return transaction;
 };
 
+const findTransactionAndDelete = async (transactionId) => {
+  await Transaction.findByIdAndDelete(transactionId);
+};
+
 module.exports = {
   findAllTransactions,
   addTransaction,
   findSingleTransaction,
   findTransactionAndUpdate,
+  findTransactionAndDelete,
 };
