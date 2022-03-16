@@ -1,4 +1,5 @@
 const Account = require("../models/accountSchema");
+const Transaction = require("../models/transactionSchema");
 
 const findAllAccounts = async (userId) => {
   const accounts = await Account.find({ userId });
@@ -27,10 +28,17 @@ const findAccountAndDelete = async (accountId) => {
   await Account.findByIdAndDelete(accountId);
 };
 
+const calculateAccountSum = async (accountId) => {
+  const transactions = await Transaction.find({ accountId });
+  const sum = transactions.reduce((acc, el) => acc + el, 0);
+  return sum;
+};
+
 module.exports = {
   findAllAccounts,
   addAcount,
   findSingleAccount,
   findAccountAndUpdate,
   findAccountAndDelete,
+  calculateAccountSum,
 };

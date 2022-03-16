@@ -4,6 +4,7 @@ const {
   findSingleAccount,
   findAccountAndUpdate,
   findAccountAndDelete,
+  calculateAccountSum,
 } = require("../services/account");
 
 const getAllAccounts = async (req, res) => {
@@ -55,8 +56,13 @@ const deleteAccount = async (req, res) => {
 };
 
 const getAccountSum = async (req, res) => {
-  const { accountId } = req.params;
-  res.status(200).send("account sum");
+  try {
+    const { accountId } = req.params;
+    const sum = await calculateAccountSum(accountId);
+    res.status(200).json({ sum });
+  } catch (error) {
+    res.status(500).json(err);
+  }
 };
 
 module.exports = {
