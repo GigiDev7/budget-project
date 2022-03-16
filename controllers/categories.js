@@ -1,4 +1,9 @@
-const { findAllCategories } = require("../services/category");
+const {
+  findAllCategories,
+  addCategory,
+  findCategoryAndUpdate,
+  findCategoryAndDelete,
+} = require("../services/category");
 
 const getCategories = async (req, res) => {
   try {
@@ -9,18 +14,32 @@ const getCategories = async (req, res) => {
   }
 };
 
-const createCategory = (req, res) => {
-  res.status(201).send("create category");
+const createCategory = async (req, res) => {
+  try {
+    const category = await addCategory(req.userId, req.body);
+    res.status(201).json(category);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
-const updateCategory = (req, res) => {
-  const { categoryId } = req.params;
-  res.status(200).send("update category");
+const updateCategory = async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    const category = await findCategoryAndUpdate(categoryId, req.body);
+    res.status(200).json(category);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
-const deleteCategory = (req, res) => {
-  const { categoryId } = req.params;
-  res.status(200).send("delete category");
+const deleteCategory = async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    await findCategoryAndDelete(categoryId);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 module.exports = {
