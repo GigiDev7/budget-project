@@ -1,5 +1,12 @@
-const getCategories = (req, res) => {
-  res.status(200).send("categories");
+const { findAllCategories } = require("../services/category");
+
+const getCategories = async (req, res) => {
+  try {
+    const categories = await findAllCategories(req.userId);
+    res.status(200).json(categories);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 const createCategory = (req, res) => {
