@@ -12,7 +12,7 @@ describe("user", () => {
     await mongoose.disconnect();
   });
 
-  describe("POST: request is valid", () => {
+  describe("POST Login: request is valid", () => {
     it("should login user", async () => {
       const response = await supertest(app)
         .post("/api/user/login")
@@ -30,7 +30,7 @@ describe("user", () => {
     });
   });
 
-  describe("POST: incorrect email or password", () => {
+  describe("POST Login: incorrect email or password", () => {
     it("should send error message", async () => {
       const response = await supertest(app)
         .post("/api/user/login")
@@ -38,6 +38,17 @@ describe("user", () => {
 
       expect(response.status).toBe(400);
       expect(response.body.message).toBe("Wrong user email or password");
+    });
+  });
+
+  describe("POST Register: request is valid", () => {
+    it("should create new user", async () => {
+      const response = await supertest(app)
+        .post("/api/user/register")
+        .send({ email: "test1@gmail.com", password: "123456" });
+
+      expect(response.status).toBe(200);
+      expect(response.body.message).toBe("registered");
     });
   });
 });

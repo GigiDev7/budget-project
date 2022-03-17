@@ -44,7 +44,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   try {
     await registerUser(req.body);
-    res.status(200).send("registered");
+    res.status(200).json({ message: "registered" });
   } catch (err) {
     const errors = handleError(err);
     res.status(400).json(errors);
