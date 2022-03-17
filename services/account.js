@@ -26,6 +26,7 @@ const findAccountAndUpdate = async (accountId, data) => {
 
 const findAccountAndDelete = async (accountId) => {
   await Account.findByIdAndDelete(accountId);
+  await Transaction.deleteMany({ accountId });
 };
 
 const calculateAccountSum = async (accountId) => {
