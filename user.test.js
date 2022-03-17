@@ -29,4 +29,15 @@ describe("user", () => {
       );
     });
   });
+
+  describe("POST: incorrect email or password", () => {
+    it("should send error message", async () => {
+      const response = await supertest(app)
+        .post("/api/user/login")
+        .send({ email: "123@gmail.com", password: "123456" });
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe("Wrong user email or password");
+    });
+  });
 });
