@@ -60,6 +60,17 @@ describe("account route", () => {
     });
   });
 
+  describe("POST create account ERROR", () => {
+    it("should return error", async () => {
+      const response = await supertest(app)
+        .post("/api/myaccount")
+        .set("Authorization", `Bearer ${token}`)
+        .send();
+
+      expect(response.status).toBe(500);
+    });
+  });
+
   describe("GET single account", () => {
     it("should return single account", async () => {
       const response = await supertest(app)
@@ -73,6 +84,16 @@ describe("account route", () => {
           title: "get single test",
         })
       );
+    });
+  });
+
+  describe("GET single account ERROR", () => {
+    it("should return error", async () => {
+      const response = await supertest(app)
+        .get(`/api/myaccount/11`)
+        .set("Authorization", `Bearer ${token}`);
+
+      expect(response.status).toBe(500);
     });
   });
 
@@ -103,6 +124,17 @@ describe("account route", () => {
     });
   });
 
+  describe("PATCH update account ERROR", () => {
+    it("should return error", async () => {
+      const response = await supertest(app)
+        .patch(`/api/myaccount/11`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ title: "updated" });
+
+      expect(response.status).toBe(500);
+    });
+  });
+
   describe("DELETE account", () => {
     beforeAll(async () => {
       await Account.create({ title: "delete test" });
@@ -116,6 +148,16 @@ describe("account route", () => {
         .set("Authorization", `Bearer ${token}`);
 
       expect(response.status).toBe(204);
+    });
+  });
+
+  describe("DELETE account ERROR", () => {
+    it("should return error", async () => {
+      const response = await supertest(app)
+        .delete(`/api/myaccount/11`)
+        .set("Authorization", `Bearer ${token}`);
+
+      expect(response.status).toBe(500);
     });
   });
 });
