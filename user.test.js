@@ -31,11 +31,22 @@ describe("user", () => {
     });
   });
 
-  describe("POST Login: incorrect email or password", () => {
+  describe("POST Login: incorrect email", () => {
     it("should send error message", async () => {
       const response = await supertest(app)
         .post("/api/user/login")
         .send({ email: "123@gmail.com", password: "123456" });
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe("Wrong user email or password");
+    });
+  });
+
+  describe("POST Login: incorrect password", () => {
+    it("should send error message", async () => {
+      const response = await supertest(app)
+        .post("/api/user/login")
+        .send({ email: "test1@gmail.com", password: "12345" });
 
       expect(response.status).toBe(400);
       expect(response.body.message).toBe("Wrong user email or password");
