@@ -160,4 +160,20 @@ describe("account route", () => {
       expect(response.status).toBe(500);
     });
   });
+
+  describe("GET sum of account transaction", () => {
+    it("should return sum number", async () => {
+      const response = await supertest(app)
+        .get(`/api/myaccount/${singleAccountId}/sum`)
+        .set("Authorization", `Bearer ${token}`);
+
+      expect(response.status).toBe(200);
+      expect(response.type).toBe("application/json");
+      expect(response.body).toEqual(
+        expect.objectContaining({
+          sum: expect.any(Number),
+        })
+      );
+    });
+  });
 });
