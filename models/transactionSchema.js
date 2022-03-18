@@ -5,6 +5,7 @@ const transactionSchema = new mongoose.Schema(
     type: {
       type: String,
       enum: ["expanse", "income"],
+      required: [true, "Transaction type is required"],
     },
     title: {
       type: String,
@@ -20,6 +21,7 @@ const transactionSchema = new mongoose.Schema(
     },
     amount: {
       type: Number,
+      required: [true, "Transaction amount is required"],
     },
     accountId: {
       type: mongoose.Types.ObjectId,
