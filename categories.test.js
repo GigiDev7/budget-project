@@ -21,6 +21,26 @@ describe("category routes", () => {
     await mongoose.disconnect();
   });
 
+  describe("GET without token ERROR", () => {
+    it("should return auth error", async () => {
+      const response = await supertest(app).get("/api/category");
+
+      expect(response.status).toBe(401);
+      expect(response.body.message).toBe("Unauthorized");
+    });
+  });
+
+  describe("GET with invalid token ERROR", () => {
+    it("should return auth error", async () => {
+      const response = await supertest(app)
+        .get("/api/category")
+        .set("Authorization", `Bearer ${token}a`);
+
+      expect(response.status).toBe(401);
+      expect(response.body.message).toBe("Invalid token");
+    });
+  });
+
   describe("GET get all categories", () => {
     it("should return categories array", async () => {
       const response = await supertest(app)
@@ -55,6 +75,17 @@ describe("category routes", () => {
     });
   });
 
+  describe("POST create category ERROR", () => {
+    it("return error", async () => {
+      const response = await supertest(app)
+        .post("/api/category")
+        .set("Authorization", `Bearer ${token}`)
+        .send({ type: "income" });
+
+      expect(response.status).toBe(500);
+    });
+  });
+
   describe("PATCH update cateogry", () => {
     beforeAll(async () => {
       await Category.create({ title: "update test", type: "income" });
@@ -82,6 +113,17 @@ describe("category routes", () => {
     });
   });
 
+  describe("PATCH update cateogry ERROR", () => {
+    it("return error", async () => {
+      const response = await supertest(app)
+        .patch(`/api/category/11`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ title: "updated" });
+
+      expect(response.status).toBe(500);
+    });
+  });
+
   describe("DELETE category", () => {
     beforeAll(async () => {
       await Category.create({ title: "delete test", type: "income" });
@@ -91,10 +133,20 @@ describe("category routes", () => {
 
     it("should delete existing category", async () => {
       const response = await supertest(app)
-        .delete(`/api/myaccount/${deleteCategoryId}`)
+        .delete(`/api/category/${deleteCategoryId}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(response.status).toBe(204);
+    });
+  });
+
+  describe("DELETE category ERROR", () => {
+    it("should return error", async () => {
+      const response = await supertest(app)
+        .delete(`/api/category/11`)
+        .set("Authorization", `Bearer ${token}`);
+
+      expect(response.status).toBe(500);
     });
   });
 });
