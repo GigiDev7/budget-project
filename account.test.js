@@ -30,7 +30,11 @@ describe("account route", () => {
 
       expect(response.status).toBe(200);
       expect(response.type).toBe("application/json");
-      expect(response.body).toEqual(expect.arrayContaining([]));
+      expect(response.body).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ title: expect.any(String) }),
+        ])
+      );
     });
   });
 
