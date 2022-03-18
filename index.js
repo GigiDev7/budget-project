@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const protectAuth = require("./middlewares/protectAuth");
-require("./connectDB");
 
 //routers
 const userRouter = require("./routes/user");
@@ -25,8 +24,4 @@ app.use("/api/myaccount", accountRouter);
 app.use("/api/transactions", transactionsRouter);
 app.use("/api/category", categoryRouter);
 
-//server
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`);
-});
+module.exports = app;
