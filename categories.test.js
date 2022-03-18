@@ -126,8 +126,10 @@ describe("category routes", () => {
 
   describe("DELETE category", () => {
     beforeAll(async () => {
-      await Category.create({ title: "delete test", type: "income" });
-      const category = await Category.findOne({ title: "delete test" });
+      const category = await Category.create({
+        title: "delete test",
+        type: "income",
+      });
       deleteCategoryId = category._id;
     });
 

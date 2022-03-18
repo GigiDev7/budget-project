@@ -137,8 +137,7 @@ describe("account route", () => {
 
   describe("DELETE account", () => {
     beforeAll(async () => {
-      await Account.create({ title: "delete test" });
-      const account = await Account.findOne({ title: "delete test" });
+      const account = await Account.create({ title: "delete test" });
       deleteAccountId = account._id;
     });
 
