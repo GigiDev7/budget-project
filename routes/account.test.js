@@ -1,8 +1,8 @@
 const supertest = require("supertest");
-const app = require("./index");
+const app = require("../index");
 const mongoose = require("mongoose");
-const { createToken } = require("./services/user");
-const Account = require("./models/accountSchema");
+const { createToken } = require("../services/user");
+const Account = require("../models/accountSchema");
 
 //helper variables
 const userId = "62337f4a2d31853008b1c136";

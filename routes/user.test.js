@@ -1,7 +1,7 @@
-const app = require("./index");
+const app = require("../index");
 const mongoose = require("mongoose");
 const supertest = require("supertest");
-const User = require("./models/userSchema");
+const User = require("../models/userSchema");
 
 describe("user", () => {
   beforeAll(async () => {
