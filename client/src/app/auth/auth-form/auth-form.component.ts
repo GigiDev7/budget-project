@@ -24,12 +24,10 @@ export class AuthFormComponent implements OnInit {
 
   onFormSubmit() {
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe(
-      (userData: any) => {},
-      (err) => {
-        this.loginErrorMessage = err.error.message;
-      }
-    );
+    this.authService.login(email, password).subscribe({
+      next: (userData) => {},
+      error: (e) => (this.loginErrorMessage = e.error.message),
+    });
   }
 
   constructor(private authService: AuthService) {}
