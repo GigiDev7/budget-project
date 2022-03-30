@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { UserModel } from '../auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user = {};
+  user: UserModel = {
+    email: '',
+    id: '',
+    token: '',
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -17,9 +22,11 @@ export class AuthService {
         password,
       })
       .pipe(
-        tap((res) => {
+        tap((res: any) => {
           this.setToken(res);
-          this.user = { ...res };
+          this.user.email = res.email;
+          this.user.id = res.id;
+          this.user.token = res.token;
         })
       );
   }

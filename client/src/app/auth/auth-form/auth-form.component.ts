@@ -25,7 +25,9 @@ export class AuthFormComponent implements OnInit {
   onFormSubmit() {
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe({
-      next: (userData) => {},
+      next: (userData) => {
+        this.loginErrorMessage = '';
+      },
       error: (e) => (this.loginErrorMessage = e.error.message),
     });
   }
