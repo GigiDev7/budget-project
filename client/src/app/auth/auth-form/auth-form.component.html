@@ -1,19 +1,31 @@
 <div class="auth-container">
   <div class="auth-container__wrapper">
     <h1>Budgetify</h1>
-    <form class="auth-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" class="auth-form">
       <mat-form-field class="auth-form__row" appearance="legacy">
         <mat-label>Email</mat-label>
-        <input type="email" matInput />
+        <input formControlName="email" type="email" matInput />
       </mat-form-field>
       <mat-form-field class="auth-form__row password" appearance="legacy">
         <mat-label>Password</mat-label>
-        <input [type]="isPasswordShown ? 'text' : 'password'" matInput />
+        <input
+          formControlName="password"
+          [type]="isPasswordShown ? 'text' : 'password'"
+          matInput
+        />
         <span (click)="togglePasswordShow()" class="material-icons custom">
           {{ isPasswordShown ? "visibility" : "visibility_off" }}
         </span>
       </mat-form-field>
-      <button type="submit" color="primary" mat-flat-button>Login</button>
+      <button
+        [disabled]="loginForm.invalid"
+        class="auth-form__button"
+        type="submit"
+        color="primary"
+        mat-flat-button
+      >
+        Login
+      </button>
     </form>
   </div>
 </div>
