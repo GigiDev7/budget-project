@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./auth-form.component.scss'],
 })
 export class AuthFormComponent implements OnInit {
+  loginErrorMessage = '';
   isPasswordShown: boolean = false;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -23,9 +24,12 @@ export class AuthFormComponent implements OnInit {
 
   onFormSubmit() {
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe((userData) => {
-      console.log(userData);
-    });
+    this.authService.login(email, password).subscribe(
+      (userData: any) => {},
+      (err) => {
+        this.loginErrorMessage = err.error.message;
+      }
+    );
   }
 
   constructor(private authService: AuthService) {}

@@ -6,6 +6,8 @@ import { tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  user = {};
+
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
@@ -14,7 +16,12 @@ export class AuthService {
         email,
         password,
       })
-      .pipe(tap((res) => this.setToken(res)));
+      .pipe(
+        tap((res) => {
+          this.setToken(res);
+          this.user = { ...res };
+        })
+      );
   }
 
   private setToken(data: any) {

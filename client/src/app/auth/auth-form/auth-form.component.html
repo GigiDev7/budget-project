@@ -17,6 +17,9 @@
           {{ isPasswordShown ? "visibility" : "visibility_off" }}
         </span>
       </mat-form-field>
+      <span class="auth-form__error-message" *ngIf="loginErrorMessage">{{
+        loginErrorMessage
+      }}</span>
       <button
         [disabled]="loginForm.invalid"
         class="auth-form__button"

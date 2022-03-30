@@ -43,6 +43,10 @@
     margin-top: 2rem;
   }
 
+  &__error-message {
+    color: red;
+  }
+
   .material-icons {
     position: absolute;
     right: 2px;
