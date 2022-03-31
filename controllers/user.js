@@ -35,7 +35,15 @@ const login = async (req, res) => {
     }
 
     const token = createToken(user._id);
-    res.status(200).json({ email: user.email, id: user._id, token });
+    res
+      .status(200)
+      .json({
+        email: user.email,
+        id: user._id,
+        token,
+        firstname: user.firstname,
+        lastname: user.lastname,
+      });
   } catch (err) {
     res.status(400).json(err);
   }
