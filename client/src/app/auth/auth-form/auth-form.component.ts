@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth-form.component.scss'],
 })
 export class AuthFormComponent {
-  public loginErrorMessage = '';
+  public loginErrorMessage: string = '';
   public isPasswordShown: boolean = false;
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
