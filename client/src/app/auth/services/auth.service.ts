@@ -1,18 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { UserModel } from '../auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public user: UserModel = {
-    email: '',
-    id: '',
-    token: '',
-  };
-
   constructor(private http: HttpClient) {}
 
   public login(email: string, password: string): Observable<any> {
@@ -24,7 +17,6 @@ export class AuthService {
       .pipe(
         tap((res: any) => {
           this.setToken(res);
-          this.user = res;
         })
       );
   }
@@ -33,10 +25,12 @@ export class AuthService {
     localStorage.setItem('token', data.token);
   }
 
+  public isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    return token ? true : false;
+  }
+
   public logout(): void {
     localStorage.removeItem('token');
-    this.user.email = '';
-    this.user.id = '';
-    this.user.token = '';
   }
 }
