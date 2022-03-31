@@ -8,9 +8,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./auth-form.component.scss'],
 })
 export class AuthFormComponent implements OnInit {
-  loginErrorMessage = '';
-  isPasswordShown: boolean = false;
-  loginForm: FormGroup = new FormGroup({
+  public loginErrorMessage = '';
+  public isPasswordShown: boolean = false;
+  public loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
@@ -18,11 +18,11 @@ export class AuthFormComponent implements OnInit {
     ]),
   });
 
-  togglePasswordShow() {
+  public togglePasswordShow(): void {
     this.isPasswordShown = !this.isPasswordShown;
   }
 
-  onFormSubmit() {
+  public onFormSubmit(): void {
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe({
       next: (userData) => {
