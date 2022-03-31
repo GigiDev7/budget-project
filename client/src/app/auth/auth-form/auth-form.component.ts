@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss'],
 })
-export class AuthFormComponent implements OnInit {
+export class AuthFormComponent {
   public loginErrorMessage = '';
   public isPasswordShown: boolean = false;
   public loginForm: FormGroup = new FormGroup({
@@ -35,6 +35,4 @@ export class AuthFormComponent implements OnInit {
   }
 
   constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {}
 }
