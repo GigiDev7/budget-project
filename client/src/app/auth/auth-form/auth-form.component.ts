@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -27,12 +28,13 @@ export class AuthFormComponent implements OnInit {
     this.authService.login(email, password).subscribe({
       next: (userData) => {
         this.loginErrorMessage = '';
+        this.router.navigateByUrl('/');
       },
       error: (e) => (this.loginErrorMessage = e.error.message),
     });
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 }

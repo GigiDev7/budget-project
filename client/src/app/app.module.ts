@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -15,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     BrowserAnimationsModule,
     AuthModule,
+    MainModule,
     AppRoutingModule,
     HttpClientModule,
   ],
