@@ -5,6 +5,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'login',
+    component: AuthFormComponent,
+  },
+];
 
 @NgModule({
   declarations: [AuthFormComponent],
@@ -14,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     ReactiveFormsModule,
     CommonModule,
+    RouterModule.forChild(routes),
   ],
   exports: [
     AuthFormComponent,
