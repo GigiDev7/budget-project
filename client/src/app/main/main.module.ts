@@ -9,6 +9,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { AccountCardComponent } from '.././account-card/account-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
     MatTabsModule,
     MatButtonModule,
     HttpClientModule,
+    MatCardModule,
   ],
 })
 export class MainModule {}

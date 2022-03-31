@@ -1,0 +1,49 @@
+.account-container {
+  margin-left: 5rem;
+  margin-top: 2rem;
+  position: relative;
+  width: max-content;
+}
+
+.account-card {
+  width: 18rem;
+  height: 8rem;
+  background-image: linear-gradient(
+    to right bottom,
+    #f4497d,
+    #e43d95,
+    #c93dac,
+    #a246c1,
+    #6751d1
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 1.8rem;
+  cursor: pointer;
+
+  &__title {
+    color: #ffffff;
+    font-size: 1.2rem;
+  }
+
+  &__amount {
+    color: #ffffff;
+    font-size: 1.7rem;
+  }
+
+  &__currency {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 2rem;
+    background-color: #fff;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #c93dac;
+  }
+}

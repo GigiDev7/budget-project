@@ -1,2 +1,11 @@
-<p>{{ account.title }}</p>
-<p>{{ account.description }}</p>
+<aside class="account-container">
+  <mat-card class="account-card">
+    <mat-card-subtitle class="account-card__title">{{
+      account.title
+    }}</mat-card-subtitle>
+    <mat-card-title class="account-card__amount">{{
+      account.sum
+    }}</mat-card-title>
+  </mat-card>
+  <span class="account-card__currency">{{ account.currency }}</span>
+</aside>
