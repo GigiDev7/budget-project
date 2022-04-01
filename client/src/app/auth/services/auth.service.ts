@@ -22,13 +22,13 @@ export class AuthService {
       );
   }
 
-  private setUserData(userData: any): void {
+  private setUserData(userData: UserModel): void {
     localStorage.setItem('user', JSON.stringify(userData));
   }
 
   public isLoggedIn(): boolean {
     const user: UserModel | null = JSON.parse(localStorage.getItem('user')!);
-    return user ? true : false;
+    return !!user;
   }
 
   public logout(): void {

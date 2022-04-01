@@ -1,6 +1,6 @@
 <header class="header-container">
   <div class="header-text">
-    <h1>Budgetify</h1>
+    <h1 class="header-text__title">Budgetify</h1>
   </div>
   <div class="header-links">
     <mat-tab-group class="header-links__group">
@@ -9,7 +9,9 @@
     </mat-tab-group>
   </div>
   <div class="header-user-info">
-    <p>Giorgi Vadachkoria</p>
+    <p class="header-user-info__username">
+      {{ fullname | titlecase }}
+    </p>
     <button (click)="onLogoutClick()" mat-icon-button aria-label="Logout">
       <mat-icon class="header-user-info__icon-logout">exit_to_app</mat-icon>
     </button>

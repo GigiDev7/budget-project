@@ -1,4 +1,6 @@
+@use "../shared/variables.scss" as var;
+
 .main {
-  background-color: #efefef;
+  background-color: var.$app-bg-gray;
   height: 100%;
 }

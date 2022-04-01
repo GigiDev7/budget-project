@@ -6,7 +6,7 @@
   justify-content: space-around;
 }
 
-.header-text h1 {
+.header-text__title {
   margin-bottom: 0;
 }
 
@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
 
-  & p {
+  &__username {
     margin-bottom: 0;
     margin-right: 0.4rem;
   }
