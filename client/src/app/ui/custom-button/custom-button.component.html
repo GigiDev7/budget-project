@@ -1,4 +1,13 @@
-<button class="custom-button">
-  <span class="custom-button__icon"><mat-icon>add</mat-icon></span>
+<button
+  [ngClass]="{
+    create: type === 'create',
+    income: type === 'income',
+    expanse: type === 'expanse'
+  }"
+  class="custom-button"
+>
+  <span class="custom-button__icon"
+    ><mat-icon>{{ icon }}</mat-icon>
+  </span>
   {{ text }}
 </button>

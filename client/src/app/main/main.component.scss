@@ -3,4 +3,18 @@
 .main {
   background-color: var.$app-bg-gray;
   height: 100%;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__aside {
+    margin-right: 8rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10rem;
+  }
 }

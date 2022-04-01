@@ -1,10 +1,34 @@
 <main class="main">
   <app-header></app-header>
-  <app-account-card
-    *ngFor="let account of accounts; let i = index; trackBy: trackBy"
-    [account]="account"
-  >
-  </app-account-card>
-  <app-custom-button text="Add Account"></app-custom-button>
-  <app-custom-button text="Add Transaction"></app-custom-button>
+  <div class="main__wrapper">
+    <div>
+      <app-account-card
+        *ngFor="let account of accounts; let i = index; trackBy: trackBy"
+        [account]="account"
+      >
+      </app-account-card>
+    </div>
+    <div class="main__aside">
+      <app-custom-button
+        type="income"
+        icon="arrow_upward"
+        text="Income"
+      ></app-custom-button>
+      <app-custom-button
+        type="expanse"
+        icon="arrow_downward"
+        text="Expanses"
+      ></app-custom-button>
+      <app-custom-button
+        type="create"
+        icon="add"
+        text="Add Account"
+      ></app-custom-button>
+      <app-custom-button
+        type="create"
+        icon="add"
+        text="Add Transaction"
+      ></app-custom-button>
+    </div>
+  </div>
 </main>
