@@ -12,11 +12,11 @@
   height: 8rem;
   background-image: linear-gradient(
     to right bottom,
-    #f4497d,
-    #e43d95,
-    #c93dac,
-    #a246c1,
-    #6751d1
+    var.$linear-one,
+    var.$linear-two,
+    var.$linear-three,
+    var.$linear-four,
+    var.$linear-five
   );
   display: flex;
   flex-direction: column;

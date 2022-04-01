@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AccountCardComponent } from '.././account-card/account-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared.module';
 
 const routes: Routes = [
   {

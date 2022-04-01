@@ -6,9 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./custom-button.component.scss'],
 })
 export class CustomButtonComponent implements OnInit {
-  @Input() text!: string;
-  @Input() icon!: string;
-  @Input() type!: string;
+  @Input() text: string = '';
+  @Input() icon: string = '';
+  @Input() type: string = '';
 
   constructor() {}
 
