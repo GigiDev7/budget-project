@@ -10,6 +10,10 @@ import { AccountService } from '../account-card/services/account.service';
 export class MainComponent implements OnInit {
   public accounts: AccountModel[] = [];
 
+  public trackBy(index: number, item: AccountModel) {
+    return item._id;
+  }
+
   constructor(private accountService: AccountService) {}
 
   public ngOnInit(): void {

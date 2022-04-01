@@ -4,12 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { HeaderComponent } from '../header/header.component';
 import { MainComponent } from './main.component';
-import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { AccountCardComponent } from '.././account-card/account-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -24,11 +24,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatIconModule,
     MatTabsModule,
     MatButtonModule,
     HttpClientModule,
     MatCardModule,
+    SharedModule,
   ],
 })
 export class MainModule {}

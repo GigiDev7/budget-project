@@ -10,6 +10,8 @@ import { AuthService } from '../auth/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   public fullname: string = '';
+  public links: string[] = ['Categories', 'Statistics'];
+  public activeLink: string = '';
 
   public onLogoutClick(): void {
     this.authService.logout();

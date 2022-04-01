@@ -3,4 +3,5 @@ export interface AccountModel {
   description: string;
   currency: string;
   sum: number;
+  _id: string;
 }

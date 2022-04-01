@@ -1,0 +1,26 @@
+@use "../../shared/variables.scss" as var;
+
+.custom-button {
+  background-color: var.$button-bg;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 3px 0;
+  width: 10rem;
+
+  &:hover {
+    background-color: var.$button-bg-darker;
+  }
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+    background-color: var.$base-white;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-left: 7px;
+    color: var.$button-bg-darker;
+  }
+}

@@ -1,7 +1,10 @@
 <main class="main">
   <app-header></app-header>
   <app-account-card
-    *ngFor="let account of accounts"
+    *ngFor="let account of accounts; let i = index; trackBy: trackBy"
     [account]="account"
-  ></app-account-card>
+  >
+  </app-account-card>
+  <app-custom-button text="Add Account"></app-custom-button>
+  <app-custom-button text="Add Transaction"></app-custom-button>
 </main>

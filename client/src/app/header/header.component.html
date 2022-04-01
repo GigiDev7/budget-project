@@ -3,10 +3,15 @@
     <h1 class="header-text__title">Budgetify</h1>
   </div>
   <div class="header-links">
-    <mat-tab-group class="header-links__group">
-      <mat-tab class="header-links__link" label="Categories"> </mat-tab>
-      <mat-tab class="header-links__link" label="Statistics"> </mat-tab>
-    </mat-tab-group>
+    <nav mat-tab-nav-bar class="header-links__group">
+      <a
+        mat-tab-link
+        (click)="activeLink = link"
+        [active]="activeLink == link"
+        *ngFor="let link of links"
+        >{{ link }}
+      </a>
+    </nav>
   </div>
   <div class="header-user-info">
     <p class="header-user-info__username">
