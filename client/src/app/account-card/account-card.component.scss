@@ -49,6 +49,14 @@
     border-radius: 50%;
     color: var.$app-pink;
   }
+
+  &__icon {
+    position: absolute;
+    bottom: 1rem;
+    right: 3rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+  }
 }
 
 .active {
