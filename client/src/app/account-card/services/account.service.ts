@@ -8,6 +8,7 @@ import { AccountModel } from '../account.model';
 })
 export class AccountService {
   public accounts: AccountModel[] = [];
+  public activeAccount!: AccountModel;
 
   constructor(private http: HttpClient) {}
 
@@ -19,5 +20,10 @@ export class AccountService {
         },
       })
     );
+  }
+
+  public activateAccount(id: string): void {
+    const account = this.accounts.find((el) => el._id === id);
+    this.activeAccount = account!;
   }
 }

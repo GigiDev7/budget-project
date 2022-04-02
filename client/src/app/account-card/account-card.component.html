@@ -1,7 +1,7 @@
 <aside class="account-container">
   <mat-card
-    (click)="onActivateAccount(account._id)"
-    [ngClass]="{ active: account._id === activeAccount?._id }"
+    (click)="accountService.activateAccount(account._id)"
+    [ngClass]="{ active: account._id === accountService.activeAccount?._id }"
     class="account-card"
   >
     <mat-card-subtitle class="account-card__title">

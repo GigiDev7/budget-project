@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AccountModel } from './account.model';
 import { AccountService } from './services/account.service';
 
@@ -7,16 +7,13 @@ import { AccountService } from './services/account.service';
   templateUrl: './account-card.component.html',
   styleUrls: ['./account-card.component.scss'],
 })
-export class AccountCardComponent {
-  public activeAccount: AccountModel | undefined;
+export class AccountCardComponent implements OnInit {
   @Input() public account!: AccountModel;
 
-  public onActivateAccount(id: string) {
-    const account: AccountModel | undefined = this.accountService.accounts.find(
-      (el) => el._id === id
-    );
-    this.activeAccount = account;
-  }
+  constructor(public accountService: AccountService) {}
 
-  constructor(private accountService: AccountService) {}
+  public ngOnInit(): void {
+    const firstAccount = this.accountService.accounts[0];
+    this.accountService.activateAccount(firstAccount._id);
+  }
 }
