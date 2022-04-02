@@ -2,11 +2,25 @@
   <app-header></app-header>
   <div class="main__wrapper">
     <div>
-      <app-account-card
-        *ngFor="let account of accounts; let i = index; trackBy: trackBy"
-        [account]="account"
+      <mat-card
+        *ngIf="accounts && accounts.length === 0; else existing_accounts"
+        class="main__create-account-card"
       >
-      </app-account-card>
+        <mat-card-actions class="main__create-account-actions">
+          <button class="main__create-account-button" mat-button>
+            <mat-icon class="main__create-account-icon">add</mat-icon>
+            Add Account
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <ng-template #existing_accounts>
+        <app-account-card
+          *ngFor="let account of accounts; let i = index; trackBy: trackBy"
+          [account]="account"
+        >
+        </app-account-card>
+      </ng-template>
     </div>
     <div class="main__aside">
       <app-custom-button

@@ -8,7 +8,7 @@ import { AccountService } from '../account-card/services/account.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  public accounts: AccountModel[] = [];
+  public accounts!: AccountModel[];
 
   public trackBy(index: number, item: AccountModel) {
     return item._id;
