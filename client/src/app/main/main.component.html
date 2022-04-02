@@ -1,7 +1,7 @@
 <main class="main">
   <app-header></app-header>
   <div class="main__wrapper">
-    <div>
+    <div class="main__accounts">
       <mat-card
         *ngIf="accounts && accounts.length === 0; else existing_accounts"
         class="main__create-account-card"
@@ -21,6 +21,9 @@
         >
         </app-account-card>
       </ng-template>
+    </div>
+    <div class="main__transactions">
+      <app-transaction-card></app-transaction-card>
     </div>
     <div class="main__aside">
       <app-custom-button

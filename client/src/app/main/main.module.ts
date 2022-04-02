@@ -10,6 +10,7 @@ import { AccountCardComponent } from '.././account-card/account-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from '../shared.module';
+import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainComponent, HeaderComponent, AccountCardComponent],
+  declarations: [MainComponent, HeaderComponent, AccountCardComponent, TransactionCardComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
