@@ -20,6 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (this.authService.isLoggedIn() && this.isTokenExpired()) {
+      this.authService.logout();
       this.router.navigateByUrl('login');
       return next.handle(req);
     } else if (this.authService.isLoggedIn()) {
