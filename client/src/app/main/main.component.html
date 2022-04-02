@@ -22,9 +22,18 @@
         </app-account-card>
       </ng-template>
     </div>
+
     <div class="main__transactions">
-      <app-transaction-card></app-transaction-card>
+      <app-transaction-card
+        *ngFor="
+          let transaction of transactions;
+          let i = index;
+          trackBy: trackBy
+        "
+        [transaction]="transaction"
+      ></app-transaction-card>
     </div>
+
     <div class="main__aside">
       <app-custom-button
         type="income"

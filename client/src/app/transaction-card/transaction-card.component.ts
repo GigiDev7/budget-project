@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TransactionModel } from './transaction.model';
 
 @Component({
   selector: 'app-transaction-card',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./transaction-card.component.scss'],
 })
 export class TransactionCardComponent {
+  @Input() transaction!: TransactionModel;
+
   constructor() {}
 }
