@@ -11,7 +11,6 @@ import { TransactionModel } from '../transaction-card/transaction.model';
 })
 export class MainComponent implements OnInit {
   public accounts!: AccountModel[];
-  public transactions!: TransactionModel[];
 
   public trackBy(index: number, item: AccountModel | TransactionModel) {
     return item._id;
@@ -19,7 +18,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private transactionService: TransactionService
+    public transactionService: TransactionService
   ) {}
 
   public ngOnInit(): void {
@@ -27,10 +26,8 @@ export class MainComponent implements OnInit {
       next: (data) => (this.accounts = data),
       complete: () => {
         this.transactionService
-          .getTransactions(this.accounts[1]._id)
-          .subscribe({
-            next: (data) => (this.transactions = data),
-          });
+          .getTransactions(this.accounts[0]._id)
+          .subscribe();
       },
     });
   }

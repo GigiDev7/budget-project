@@ -1,6 +1,6 @@
 <aside class="account-container">
   <mat-card
-    (click)="accountService.activateAccount(account._id)"
+    (click)="onCardClick()"
     [ngClass]="{ active: account._id === accountService.activeAccount?._id }"
     class="account-card"
   >

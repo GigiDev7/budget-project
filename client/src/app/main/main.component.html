@@ -24,9 +24,15 @@
     </div>
 
     <div class="main__transactions">
+      <p
+        *ngIf="transactionService.transactions.length === 0"
+        class="main__notransactions"
+      >
+        You don't have any transactions in this account!
+      </p>
       <app-transaction-card
         *ngFor="
-          let transaction of transactions;
+          let transaction of transactionService.transactions;
           let i = index;
           trackBy: trackBy
         "

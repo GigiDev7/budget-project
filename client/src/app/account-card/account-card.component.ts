@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TransactionService } from '../transaction-card/services/transaction.service';
 import { AccountModel } from './account.model';
 import { AccountService } from './services/account.service';
 
@@ -10,7 +11,17 @@ import { AccountService } from './services/account.service';
 export class AccountCardComponent implements OnInit {
   @Input() public account!: AccountModel;
 
-  constructor(public accountService: AccountService) {}
+  onCardClick() {
+    this.accountService.activateAccount(this.account._id);
+    this.transactionService.getTransactions(this.account._id).subscribe({
+      next: (data) => (this.transactionService.transactions = data),
+    });
+  }
+
+  constructor(
+    public accountService: AccountService,
+    private transactionService: TransactionService
+  ) {}
 
   public ngOnInit(): void {
     const firstAccount = this.accountService.accounts[0];
