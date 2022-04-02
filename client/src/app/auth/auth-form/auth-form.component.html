@@ -12,6 +12,7 @@
           formControlName="password"
           [type]="isPasswordShown ? 'text' : 'password'"
           matInput
+          minlength="6"
         />
         <span (click)="togglePasswordShow()" class="material-icons custom">
           {{ isPasswordShown ? "visibility" : "visibility_off" }}
