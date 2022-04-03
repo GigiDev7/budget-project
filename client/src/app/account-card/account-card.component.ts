@@ -11,7 +11,7 @@ import { AccountService } from './services/account.service';
 export class AccountCardComponent implements OnInit {
   @Input() public account!: AccountModel;
 
-  onCardClick() {
+  public onCardClick(): void {
     this.accountService.activateAccount(this.account._id);
     this.transactionService.getTransactions(this.account._id).subscribe({
       next: (data) => (this.transactionService.transactions = data),

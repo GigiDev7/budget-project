@@ -12,7 +12,7 @@ import { TransactionModel } from '../transaction-card/transaction.model';
 export class MainComponent implements OnInit {
   public accounts!: AccountModel[];
 
-  public trackBy(index: number, item: AccountModel | TransactionModel) {
+  public trackBy(index: number, item: AccountModel | TransactionModel): string {
     return item._id;
   }
 
