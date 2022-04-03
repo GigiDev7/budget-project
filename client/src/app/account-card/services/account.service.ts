@@ -8,7 +8,7 @@ import { AccountModel } from '../account.model';
 })
 export class AccountService {
   public accounts: AccountModel[] = [];
-  public activeAccount!: AccountModel;
+  public activeAccount: AccountModel = this.accounts[0];
 
   constructor(private http: HttpClient) {}
 
