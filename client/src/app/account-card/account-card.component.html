@@ -8,9 +8,11 @@
       {{ account.title | titlecase }}
     </mat-card-subtitle>
     <mat-card-title class="account-card__amount">{{
-      account.sum
+      account.sum | number: "1.2-2"
     }}</mat-card-title>
   </mat-card>
   <span class="account-card__currency">{{ account.currency }}</span>
-  <mat-icon class="account-card__icon">remove_red_eye</mat-icon>
+  <mat-icon (click)="infoCardService.openInfoCard()" class="account-card__icon"
+    >remove_red_eye</mat-icon
+  >
 </aside>
