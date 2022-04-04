@@ -286,6 +286,16 @@
 				{
 					"name": "Get Categories",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQzNDkxMCwiZXhwIjoxNjQ3NDM4NTEwfQ.YU1PafNpKlSZyJ97oMqg60yAKwmerldShSibUVsSgpA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -305,8 +315,27 @@
 				{
 					"name": "Create Category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQzNDkxMCwiZXhwIjoxNjQ3NDM4NTEwfQ.YU1PafNpKlSZyJ97oMqg60yAKwmerldShSibUVsSgpA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"income\",\r\n    \"title\": \"my category\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:5000/api/category",
 							"host": [
@@ -324,10 +353,29 @@
 				{
 					"name": "Update Category",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQzNDkxMCwiZXhwIjoxNjQ3NDM4NTEwfQ.YU1PafNpKlSZyJ97oMqg60yAKwmerldShSibUVsSgpA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"changed title\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:5000/api/category/8",
+							"raw": "localhost:5000/api/category/6231dccc32d36b4fa7e44006",
 							"host": [
 								"localhost"
 							],
@@ -335,7 +383,7 @@
 							"path": [
 								"api",
 								"category",
-								"8"
+								"6231dccc32d36b4fa7e44006"
 							]
 						}
 					},
@@ -374,7 +422,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzQyMTQ0MCwiZXhwIjoxNjQ3NDI1MDQwfQ.l4SZ1jYanEb6UXeg7mDpKob_-TmJp2fvGWpr_G7s1qw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzA4MmZhMjI2Y2E4MjIwNjExNzU5MSIsImlhdCI6MTY0NzYwODIxMSwiZXhwIjoxNjQ3NjExODExfQ.A8mi_6XZDx9fm9M5cAPivS9D3UeJ8t8CMCsoSQLEMUQ",
 									"type": "string"
 								}
 							]
@@ -483,7 +531,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\" :\"my first income\"\r\n}",
+							"raw": "{\r\n    \"category\" :\"home\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -534,6 +582,19 @@
 								"6231aa0ef5b88cdb62729f20"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Currency",
+			"item": [
+				{
+					"name": "Get Currencies",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
