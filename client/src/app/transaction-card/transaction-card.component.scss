@@ -1,0 +1,54 @@
+@use "../shared/variables.scss" as var;
+
+.transaction-container {
+  width: 30rem;
+  height: 6rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-info {
+  margin-left: 1.2rem;
+  flex: 2;
+
+  &__title {
+    font-size: 1.2rem;
+  }
+
+  &__subtitle {
+    font-weight: 600;
+  }
+}
+
+.transaction-amount__total {
+  font-size: 1.4rem;
+
+  &.income {
+    color: var.$base-green;
+  }
+
+  &.expanse {
+    color: var.$base-red;
+  }
+}
+
+.transaction-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var.$base-green;
+  color: var.$base-white;
+
+  &.income {
+    background-color: var.$base-green;
+  }
+
+  &.expanse {
+    background-color: var.$base-red;
+  }
+}

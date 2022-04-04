@@ -1,1 +1,66 @@
-<p>main works!</p>
+<main class="main">
+  <app-header></app-header>
+  <div class="main__wrapper">
+    <div class="main__accounts">
+      <mat-card
+        *ngIf="accounts && accounts.length === 0; else existing_accounts"
+        class="main__create-account-card"
+      >
+        <mat-card-actions class="main__create-account-actions">
+          <button class="main__create-account-button" mat-button>
+            <mat-icon class="main__create-account-icon">add</mat-icon>
+            Add Account
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <ng-template #existing_accounts>
+        <app-account-card
+          *ngFor="let account of accounts; let i = index; trackBy: trackBy"
+          [account]="account"
+        >
+        </app-account-card>
+      </ng-template>
+    </div>
+
+    <div class="main__transactions">
+      <p
+        *ngIf="transactionService.transactions.length === 0"
+        class="main__notransactions"
+      >
+        You don't have any transactions in this account!
+      </p>
+      <app-transaction-card
+        *ngFor="
+          let transaction of transactionService.transactions;
+          let i = index;
+          trackBy: trackBy
+        "
+        [transaction]="transaction"
+      ></app-transaction-card>
+    </div>
+
+    <div class="main__aside">
+      <app-custom-button
+        type="income"
+        icon="arrow_upward"
+        text="Income"
+      ></app-custom-button>
+      <app-custom-button
+        type="expanse"
+        icon="arrow_downward"
+        text="Expanses"
+      ></app-custom-button>
+      <app-custom-button
+        type="create"
+        icon="add"
+        text="Add Account"
+      ></app-custom-button>
+      <app-custom-button
+        type="create"
+        icon="add"
+        text="Add Transaction"
+      ></app-custom-button>
+    </div>
+  </div>
+</main>

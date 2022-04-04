@@ -1,0 +1,24 @@
+<header class="header-container">
+  <div class="header-text">
+    <h1 class="header-text__title">Budgetify</h1>
+  </div>
+  <div class="header-links">
+    <nav mat-tab-nav-bar class="header-links__group">
+      <a
+        mat-tab-link
+        (click)="activeLink = link"
+        [active]="activeLink == link"
+        *ngFor="let link of links"
+        >{{ link }}
+      </a>
+    </nav>
+  </div>
+  <div class="header-user-info">
+    <p class="header-user-info__username">
+      {{ fullname | titlecase }}
+    </p>
+    <button (click)="onLogoutClick()" mat-icon-button aria-label="Logout">
+      <mat-icon class="header-user-info__icon-logout">exit_to_app</mat-icon>
+    </button>
+  </div>
+</header>

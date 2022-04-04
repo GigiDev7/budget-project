@@ -1,0 +1,70 @@
+@use "../shared/variables.scss" as var;
+
+.main {
+  background-color: var.$app-bg-gray;
+  height: 100%;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__aside {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10rem;
+  }
+
+  &__create-account-card {
+    margin-top: 2rem;
+    width: 18rem;
+    height: 8rem;
+    background-image: linear-gradient(
+      to right bottom,
+      var.$linear-one,
+      var.$linear-two,
+      var.$linear-three,
+      var.$linear-four,
+      var.$linear-five
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 3px 5px 15px 3px var.$base-black;
+  }
+
+  &__create-account-actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__create-account-button {
+    color: var.$base-white;
+    font-size: 1.5rem;
+    pointer-events: none;
+    width: 100%;
+  }
+
+  &__create-account-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var.$base-white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-size: 1.8rem;
+  }
+
+  &__notransactions {
+    width: 30rem;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}

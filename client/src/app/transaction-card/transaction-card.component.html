@@ -1,0 +1,30 @@
+<mat-card class="transaction-container">
+  <mat-icon
+    [ngClass]="{
+      income: transaction.type === 'income',
+      expanse: transaction.type === 'expanse'
+    }"
+    class="transaction-icon"
+  >
+    {{ transaction.type === "income" ? "arrow_upward" : "arrow_downward" }}
+  </mat-icon>
+  <div class="transaction-info">
+    <mat-card-title class="transaction-info__title">
+      {{ transaction.title | titlecase }}
+    </mat-card-title>
+    <mat-card-subtitle class="transaction-info__subtitle">
+      {{ transaction.type | titlecase }} - {{ transaction.createdAt | date }}
+    </mat-card-subtitle>
+  </div>
+  <div class="transaction-amount">
+    <mat-card-content
+      [ngClass]="{
+        income: transaction.type === 'income',
+        expanse: transaction.type === 'expanse'
+      }"
+      class="transaction-amount__total"
+    >
+      {{ transaction.amount }}
+    </mat-card-content>
+  </div>
+</mat-card>
