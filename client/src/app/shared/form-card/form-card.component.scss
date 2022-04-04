@@ -1,0 +1,65 @@
+@use "../variables.scss" as var;
+
+.background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background-color: var.$bg-modal;
+}
+
+.form-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 30rem;
+  background-color: var.$base-white;
+  z-index: 5;
+  padding: 3rem 2rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+
+    &__icon {
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  &__button-container {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+
+    &__button {
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.btn-cancel {
+  background-color: transparent;
+}
+
+.btn-save {
+  margin-left: 0.5rem;
+  background-color: var.$button-bg;
+
+  &:hover {
+    background-color: var.$button-bg-darker;
+  }
+}

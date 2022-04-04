@@ -1,0 +1,70 @@
+<div class="background"></div>
+<div class="form-card">
+  <div class="form-card__header">
+    <p>{{ type === "Account" ? "Add Account" : "Add Transaction" }}</p>
+    <mat-icon
+      (click)="formCardService.closeFormCard()"
+      class="form-card__header__icon"
+      >close</mat-icon
+    >
+  </div>
+  <form
+    *ngIf="type === 'Account'"
+    [formGroup]="accountForm"
+    class="form-card__form"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" type="text" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="currency">
+        <mat-option value="USD">USD</mat-option>
+        <mat-option value="EU">EU</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" type="text" />
+    </mat-form-field>
+  </form>
+  <form
+    *ngIf="type === 'Transaction'"
+    [formGroup]="transactionForm"
+    class="form-card__form"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" type="text" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Categories</mat-label>
+      <mat-select formControlName="categories">
+        <mat-option value="Home">Home</mat-option>
+        <mat-option value="Sale">Sale</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="amount" type="number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Payment Date</mat-label>
+      <input matInput formControlName="paymentDate" type="date" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" type="text" />
+    </mat-form-field>
+  </form>
+  <div class="form-card__button-container">
+    <button
+      (click)="formCardService.closeFormCard()"
+      class="form-card__button-container__button btn-cancel"
+    >
+      Cancel
+    </button>
+    <button class="form-card__button-container__button btn-save">Save</button>
+  </div>
+</div>
