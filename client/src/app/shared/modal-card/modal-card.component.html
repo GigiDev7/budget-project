@@ -1,12 +1,18 @@
 <div class="background"></div>
 <div class="modal">
   <div class="modal__header">
-    <h2>Delete Transaction</h2>
-    <mat-icon class="modal__header__icon">close</mat-icon>
+    <h2>Delete {{ infoCardService.type }}</h2>
+    <mat-icon (click)="onCloseClick()" class="modal__header__icon"
+      >close</mat-icon
+    >
   </div>
-  <p class="modal__text">Are you sure you want to delete transaction?</p>
+  <p class="modal__text">
+    Are you sure you want to delete {{ infoCardService.type | lowercase }}?
+  </p>
   <div class="modal__button-container">
-    <button class="modal__button btn-yes">Yes</button>
-    <button class="modal__button btn-no">No</button>
+    <button (click)="onDeleteConfirm()" class="modal__button btn-yes">
+      Yes
+    </button>
+    <button (click)="onDeleteCancel()" class="modal__button btn-no">No</button>
   </div>
 </div>

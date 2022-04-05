@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AccountService } from 'src/app/account-card/services/account.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
+import { ModalService } from '../modal-card/services/modal-card.service';
 import { InfoCardService } from './services/info-card.service';
 
 @Component({
@@ -12,18 +13,13 @@ export class InfoCardComponent {
   @Input() public type: string = '';
 
   public onDeleteClick(): void {
-    if (this.type === 'Account') {
-      const account = this.accountService.singleAccount;
-      this.accountService.deleteAccount(account._id).subscribe();
-    } else {
-      const transaction = this.transactionService.singleTransaction;
-      this.transactionService.deleteTransaction(transaction._id);
-    }
+    this.modalService.showModal();
   }
 
   constructor(
     public infoCardService: InfoCardService,
     public accountService: AccountService,
-    public transactionService: TransactionService
+    public transactionService: TransactionService,
+    private modalService: ModalService
   ) {}
 }

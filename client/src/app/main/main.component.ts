@@ -3,6 +3,7 @@ import { AccountModel } from '../account-card/account.model';
 import { AccountService } from '../account-card/services/account.service';
 import { FormCardService } from '../shared/form-card/services/form-card.service';
 import { InfoCardService } from '../shared/info-card/services/info-card.service';
+import { ModalService } from '../shared/modal-card/services/modal-card.service';
 import { TransactionService } from '../transaction-card/services/transaction.service';
 import { TransactionModel } from '../transaction-card/transaction.model';
 
@@ -18,20 +19,27 @@ export class MainComponent implements OnInit {
     return item._id;
   }
 
+  public onAddAccountClick(): void {
+    this.formCardService.setType('Account');
+    this.formCardService.openFormCard();
+  }
+
   constructor(
-    private accountService: AccountService,
+    public accountService: AccountService,
     public transactionService: TransactionService,
     public infoCardService: InfoCardService,
-    public formCardService: FormCardService
+    public formCardService: FormCardService,
+    public modalService: ModalService
   ) {}
 
   public ngOnInit(): void {
     this.accountService.getAccounts().subscribe({
       next: (data) => (this.accounts = data),
       complete: () => {
-        this.transactionService
-          .getTransactions(this.accounts[0]._id)
-          .subscribe();
+        this.accounts.length > 0 &&
+          this.transactionService
+            .getTransactions(this.accounts[0]._id)
+            .subscribe();
       },
     });
   }

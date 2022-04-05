@@ -3,6 +3,7 @@
   <div class="main__wrapper">
     <div class="main__accounts">
       <mat-card
+        (click)="onAddAccountClick()"
         *ngIf="accounts && accounts?.length === 0; else existing_accounts"
         class="main__create-account-card"
       >
@@ -22,8 +23,8 @@
         </app-account-card>
       </ng-template>
     </div>
-
-    <div class="main__transactions">
+    <div *ngIf="accountService.accounts.length === 0"></div>
+    <div *ngIf="accountService.accounts.length > 0" class="main__transactions">
       <p
         *ngIf="transactionService.transactions.length === 0"
         class="main__notransactions"
@@ -71,5 +72,5 @@
     [type]="formCardService.type"
     *ngIf="formCardService.isFormCardShown"
   ></app-form-card>
-  <app-modal-card></app-modal-card>
+  <app-modal-card *ngIf="modalService.isModalShown"></app-modal-card>
 </main>
