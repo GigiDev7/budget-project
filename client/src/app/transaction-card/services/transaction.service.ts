@@ -8,6 +8,7 @@ import { TransactionModel } from '../transaction.model';
 })
 export class TransactionService {
   public transactions!: TransactionModel[];
+  public singleTransaction!: TransactionModel;
 
   constructor(private http: HttpClient) {}
 
@@ -15,5 +16,17 @@ export class TransactionService {
     return this.http
       .get(`http://localhost:5000/api/transactions/${accountId}`)
       .pipe(tap({ next: (res: any) => (this.transactions = res) }));
+  }
+
+  public getSingleTransaction(transactionId: string): Observable<any> {
+    return this.http
+      .get(
+        `http://localhost:5000/api/transactions/transaction/${transactionId}`
+      )
+      .pipe(
+        tap({
+          next: (res: any) => (this.singleTransaction = res),
+        })
+      );
   }
 }

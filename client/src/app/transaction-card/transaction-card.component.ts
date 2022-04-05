@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { InfoCardService } from '../shared/info-card/services/info-card.service';
+import { TransactionService } from './services/transaction.service';
 import { TransactionModel } from './transaction.model';
 
 @Component({
@@ -9,5 +11,16 @@ import { TransactionModel } from './transaction.model';
 export class TransactionCardComponent {
   @Input() transaction!: TransactionModel;
 
-  constructor() {}
+  public onViewTransactionClick(): void {
+    this.infoCardService.setType('Transaction');
+    this.infoCardService.openInfoCard();
+    this.transactionService
+      .getSingleTransaction(this.transaction._id)
+      .subscribe();
+  }
+
+  constructor(
+    public infoCardService: InfoCardService,
+    public transactionService: TransactionService
+  ) {}
 }

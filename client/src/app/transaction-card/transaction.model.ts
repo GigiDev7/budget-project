@@ -5,4 +5,5 @@ export interface TransactionModel {
   createdAt: Date;
   category: string;
   type: string;
+  description: string;
 }

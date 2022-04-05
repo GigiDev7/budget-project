@@ -1,4 +1,4 @@
-<mat-card class="transaction-container">
+<mat-card (click)="onViewTransactionClick()" class="transaction-container">
   <mat-icon
     [ngClass]="{
       income: transaction.type === 'income',
@@ -24,7 +24,7 @@
       }"
       class="transaction-amount__total"
     >
-      {{ transaction.amount }}
+      {{ transaction.amount | number: "1.2-3" }}
     </mat-card-content>
   </div>
 </mat-card>
