@@ -14,6 +14,7 @@ const accountSchema = new mongoose.Schema(
     },
     sum: {
       type: Number,
+      default: 0,
     },
     userId: {
       type: mongoose.Types.ObjectId,
