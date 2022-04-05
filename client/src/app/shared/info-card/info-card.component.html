@@ -4,7 +4,9 @@
     <p class="info-card__header__title">{{ type }} Information</p>
     <div>
       <mat-icon class="info-card__icon">edit</mat-icon>
-      <mat-icon class="info-card__icon">delete</mat-icon>
+      <mat-icon (click)="onDeleteClick()" class="info-card__icon"
+        >delete</mat-icon
+      >
       <mat-icon
         (click)="infoCardService.closeInfoCard()"
         class="info-card__icon"
