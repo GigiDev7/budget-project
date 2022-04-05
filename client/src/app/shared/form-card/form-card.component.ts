@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/account-card/services/account.service';
+import { ReloadService } from 'src/app/reload/reload.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
 import { FormCardService } from './services/form-card.service';
 
@@ -52,14 +53,17 @@ export class FormCardComponent {
           description
         )
         .subscribe();
+      this.accountService.getAccounts().subscribe();
     }
 
     this.formCardService.closeFormCard();
+    this.reloadService.reloadComponent();
   }
 
   constructor(
     public formCardService: FormCardService,
     private accountService: AccountService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private reloadService: ReloadService
   ) {}
 }

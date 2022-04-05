@@ -3,7 +3,7 @@ import { ModalService } from './services/modal-card.service';
 import { InfoCardService } from '../info-card/services/info-card.service';
 import { AccountService } from 'src/app/account-card/services/account.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
-import { Router } from '@angular/router';
+import { ReloadService } from 'src/app/reload/reload.service';
 
 @Component({
   selector: 'app-modal-card',
@@ -26,9 +26,11 @@ export class ModalCardComponent {
     } else {
       const transaction = this.transactionService.singleTransaction;
       this.transactionService.deleteTransaction(transaction._id).subscribe();
+      this.accountService.getAccounts().subscribe();
     }
     this.modalService.hideModal();
     this.infoCardService.closeInfoCard();
+    this.reloadService.reloadComponent();
   }
 
   constructor(
@@ -36,6 +38,6 @@ export class ModalCardComponent {
     public infoCardService: InfoCardService,
     private accountService: AccountService,
     private transactionService: TransactionService,
-    private router: Router
+    private reloadService: ReloadService
   ) {}
 }
