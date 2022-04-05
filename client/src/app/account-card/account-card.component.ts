@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { TransactionService } from '../transaction-card/services/transaction.service';
 import { AccountModel } from './account.model';
 import { AccountService } from './services/account.service';
@@ -18,9 +19,16 @@ export class AccountCardComponent implements OnInit {
     });
   }
 
+  public onViewAccountClick(): void {
+    this.infoCardService.setType('Account');
+    this.infoCardService.openInfoCard();
+    this.accountService.getSingleAccount(this.account._id).subscribe();
+  }
+
   constructor(
     public accountService: AccountService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    public infoCardService: InfoCardService
   ) {}
 
   public ngOnInit(): void {

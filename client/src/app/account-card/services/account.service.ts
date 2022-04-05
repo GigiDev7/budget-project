@@ -9,6 +9,7 @@ import { AccountModel } from '../account.model';
 export class AccountService {
   public accounts: AccountModel[] = [];
   public activeAccount: AccountModel = this.accounts[0];
+  public singleAccount!: AccountModel;
 
   constructor(private http: HttpClient) {}
 
@@ -25,5 +26,15 @@ export class AccountService {
   public activateAccount(id: string): void {
     const account = this.accounts.find((el) => el._id === id);
     this.activeAccount = account!;
+  }
+
+  public getSingleAccount(accountId: string): Observable<any> {
+    return this.http
+      .get(`http://localhost:5000/api/myaccount/${accountId}`)
+      .pipe(
+        tap({
+          next: (res: any) => (this.singleAccount = res),
+        })
+      );
   }
 }

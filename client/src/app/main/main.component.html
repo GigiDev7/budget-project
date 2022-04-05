@@ -3,7 +3,7 @@
   <div class="main__wrapper">
     <div class="main__accounts">
       <mat-card
-        *ngIf="accounts && accounts.length === 0; else existing_accounts"
+        *ngIf="accounts && accounts?.length === 0; else existing_accounts"
         class="main__create-account-card"
       >
         <mat-card-actions class="main__create-account-actions">
@@ -63,4 +63,12 @@
       ></app-custom-button>
     </div>
   </div>
+  <app-info-card
+    [type]="infoCardService.type"
+    *ngIf="infoCardService.isInfoCardShown"
+  ></app-info-card>
+  <app-form-card
+    [type]="formCardService.type"
+    *ngIf="formCardService.isFormCardShown"
+  ></app-form-card>
 </main>
