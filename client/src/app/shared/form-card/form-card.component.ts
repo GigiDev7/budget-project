@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from 'src/app/account-card/services/account.service';
 import { FormCardService } from './services/form-card.service';
 
 @Component({
@@ -23,5 +24,18 @@ export class FormCardComponent {
     description: new FormControl(''),
   });
 
-  constructor(public formCardService: FormCardService) {}
+  onSaveClick(): void {
+    if (this.type === 'Account') {
+      console.log(this.accountForm);
+      const { title, currency, description } = this.accountForm.value;
+      this.accountService.addAccount(title, currency, description).subscribe();
+    }
+
+    this.formCardService.closeFormCard();
+  }
+
+  constructor(
+    public formCardService: FormCardService,
+    private accountService: AccountService
+  ) {}
 }

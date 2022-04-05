@@ -43,21 +43,25 @@
 
     <div class="main__aside">
       <app-custom-button
+        *ngIf="accounts && accounts.length > 0"
         type="income"
         icon="arrow_upward"
         text="Income"
       ></app-custom-button>
       <app-custom-button
+        *ngIf="accounts && accounts.length > 0"
         type="expanse"
         icon="arrow_downward"
         text="Expanses"
       ></app-custom-button>
       <app-custom-button
+        *ngIf="accounts && accounts.length > 0"
         type="create"
         icon="add"
         text="Add Account"
       ></app-custom-button>
       <app-custom-button
+        *ngIf="accounts && accounts.length > 0"
         type="create"
         icon="add"
         text="Add Transaction"

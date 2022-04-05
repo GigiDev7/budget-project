@@ -27,7 +27,7 @@ export class AccountCardComponent implements OnInit {
 
   constructor(
     public accountService: AccountService,
-    private transactionService: TransactionService,
+    public transactionService: TransactionService,
     public infoCardService: InfoCardService
   ) {}
 

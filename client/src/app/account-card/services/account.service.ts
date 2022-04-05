@@ -41,4 +41,12 @@ export class AccountService {
   public deleteAccount(accountId: string): Observable<any> {
     return this.http.delete(`${URL}/${accountId}`);
   }
+
+  public addAccount(
+    title: string,
+    currency: string,
+    description: string
+  ): Observable<any> {
+    return this.http.post(URL, { title, currency, description });
+  }
 }
