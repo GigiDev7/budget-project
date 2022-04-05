@@ -31,4 +31,23 @@ export class TransactionService {
   public deleteTransaction(transactionId: string): Observable<any> {
     return this.http.delete(`${URL}/transaction/${transactionId}`);
   }
+
+  public addTransaction(
+    accountId: string,
+    title: string,
+    categories: string[],
+    amount: number,
+    type: string,
+    date: Date,
+    description: string
+  ): Observable<any> {
+    return this.http.post(`${URL}/${accountId}`, {
+      title,
+      categories,
+      amount,
+      type,
+      date,
+      description,
+    });
+  }
 }

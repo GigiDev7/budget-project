@@ -34,6 +34,32 @@
     [formGroup]="transactionForm"
     class="form-card__form"
   >
+    <div>
+      <button
+        [ngClass]="{ 'active-type': transactionType === 'income' }"
+        (click)="onIncomeClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="income"
+          text="Income"
+          icon="arrow_upward"
+        ></app-custom-button>
+      </button>
+      <button
+        [ngClass]="{ 'active-type': transactionType === 'expanse' }"
+        (click)="onExpanseClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="expanse"
+          text="Expanses"
+          icon="arrow_downward"
+        ></app-custom-button>
+      </button>
+    </div>
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" type="text" />
@@ -67,6 +93,7 @@
     </button>
     <button
       (click)="onSaveClick()"
+      type="submit"
       class="form-card__button-container__button btn-save"
     >
       Save

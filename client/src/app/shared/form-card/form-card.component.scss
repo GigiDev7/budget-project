@@ -63,3 +63,15 @@
     background-color: var.$button-bg-darker;
   }
 }
+
+.btn {
+  width: max-content;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.active-type {
+  opacity: 1;
+}

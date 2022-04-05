@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/account-card/services/account.service';
+import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
 import { FormCardService } from './services/form-card.service';
 
 @Component({
@@ -23,12 +24,34 @@ export class FormCardComponent {
     paymentDate: new FormControl('', [Validators.required]),
     description: new FormControl(''),
   });
+  public transactionType: string = '';
+
+  public onIncomeClick(): void {
+    this.transactionType = 'income';
+  }
+  public onExpanseClick(): void {
+    this.transactionType = 'expanse';
+  }
 
   onSaveClick(): void {
     if (this.type === 'Account') {
-      console.log(this.accountForm);
       const { title, currency, description } = this.accountForm.value;
       this.accountService.addAccount(title, currency, description).subscribe();
+    } else {
+      const accountId = this.accountService.activeAccount._id;
+      const { title, categories, amount, paymentDate, description } =
+        this.transactionForm.value;
+      this.transactionService
+        .addTransaction(
+          accountId,
+          title,
+          categories,
+          amount,
+          this.transactionType,
+          paymentDate,
+          description
+        )
+        .subscribe();
     }
 
     this.formCardService.closeFormCard();
@@ -36,6 +59,7 @@ export class FormCardComponent {
 
   constructor(
     public formCardService: FormCardService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private transactionService: TransactionService
   ) {}
 }
