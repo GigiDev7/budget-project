@@ -38,7 +38,7 @@ export class MainComponent implements OnInit {
       complete: () => {
         this.accounts.length > 0 &&
           this.transactionService
-            .getTransactions(this.accounts[0]._id)
+            .getTransactions(this.accountService.activeAccount._id)
             .subscribe();
       },
     });

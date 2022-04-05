@@ -10,7 +10,8 @@ const URL = 'http://localhost:5000/api/myaccount';
 })
 export class AccountService {
   public accounts: AccountModel[] = [];
-  public activeAccount: AccountModel = this.accounts[0];
+  public activeAccount: AccountModel =
+    JSON.parse(localStorage.getItem('account')!) || this.accounts[0];
   public singleAccount!: AccountModel;
 
   constructor(private http: HttpClient) {}
@@ -48,5 +49,9 @@ export class AccountService {
     description: string
   ): Observable<any> {
     return this.http.post(URL, { title, currency, description });
+  }
+
+  public setAccount(account: AccountModel): void {
+    localStorage.setItem('account', JSON.stringify(account));
   }
 }

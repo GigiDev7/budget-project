@@ -14,6 +14,7 @@ export class AccountCardComponent implements OnInit {
 
   public onCardClick(): void {
     this.accountService.activateAccount(this.account._id);
+    this.accountService.setAccount(this.accountService.activeAccount);
     this.transactionService.getTransactions(this.account._id).subscribe({
       next: (data) => (this.transactionService.transactions = data),
     });
@@ -32,7 +33,12 @@ export class AccountCardComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    const firstAccount = this.accountService.accounts[0];
-    this.accountService.activateAccount(firstAccount._id);
+    let existingAccount = JSON.parse(localStorage.getItem('account')!);
+    if (existingAccount) {
+      this.accountService.activateAccount(existingAccount._id);
+    } else {
+      const firstAccount = this.accountService.accounts[0];
+      this.accountService.activateAccount(firstAccount._id);
+    }
   }
 }

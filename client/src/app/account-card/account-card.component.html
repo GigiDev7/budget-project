@@ -8,11 +8,7 @@
       {{ account.title | titlecase }}
     </mat-card-subtitle>
     <mat-card-title class="account-card__amount">
-      {{
-        transactionService.transactions.length > 0
-          ? (account.sum | number: "1.2-3")
-          : (0 | number: "1.2-3")
-      }}
+      {{ account.sum | number: "1.2-3" }}
     </mat-card-title>
   </mat-card>
   <span class="account-card__currency">{{ account.currency }}</span>
