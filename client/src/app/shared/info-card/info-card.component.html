@@ -1,0 +1,70 @@
+<div class="background-layout"></div>
+<div class="info-card">
+  <div class="info-card__header">
+    <p class="info-card__header__title">{{ type }} Information</p>
+    <div>
+      <mat-icon class="info-card__icon">edit</mat-icon>
+      <mat-icon class="info-card__icon">delete</mat-icon>
+      <mat-icon
+        (click)="infoCardService.closeInfoCard()"
+        class="info-card__icon"
+        >close</mat-icon
+      >
+    </div>
+  </div>
+  <div *ngIf="type === 'Account'" class="info-card__body">
+    <app-info-card-field
+      title="Title"
+      [description]="accountService.singleAccount.title"
+    ></app-info-card-field>
+    <app-info-card-field
+      title="Balance"
+      [description]="accountService.singleAccount.sum"
+    ></app-info-card-field>
+    <app-info-card-field
+      title="Currency"
+      [description]="accountService.singleAccount.currency"
+    ></app-info-card-field>
+    <app-info-card-field
+      title="Description"
+      [description]="accountService.singleAccount.description"
+    ></app-info-card-field>
+  </div>
+  <div *ngIf="type === 'Transaction'" class="info-card__body">
+    <div class="transaction-info">
+      <div>
+        <p class="transaction-info__type">
+          {{ transactionService.singleTransaction.type | titlecase }}
+        </p>
+        <p class="transaction-info__title">
+          {{ transactionService.singleTransaction.title | titlecase }}
+        </p>
+      </div>
+      <div>
+        <p
+          [ngClass]="{
+            income: transactionService.singleTransaction.type === 'income',
+            expanse: transactionService.singleTransaction.type === 'expanse'
+          }"
+          class="transaction-info__amount"
+        >
+          {{ transactionService.singleTransaction.amount | number: "1.2-3" }}
+        </p>
+      </div>
+    </div>
+    <app-info-card-field
+      title="Date"
+      [description]="transactionService.singleTransaction.createdAt"
+    ></app-info-card-field>
+    <app-info-card-field
+      title="Description"
+      [description]="transactionService.singleTransaction.description"
+    ></app-info-card-field>
+  </div>
+  <button
+    (click)="infoCardService.closeInfoCard()"
+    class="info-card__close-button"
+  >
+    Close
+  </button>
+</div>

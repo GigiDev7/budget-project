@@ -1,0 +1,80 @@
+@use "../variables.scss" as var;
+
+.background-layout {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background-color: var.$bg-modal;
+}
+
+.info-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 30rem;
+  background-color: var.$base-white;
+  z-index: 5;
+  padding: 3rem 2rem;
+
+  &__body {
+    margin-top: 3rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__icon + &__icon {
+    margin-left: 0.6rem;
+  }
+
+  &__close-button {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.transaction-info {
+  display: flex;
+  justify-content: space-between;
+
+  &__type {
+    font-size: 1rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__amount {
+    font-size: 1.8rem;
+  }
+}
+
+.expanse {
+  color: var.$base-red;
+}
+
+.income {
+  color: var.$base-green;
+}
