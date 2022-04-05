@@ -25,8 +25,9 @@ export class ModalCardComponent {
       this.accountService.deleteAccount(account._id).subscribe();
     } else {
       const transaction = this.transactionService.singleTransaction;
-      this.transactionService.deleteTransaction(transaction._id).subscribe();
-      this.accountService.getAccounts().subscribe();
+      this.transactionService.deleteTransaction(transaction._id).subscribe({
+        next: () => this.accountService.getAccounts().subscribe(),
+      });
     }
     this.modalService.hideModal();
     this.infoCardService.closeInfoCard();

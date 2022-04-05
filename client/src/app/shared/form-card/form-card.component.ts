@@ -52,8 +52,9 @@ export class FormCardComponent {
           paymentDate,
           description
         )
-        .subscribe();
-      this.accountService.getAccounts().subscribe();
+        .subscribe({
+          next: () => this.accountService.getAccounts().subscribe(),
+        });
     }
 
     this.formCardService.closeFormCard();
