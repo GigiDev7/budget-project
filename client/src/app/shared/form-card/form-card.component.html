@@ -15,7 +15,12 @@
   >
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
-      <input matInput formControlName="title" type="text" />
+      <input
+        pattern="^[a-zA-Z]+$"
+        matInput
+        formControlName="title"
+        type="text"
+      />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Currency</mat-label>
@@ -26,7 +31,12 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
-      <input matInput formControlName="description" type="text" />
+      <input
+        pattern="^[a-zA-Z]+$"
+        matInput
+        formControlName="description"
+        type="text"
+      />
     </mat-form-field>
   </form>
   <form
@@ -62,7 +72,12 @@
     </div>
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
-      <input matInput formControlName="title" type="text" />
+      <input
+        pattern="^[a-zA-Z]+$"
+        matInput
+        formControlName="title"
+        type="text"
+      />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Categories</mat-label>
@@ -81,7 +96,12 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
-      <input matInput formControlName="description" type="text" />
+      <input
+        pattern="^[a-zA-Z]+$"
+        matInput
+        formControlName="description"
+        type="text"
+      />
     </mat-form-field>
   </form>
   <div class="form-card__button-container">
