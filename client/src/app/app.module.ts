@@ -10,6 +10,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainModule } from './main/main.module';
 import { CategoryModule } from './category/category.module';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -19,6 +20,7 @@ import { CategoryModule } from './category/category.module';
     AuthModule,
     MainModule,
     CategoryModule,
+    StatisticsModule,
     AppRoutingModule,
     HttpClientModule,
   ],
