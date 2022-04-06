@@ -25,6 +25,7 @@
       class="transaction-amount__total"
     >
       {{ transaction.amount | number: "1.2-3" }}
+      {{ accountService.activeAccount.currency }}
     </mat-card-content>
   </div>
 </mat-card>

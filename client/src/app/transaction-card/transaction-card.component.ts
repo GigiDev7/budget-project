@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AccountService } from '../account-card/services/account.service';
 import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { TransactionService } from './services/transaction.service';
 import { TransactionModel } from './transaction.model';
@@ -21,6 +22,7 @@ export class TransactionCardComponent {
 
   constructor(
     public infoCardService: InfoCardService,
-    public transactionService: TransactionService
+    public transactionService: TransactionService,
+    public accountService: AccountService
   ) {}
 }
