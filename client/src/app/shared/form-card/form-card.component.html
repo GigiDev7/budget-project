@@ -27,7 +27,7 @@
       <mat-select formControlName="currency">
         <mat-option
           *ngFor="let currency of currencyService.currencies"
-          [value]="currency.currencyCode"
+          [value]="currency.symbol"
         >
           {{ currency.currencyCode }}({{ currency.symbol }})</mat-option
         >

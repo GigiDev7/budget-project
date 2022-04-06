@@ -15,7 +15,9 @@ export class FormCardComponent {
   @Input() type: string = '';
   public accountForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    currency: new FormControl('', [Validators.required]),
+    currency: new FormControl(this.currencyService.defaultCurrency, [
+      Validators.required,
+    ]),
     description: new FormControl(''),
   });
 
