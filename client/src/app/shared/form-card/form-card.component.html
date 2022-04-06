@@ -2,9 +2,7 @@
 <div class="form-card">
   <div class="form-card__header">
     <p>{{ type === "Account" ? "Add Account" : "Add Transaction" }}</p>
-    <mat-icon
-      (click)="formCardService.closeFormCard()"
-      class="form-card__header__icon"
+    <mat-icon (click)="onCloseClick()" class="form-card__header__icon"
       >close</mat-icon
     >
   </div>
@@ -110,7 +108,7 @@
   </form>
   <div class="form-card__button-container">
     <button
-      (click)="formCardService.closeFormCard()"
+      (click)="onCloseClick()"
       class="form-card__button-container__button btn-cancel"
     >
       Cancel

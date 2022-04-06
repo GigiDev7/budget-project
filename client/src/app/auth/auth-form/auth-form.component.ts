@@ -28,7 +28,7 @@ export class AuthFormComponent {
     this.authService.login(email, password).subscribe({
       next: (userData) => {
         this.loginErrorMessage = '';
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/', { replaceUrl: true });
       },
       error: (e) => (this.loginErrorMessage = e.error?.message),
     });

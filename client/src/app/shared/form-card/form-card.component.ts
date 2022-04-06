@@ -14,21 +14,60 @@ import { FormCardService } from './services/form-card.service';
 export class FormCardComponent {
   @Input() type: string = '';
   public accountForm: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    currency: new FormControl(this.currencyService.defaultCurrency, [
-      Validators.required,
-    ]),
-    description: new FormControl(''),
+    title: new FormControl(
+      (this.formCardService.isEditing &&
+        this.accountService?.singleAccount?.title) ||
+        '',
+      [Validators.required]
+    ),
+    currency: new FormControl(
+      (this.formCardService.isEditing &&
+        this.accountService?.singleAccount?.currency) ||
+        this.currencyService.defaultCurrency,
+      [Validators.required]
+    ),
+    description: new FormControl(
+      (this.formCardService.isEditing &&
+        this.accountService?.singleAccount?.description) ||
+        ''
+    ),
   });
 
   public transactionForm: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    categories: new FormControl('', [Validators.required]),
-    amount: new FormControl('', [Validators.required]),
-    paymentDate: new FormControl('', [Validators.required]),
-    description: new FormControl(''),
+    title: new FormControl(
+      (this.formCardService.isEditing &&
+        this.transactionService?.singleTransaction?.title) ||
+        '',
+      [Validators.required]
+    ),
+    categories: new FormControl(
+      (this.formCardService.isEditing &&
+        this.transactionService?.singleTransaction?.category) ||
+        '',
+      [Validators.required]
+    ),
+    amount: new FormControl(
+      (this.formCardService.isEditing &&
+        this.transactionService?.singleTransaction?.amount) ||
+        '',
+      [Validators.required]
+    ),
+    paymentDate: new FormControl(
+      (this.formCardService.isEditing &&
+        this.transactionService?.singleTransaction?.createdAt) ||
+        '',
+      [Validators.required]
+    ),
+    description: new FormControl(
+      (this.formCardService.isEditing &&
+        this.transactionService?.singleTransaction?.description) ||
+        ''
+    ),
   });
-  public transactionType: string = '';
+  public transactionType: string =
+    (this.formCardService.isEditing &&
+      this.transactionService?.singleTransaction?.type) ||
+    '';
 
   public onIncomeClick(): void {
     this.transactionType = 'income';
@@ -37,7 +76,12 @@ export class FormCardComponent {
     this.transactionType = 'expanse';
   }
 
-  onSaveClick(): void {
+  public onCloseClick(): void {
+    this.formCardService.setIsEditing(false);
+    this.formCardService.closeFormCard();
+  }
+
+  public onSaveClick(): void {
     if (this.type === 'Account') {
       const { title, currency, description } = this.accountForm.value;
       this.accountService.addAccount(title, currency, description).subscribe();
@@ -60,6 +104,7 @@ export class FormCardComponent {
         });
     }
 
+    this.formCardService.setIsEditing(false);
     this.formCardService.closeFormCard();
     this.reloadService.reloadComponent();
   }

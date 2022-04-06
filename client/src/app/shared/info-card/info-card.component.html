@@ -3,7 +3,7 @@
   <div class="info-card__header">
     <p class="info-card__header__title">{{ type }} Information</p>
     <div>
-      <mat-icon class="info-card__icon">edit</mat-icon>
+      <mat-icon (click)="onEditClick()" class="info-card__icon">edit</mat-icon>
       <mat-icon (click)="onDeleteClick()" class="info-card__icon"
         >delete</mat-icon
       >
