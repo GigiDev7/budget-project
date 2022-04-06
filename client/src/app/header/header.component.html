@@ -5,6 +5,7 @@
   <div class="header-links">
     <nav mat-tab-nav-bar class="header-links__group">
       <a
+        [routerLink]="link === 'Categories' ? '/category' : '/statistics'"
         mat-tab-link
         (click)="activeLink = link"
         [active]="activeLink == link"
