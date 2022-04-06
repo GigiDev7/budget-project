@@ -9,6 +9,24 @@
     justify-content: space-around;
   }
 
+  &__accounts {
+    max-height: 80vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var.$base-gray;
+    }
+  }
+
   &__aside {
     margin-top: 2rem;
     display: flex;
@@ -70,5 +88,23 @@
 
   &__fallback {
     width: 30rem;
+  }
+
+  &__transactions {
+    height: 80vh;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var.$base-gray;
+    }
   }
 }
