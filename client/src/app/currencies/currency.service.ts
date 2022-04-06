@@ -5,12 +5,11 @@ import { Observable, tap } from 'rxjs';
 
 const URL = 'http://localhost:5000/api/currency';
 
-Injectable({
+@Injectable({
   providedIn: 'root',
-});
-
+})
 export class CurrencyService {
-  currencies!: CurrencyModel[];
+  public currencies!: CurrencyModel[];
 
   constructor(private http: HttpClient) {}
 

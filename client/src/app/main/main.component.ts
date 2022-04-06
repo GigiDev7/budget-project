@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountModel } from '../account-card/account.model';
 import { AccountService } from '../account-card/services/account.service';
+import { CurrencyService } from '../currencies/currency.service';
 import { FormCardService } from '../shared/form-card/services/form-card.service';
 import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { ModalService } from '../shared/modal-card/services/modal-card.service';
@@ -29,7 +30,8 @@ export class MainComponent implements OnInit {
     public transactionService: TransactionService,
     public infoCardService: InfoCardService,
     public formCardService: FormCardService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private currencyService: CurrencyService
   ) {}
 
   public ngOnInit(): void {
@@ -42,5 +44,7 @@ export class MainComponent implements OnInit {
             .subscribe();
       },
     });
+
+    this.currencyService.getCurrencies().subscribe();
   }
 }

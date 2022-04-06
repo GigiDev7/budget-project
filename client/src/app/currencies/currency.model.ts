@@ -1,6 +1,6 @@
 export interface CurrencyModel {
   countryName: string;
   currencyCode: string;
-  currencySymbol: string;
+  symbol: string;
   _id: string;
 }

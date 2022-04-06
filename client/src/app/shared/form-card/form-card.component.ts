@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/account-card/services/account.service';
+import { CurrencyService } from 'src/app/currencies/currency.service';
 import { ReloadService } from 'src/app/reload/reload.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
 import { FormCardService } from './services/form-card.service';
@@ -65,6 +66,7 @@ export class FormCardComponent {
     public formCardService: FormCardService,
     private accountService: AccountService,
     private transactionService: TransactionService,
-    private reloadService: ReloadService
+    private reloadService: ReloadService,
+    public currencyService: CurrencyService
   ) {}
 }
