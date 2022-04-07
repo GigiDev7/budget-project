@@ -6,4 +6,5 @@ export interface TransactionModel {
   category: string;
   type: string;
   description: string;
+  transactionDate: Date;
 }

@@ -38,7 +38,7 @@ export class TransactionService {
     categories: string[],
     amount: number,
     type: string,
-    date: Date,
+    transactionDate: Date,
     description: string
   ): Observable<any> {
     return this.http.post(`${URL}/${accountId}`, {
@@ -46,7 +46,7 @@ export class TransactionService {
       categories,
       amount,
       type,
-      date,
+      transactionDate,
       description,
     });
   }

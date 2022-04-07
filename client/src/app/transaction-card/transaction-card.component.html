@@ -13,7 +13,8 @@
       {{ transaction.title | titlecase }}
     </mat-card-title>
     <mat-card-subtitle class="transaction-info__subtitle">
-      {{ transaction.type | titlecase }} - {{ transaction.createdAt | date }}
+      {{ transaction.type | titlecase }} -
+      {{ transaction.transactionDate | date }}
     </mat-card-subtitle>
   </div>
   <div class="transaction-amount">

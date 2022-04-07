@@ -54,4 +54,17 @@ export class AccountService {
   public setAccount(account: AccountModel): void {
     localStorage.setItem('account', JSON.stringify(account));
   }
+
+  public updateAccount(
+    title: string,
+    currency: string,
+    description: string,
+    accountId: string
+  ): Observable<any> {
+    return this.http.patch(`${URL}/${accountId}`, {
+      title,
+      currency,
+      description,
+    });
+  }
 }

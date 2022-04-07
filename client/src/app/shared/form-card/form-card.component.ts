@@ -84,7 +84,20 @@ export class FormCardComponent {
   public onSaveClick(): void {
     if (this.type === 'Account') {
       const { title, currency, description } = this.accountForm.value;
-      this.accountService.addAccount(title, currency, description).subscribe();
+      if (this.formCardService.isEditing) {
+        this.accountService
+          .updateAccount(
+            title,
+            currency,
+            description,
+            this.accountService.singleAccount._id
+          )
+          .subscribe();
+      } else {
+        this.accountService
+          .addAccount(title, currency, description)
+          .subscribe();
+      }
     } else {
       const accountId = this.accountService.activeAccount._id;
       const { title, categories, amount, paymentDate, description } =
