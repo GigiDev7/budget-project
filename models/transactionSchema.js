@@ -24,6 +24,9 @@ const transactionSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Transaction amount is required"],
     },
+    transactionDate: {
+      type: Date,
+    },
     accountId: {
       type: mongoose.Types.ObjectId,
       ref: "Account",
