@@ -1,7 +1,7 @@
 <div class="background"></div>
 <div class="form-card">
   <div class="form-card__header">
-    <p>{{ type === "Account" ? "Add Account" : "Add Transaction" }}</p>
+    <p>Add {{ type }}</p>
     <mat-icon (click)="onCloseClick()" class="form-card__header__icon"
       >close</mat-icon
     >
@@ -102,6 +102,47 @@
         pattern="^[a-zA-Z]+$"
         matInput
         formControlName="description"
+        type="text"
+      />
+    </mat-form-field>
+  </form>
+  <form
+    *ngIf="type === 'Category'"
+    [formGroup]="categoryForm"
+    class="form-card__form"
+  >
+    <div>
+      <button
+        [ngClass]="{ 'active-type': categoryType === 'income' }"
+        (click)="onIncomeClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="income"
+          text="Income"
+          icon="arrow_upward"
+        ></app-custom-button>
+      </button>
+      <button
+        [ngClass]="{ 'active-type': categoryType === 'expanse' }"
+        (click)="onExpanseClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="expanse"
+          text="Expanses"
+          icon="arrow_downward"
+        ></app-custom-button>
+      </button>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input
+        pattern="^[a-zA-Z]+$"
+        matInput
+        formControlName="title"
         type="text"
       />
     </mat-form-field>

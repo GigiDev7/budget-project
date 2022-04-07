@@ -13,6 +13,8 @@ import { FormCardService } from './services/form-card.service';
 })
 export class FormCardComponent {
   @Input() type: string = '';
+
+  //for account
   public accountForm: FormGroup = new FormGroup({
     title: new FormControl(
       (this.formCardService.isEditing &&
@@ -33,6 +35,7 @@ export class FormCardComponent {
     ),
   });
 
+  //for transaction
   public transactionForm: FormGroup = new FormGroup({
     title: new FormControl(
       (this.formCardService.isEditing &&
@@ -69,11 +72,26 @@ export class FormCardComponent {
       this.transactionService?.singleTransaction?.type) ||
     '';
 
+  //for category
+  public categoryType: string = '';
+
+  public categoryForm: FormGroup = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+  });
+
   public onIncomeClick(): void {
-    this.transactionType = 'income';
+    if (this.type === 'Category') {
+      this.categoryType = 'income';
+    } else {
+      this.transactionType = 'income';
+    }
   }
   public onExpanseClick(): void {
-    this.transactionType = 'expanse';
+    if (this.type === 'Category') {
+      this.categoryType = 'expanse';
+    } else {
+      this.transactionType = 'expanse';
+    }
   }
 
   public onCloseClick(): void {

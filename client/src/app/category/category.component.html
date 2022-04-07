@@ -12,7 +12,11 @@
               expanse: category.type === 'expanse'
             }"
             class="main__categories__category"
-            *ngFor="let category of categoryService.categories"
+            *ngFor="
+              let category of categoryService.categories;
+              let i = index;
+              trackBy: trackBy
+            "
           >
             {{ category.title | titlecase }}
             <span class="main__categories__icon-container">
@@ -42,4 +46,8 @@
       ></app-custom-button>
     </aside>
   </div>
+  <app-form-card
+    type="Category"
+    *ngIf="formCardService.isFormCardShown"
+  ></app-form-card>
 </main>

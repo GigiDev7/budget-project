@@ -18,6 +18,9 @@ export class CustomButtonComponent {
     } else if (this.type === 'create' && this.text === 'Add Transaction') {
       this.formCardService.setType('Transaction');
       this.formCardService.openFormCard();
+    } else if (this.type === 'create' && this.text === 'Add Category') {
+      this.formCardService.setType('Category');
+      this.formCardService.openFormCard();
     }
   }
 
