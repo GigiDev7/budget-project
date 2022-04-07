@@ -50,4 +50,23 @@ export class TransactionService {
       description,
     });
   }
+
+  public updateTransaction(
+    transactionId: string,
+    title: string,
+    categories: string[],
+    amount: number,
+    type: string,
+    transactionDate: Date,
+    description: string
+  ): Observable<any> {
+    return this.http.patch(`${URL}/transaction/${transactionId}`, {
+      title,
+      categories,
+      amount,
+      type,
+      transactionDate,
+      description,
+    });
+  }
 }

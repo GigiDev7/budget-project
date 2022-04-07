@@ -84,6 +84,7 @@ export class FormCardComponent {
   public onSaveClick(): void {
     if (this.type === 'Account') {
       const { title, currency, description } = this.accountForm.value;
+      //if account is updating
       if (this.formCardService.isEditing) {
         this.accountService
           .updateAccount(
@@ -93,6 +94,8 @@ export class FormCardComponent {
             this.accountService.singleAccount._id
           )
           .subscribe();
+
+        //account is creating
       } else {
         this.accountService
           .addAccount(title, currency, description)
@@ -102,19 +105,41 @@ export class FormCardComponent {
       const accountId = this.accountService.activeAccount._id;
       const { title, categories, amount, paymentDate, description } =
         this.transactionForm.value;
-      this.transactionService
-        .addTransaction(
-          accountId,
-          title,
-          categories,
-          amount,
-          this.transactionType,
-          paymentDate,
-          description
-        )
-        .subscribe({
-          next: () => this.accountService.getAccounts().subscribe(),
-        });
+      //transaction is updating
+      if (this.formCardService.isEditing) {
+        this.transactionService
+          .updateTransaction(
+            this.transactionService.singleTransaction._id,
+            title,
+            categories,
+            amount,
+            this.transactionType,
+            paymentDate,
+            description
+          )
+          .subscribe({
+            next: (v) => this.accountService.getAccounts().subscribe(),
+            complete: () =>
+              this.transactionService
+                .getTransactions(this.accountService.activeAccount._id)
+                .subscribe(),
+          });
+        //transaction is creating
+      } else {
+        this.transactionService
+          .addTransaction(
+            accountId,
+            title,
+            categories,
+            amount,
+            this.transactionType,
+            paymentDate,
+            description
+          )
+          .subscribe({
+            next: () => this.accountService.getAccounts().subscribe(),
+          });
+      }
     }
 
     this.formCardService.setIsEditing(false);
