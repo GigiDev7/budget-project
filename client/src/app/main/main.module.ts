@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from '../shared.module';
 import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
 import { CategoryComponent } from '../category/category.component';
+import { CategoryItemComponent } from '../category/category-item/category-item.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     AccountCardComponent,
     TransactionCardComponent,
     CategoryComponent,
+    CategoryItemComponent,
   ],
   imports: [
     CommonModule,

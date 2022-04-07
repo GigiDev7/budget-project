@@ -5,25 +5,15 @@
       <mat-icon class="main__search__icon">search</mat-icon>
       <input class="main__search" placeholder="Search" matInput type="text" />
       <div class="main__categories">
-        <ul>
-          <li
-            [ngClass]="{
-              income: category.type === 'income',
-              expanse: category.type === 'expanse'
-            }"
-            class="main__categories__category"
+        <ul class="main__categories__list">
+          <app-category-item
+            [category]="category"
             *ngFor="
               let category of categoryService.categories;
               let i = index;
               trackBy: trackBy
             "
-          >
-            {{ category.title | titlecase }}
-            <span class="main__categories__icon-container">
-              <mat-icon class="main__categories__icon">edit</mat-icon>
-              <mat-icon class="main__categories__icon">delete_outline</mat-icon>
-            </span>
-          </li>
+          ></app-category-item>
         </ul>
       </div>
     </div>

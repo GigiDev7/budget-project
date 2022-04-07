@@ -1,0 +1,15 @@
+<li
+  [ngClass]="{
+    income: category.type === 'income',
+    expanse: category.type === 'expanse'
+  }"
+  class="main__categories__category"
+>
+  {{ category.title | titlecase }}
+  <span class="main__categories__icon-container">
+    <mat-icon class="main__categories__icon">edit</mat-icon>
+    <mat-icon (click)="onDeleteClick()" class="main__categories__icon"
+      >delete_outline</mat-icon
+    >
+  </span>
+</li>

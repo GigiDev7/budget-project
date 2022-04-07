@@ -39,30 +39,8 @@
     }
   }
 
-  &__categories__icon {
-    font-size: 1.2rem;
-    margin-top: 0.4rem;
-    cursor: pointer;
-  }
-
-  &__categories__icon-container {
-    margin-left: 0.4rem;
-  }
-
-  &__categories__category {
-    list-style: none;
-    border-radius: 0.3rem;
-    width: max-content;
-    padding: 3px 6px;
+  &__categories__list {
     display: flex;
-    align-items: center;
-    font-weight: 500;
+    flex-wrap: wrap;
   }
-}
-
-.income {
-  border: 2px solid var.$base-green;
-}
-.expanse {
-  border: 2px solid var.$base-red;
 }

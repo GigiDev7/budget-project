@@ -24,4 +24,8 @@ export class CategoryService {
   public addCategory(type: string, title: string): Observable<any> {
     return this.http.post(URL, { title, type });
   }
+
+  public deleteCategory(categoryId: string): Observable<any> {
+    return this.http.delete(`${URL}/${categoryId}`);
+  }
 }

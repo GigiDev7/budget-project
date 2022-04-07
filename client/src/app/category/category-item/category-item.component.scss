@@ -1,0 +1,30 @@
+@use "../../shared/variables.scss" as var;
+
+.main__categories__icon {
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
+}
+
+.main__categories__icon-container {
+  margin-left: 0.4rem;
+}
+
+.main__categories__category {
+  list-style: none;
+  border-radius: 0.3rem;
+  width: max-content;
+  padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-left: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.income {
+  border: 2px solid var.$base-green;
+}
+.expanse {
+  border: 2px solid var.$base-red;
+}
