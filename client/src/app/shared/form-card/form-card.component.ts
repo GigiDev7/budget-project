@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/account-card/services/account.service';
+import { CategoryService } from 'src/app/category/services/category.service';
 import { CurrencyService } from 'src/app/currencies/currency.service';
 import { ReloadService } from 'src/app/reload/reload.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
@@ -119,7 +120,7 @@ export class FormCardComponent {
           .addAccount(title, currency, description)
           .subscribe();
       }
-    } else {
+    } else if (this.type === 'Transaction') {
       const accountId = this.accountService.activeAccount._id;
       const { title, categories, amount, paymentDate, description } =
         this.transactionForm.value;
@@ -158,6 +159,11 @@ export class FormCardComponent {
             next: () => this.accountService.getAccounts().subscribe(),
           });
       }
+    } else if (this.type === 'Category') {
+      const { title } = this.categoryForm.value;
+      this.categoryService.addCategory(this.categoryType, title).subscribe({
+        next: () => this.categoryService.getCategories().subscribe(),
+      });
     }
 
     this.formCardService.setIsEditing(false);
@@ -170,6 +176,7 @@ export class FormCardComponent {
     private accountService: AccountService,
     private transactionService: TransactionService,
     private reloadService: ReloadService,
-    public currencyService: CurrencyService
+    public currencyService: CurrencyService,
+    private categoryService: CategoryService
   ) {}
 }

@@ -20,4 +20,8 @@ export class CategoryService {
       })
     );
   }
+
+  public addCategory(type: string, title: string): Observable<any> {
+    return this.http.post(URL, { title, type });
+  }
 }
