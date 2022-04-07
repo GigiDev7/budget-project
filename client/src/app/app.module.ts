@@ -9,7 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainModule } from './main/main.module';
-import { CategoryModule } from './category/category.module';
+
 import { StatisticsModule } from './statistics/statistics.module';
 
 @NgModule({
@@ -19,7 +19,6 @@ import { StatisticsModule } from './statistics/statistics.module';
     BrowserAnimationsModule,
     AuthModule,
     MainModule,
-    CategoryModule,
     StatisticsModule,
     AppRoutingModule,
     HttpClientModule,

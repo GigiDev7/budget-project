@@ -1,0 +1,68 @@
+@use "../shared/variables.scss" as var;
+
+.container {
+  background-color: var.$app-bg-gray;
+  height: 100%;
+}
+
+.wrapper {
+  width: 85%;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 7rem;
+}
+
+.main {
+  position: relative;
+
+  &__search {
+    width: 20rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+    border: none;
+    outline: none;
+    padding-left: 1.7rem;
+    background-color: var.$base-white;
+
+    &__icon {
+      position: absolute;
+      font-size: 1.2rem;
+      top: 0.3rem;
+      left: 0.4rem;
+    }
+  }
+
+  &__categories__icon {
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+    cursor: pointer;
+  }
+
+  &__categories__icon-container {
+    margin-left: 0.4rem;
+  }
+
+  &__categories__category {
+    list-style: none;
+    border-radius: 0.3rem;
+    width: max-content;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+}
+
+.income {
+  border: 2px solid var.$base-green;
+}
+.expanse {
+  border: 2px solid var.$base-red;
+}

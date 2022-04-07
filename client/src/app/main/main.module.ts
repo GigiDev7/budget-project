@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from '../shared.module';
 import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
+import { CategoryComponent } from '../category/category.component';
 
 const routes: Routes = [
   {
@@ -18,10 +19,21 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'category',
+    component: CategoryComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
-  declarations: [MainComponent, HeaderComponent, AccountCardComponent, TransactionCardComponent],
+  declarations: [
+    MainComponent,
+    HeaderComponent,
+    AccountCardComponent,
+    TransactionCardComponent,
+    CategoryComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
