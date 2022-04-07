@@ -3,12 +3,38 @@
     income: category.type === 'income',
     expanse: category.type === 'expanse'
   }"
-  class="main__categories__category"
+  class="category"
 >
-  {{ category.title | titlecase }}
-  <span class="main__categories__icon-container">
-    <mat-icon class="main__categories__icon">edit</mat-icon>
-    <mat-icon (click)="onDeleteClick()" class="main__categories__icon"
+  <input
+    [(ngModel)]="categoryTitle"
+    class="category__title-field"
+    matInput
+    *ngIf="
+      categoryService.activeCategory &&
+      categoryService.activeCategory._id === category._id
+    "
+  />
+  <p
+    class="category__title"
+    *ngIf="categoryService.activeCategory?._id !== category._id"
+  >
+    {{ category.title | titlecase }}
+  </p>
+
+  <span class="category__icon-container">
+    <mat-icon
+      (click)="onEditClick()"
+      *ngIf="category._id !== categoryService.activeCategory?._id"
+      class="category__icon"
+      >edit</mat-icon
+    >
+    <mat-icon
+      (click)="onConfirmClick()"
+      *ngIf="category._id === categoryService.activeCategory?._id"
+      class="category__icon"
+      >check</mat-icon
+    >
+    <mat-icon (click)="onDeleteClick()" class="category__icon"
       >delete_outline</mat-icon
     >
   </span>

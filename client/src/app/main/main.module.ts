@@ -13,6 +13,7 @@ import { SharedModule } from '../shared.module';
 import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
 import { CategoryComponent } from '../category/category.component';
 import { CategoryItemComponent } from '../category/category-item/category-item.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
     HttpClientModule,
     MatCardModule,
     SharedModule,
+    FormsModule,
   ],
 })
 export class MainModule {}

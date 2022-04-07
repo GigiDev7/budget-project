@@ -11,13 +11,28 @@ import { CategoryService } from '../services/category.service';
 export class CategoryItemComponent {
   @Input() category!: CategoryModel;
 
+  public categoryTitle: string = '';
+
   public onDeleteClick(): void {
     this.categoryService.deleteCategory(this.category._id).subscribe();
     this.reloadService.reloadComponent();
   }
 
+  public onEditClick(): void {
+    this.categoryService.setActiveCategory(this.category);
+    this.categoryTitle = this.category.title;
+  }
+
+  public onConfirmClick(): void {
+    this.categoryService
+      .updateCategory(this.category._id, this.categoryTitle)
+      .subscribe();
+    this.categoryService.setActiveCategory(null);
+    this.reloadService.reloadComponent();
+  }
+
   constructor(
-    private categoryService: CategoryService,
+    public categoryService: CategoryService,
     private reloadService: ReloadService
   ) {}
 }

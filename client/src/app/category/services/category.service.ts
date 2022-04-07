@@ -10,6 +10,7 @@ const URL = 'http://localhost:5000/api/category';
 })
 export class CategoryService {
   public categories!: CategoryModel[];
+  public activeCategory!: CategoryModel | null;
 
   constructor(private http: HttpClient) {}
 
@@ -27,5 +28,13 @@ export class CategoryService {
 
   public deleteCategory(categoryId: string): Observable<any> {
     return this.http.delete(`${URL}/${categoryId}`);
+  }
+
+  public setActiveCategory(category: CategoryModel | null): void {
+    this.activeCategory = category;
+  }
+
+  public updateCategory(categoryId: string, title: string): Observable<any> {
+    return this.http.patch(`${URL}/${categoryId}`, { title });
   }
 }

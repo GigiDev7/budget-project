@@ -1,25 +1,40 @@
 @use "../../shared/variables.scss" as var;
 
-.main__categories__icon {
-  font-size: 1.2rem;
-  margin-top: 0.4rem;
-  cursor: pointer;
-}
-
-.main__categories__icon-container {
-  margin-left: 0.4rem;
-}
-
-.main__categories__category {
+.category {
   list-style: none;
   border-radius: 0.3rem;
   width: max-content;
-  padding: 3px 6px;
+  padding: 2px 6px;
   display: flex;
   align-items: center;
   font-weight: 500;
   margin-left: 0.8rem;
   margin-top: 1.5rem;
+  height: 3rem;
+
+  &__icon-container {
+    margin-left: 1.5rem;
+  }
+
+  &__icon {
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+    cursor: pointer;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+    font-weight: 500;
+  }
+
+  &__title-field {
+    max-width: 4.5rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid;
+  }
 }
 
 .income {
