@@ -13,7 +13,7 @@ import { CategoryService } from '../services/category.service';
 export class CategoryItemComponent {
   @Input() category!: CategoryModel;
 
-  public categoryTitle: string = '';
+  public categoryTitle!: string;
 
   public onDeleteClick(): void {
     this.categoryService.deleteCategory(this.category._id).subscribe();

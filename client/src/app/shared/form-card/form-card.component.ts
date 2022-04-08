@@ -5,6 +5,7 @@ import { CategoryService } from 'src/app/category/services/category.service';
 import { CurrencyService } from 'src/app/currencies/currency.service';
 import { ReloadService } from 'src/app/reload/reload.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
+import { ModalService } from '../modal-card/services/modal-card.service';
 import { FormCardService } from './services/form-card.service';
 
 @Component({
@@ -96,8 +97,7 @@ export class FormCardComponent {
   }
 
   public onCloseClick(): void {
-    this.formCardService.setIsEditing(false);
-    this.formCardService.closeFormCard();
+    this.modalService.showModal();
   }
 
   public onSaveClick(): void {
@@ -159,6 +159,8 @@ export class FormCardComponent {
             next: () => this.accountService.getAccounts().subscribe(),
           });
       }
+
+      //adding category
     } else if (this.type === 'Category') {
       const { title } = this.categoryForm.value;
       this.categoryService.addCategory(this.categoryType, title).subscribe({
@@ -177,6 +179,7 @@ export class FormCardComponent {
     private transactionService: TransactionService,
     private reloadService: ReloadService,
     public currencyService: CurrencyService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private modalService: ModalService
   ) {}
 }

@@ -4,6 +4,8 @@ import { InfoCardService } from '../info-card/services/info-card.service';
 import { AccountService } from 'src/app/account-card/services/account.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
 import { ReloadService } from 'src/app/reload/reload.service';
+import { FormCardService } from '../form-card/services/form-card.service';
+import { CategoryService } from '../../category/services/category.service';
 
 @Component({
   selector: 'app-modal-card',
@@ -19,12 +21,11 @@ export class ModalCardComponent {
     this.modalService.hideModal();
   }
 
-  public onDeleteCancel(): void {
-    this.modalService.hideModal();
-  }
-
   public onDeleteConfirm(): void {
-    if (this.infoCardService.type === 'Account') {
+    if (this.formCardService.isFormCardShown) {
+      this.formCardService.setIsEditing(false);
+      this.formCardService.closeFormCard();
+    } else if (this.infoCardService.type === 'Account') {
       const account = this.accountService.singleAccount;
       this.accountService.deleteAccount(account._id).subscribe();
     } else {
@@ -43,6 +44,8 @@ export class ModalCardComponent {
     public infoCardService: InfoCardService,
     private accountService: AccountService,
     private transactionService: TransactionService,
-    private reloadService: ReloadService
+    private reloadService: ReloadService,
+    public formCardService: FormCardService,
+    private categoryService: CategoryService
   ) {}
 }
