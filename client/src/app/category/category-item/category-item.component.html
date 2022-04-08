@@ -33,7 +33,7 @@
       [ngClass]="{ disabled: !checkValidation() }"
       (click)="onConfirmClick()"
       *ngIf="category._id === categoryService.activeCategory?._id"
-      class="category__icon"
+      class="category__icon check"
       >check</mat-icon
     >
     <mat-icon (click)="onDeleteClick()" class="category__icon"

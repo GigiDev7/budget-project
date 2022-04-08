@@ -18,14 +18,15 @@ export class CategoryItemComponent {
     this.reloadService.reloadComponent();
   }
 
-  public onEditClick(event:Event): void {
-    event.stopPropagation()
+  public onEditClick(event: Event): void {
+    event.stopPropagation();
     this.categoryService.setActiveCategory(this.category);
     this.categoryTitle = this.category.title;
   }
 
   public onConfirmClick(): void {
     if (!this.checkValidation()) return;
+    if (this.checkTitle()) return;
     this.categoryService
       .updateCategory(this.category._id, this.categoryTitle)
       .subscribe();
@@ -35,6 +36,15 @@ export class CategoryItemComponent {
 
   public checkValidation(): boolean {
     return /^[a-zA-Z]+$/.test(this.categoryTitle);
+  }
+
+  private checkTitle(): boolean {
+    const { activeCategory } = this.categoryService;
+    const filtered = this.categoryService.categories.filter(
+      (el) => el.type === activeCategory?.type
+    );
+    const item = filtered.find((el) => el.title === this.categoryTitle);
+    return item ? true : false;
   }
 
   constructor(

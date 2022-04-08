@@ -18,8 +18,11 @@ export class CategoryComponent implements OnInit {
     return item._id;
   }
 
-  public onClickHandler(): void {
-    if (this.categoryService.activeCategory) {
+  public onClickHandler(event: Event): void {
+    if (
+      this.categoryService.activeCategory &&
+      !(event.target as Element).className.includes('category')
+    ) {
       this.categoryService.setActiveCategory(null);
     }
   }
