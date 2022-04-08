@@ -12,6 +12,7 @@ export class CategoryService {
   public categories!: CategoryModel[];
   public activeCategory!: CategoryModel | null;
   public modalText: string = '';
+  public filteredCategories: CategoryModel[] | null = null;
 
   constructor(private http: HttpClient) {}
 

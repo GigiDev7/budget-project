@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ReloadService } from 'src/app/reload/reload.service';
 import { ModalService } from 'src/app/shared/modal-card/services/modal-card.service';
+import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
 import { CategoryModel } from '../category.model';
 import { CategoryService } from '../services/category.service';
 
@@ -57,6 +58,7 @@ export class CategoryItemComponent {
   constructor(
     public categoryService: CategoryService,
     private reloadService: ReloadService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private transactionService: TransactionService
   ) {}
 }

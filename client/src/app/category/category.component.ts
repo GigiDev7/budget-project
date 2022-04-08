@@ -10,6 +10,8 @@ import { ModalService } from '../shared/modal-card/services/modal-card.service';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
+  public searchQuery: string = '';
+
   constructor(
     public categoryService: CategoryService,
     public formCardService: FormCardService,
@@ -27,6 +29,13 @@ export class CategoryComponent implements OnInit {
     ) {
       this.categoryService.setActiveCategory(null);
     }
+  }
+
+  public handleInputChange(event: Event): void {
+    const filtered = this.categoryService.categories.filter((el) =>
+      el.title.includes((event.target as HTMLInputElement).value)
+    );
+    this.categoryService.filteredCategories = filtered;
   }
 
   public ngOnInit(): void {
