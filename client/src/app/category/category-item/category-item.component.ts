@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ReloadService } from 'src/app/reload/reload.service';
+import { ModalService } from 'src/app/shared/modal-card/services/modal-card.service';
 import { CategoryModel } from '../category.model';
 import { CategoryService } from '../services/category.service';
 
@@ -26,7 +27,13 @@ export class CategoryItemComponent {
 
   public onConfirmClick(): void {
     if (!this.checkValidation()) return;
-    if (this.checkTitle()) return;
+    if (this.checkTitle()) {
+      this.categoryService.setModalText(
+        'Category already exists. Please update the title.'
+      );
+      this.modalService.showModal();
+      return;
+    }
     this.categoryService
       .updateCategory(this.category._id, this.categoryTitle)
       .subscribe();
@@ -44,11 +51,12 @@ export class CategoryItemComponent {
       (el) => el.type === activeCategory?.type
     );
     const item = filtered.find((el) => el.title === this.categoryTitle);
-    return item ? true : false;
+    return !!item;
   }
 
   constructor(
     public categoryService: CategoryService,
-    private reloadService: ReloadService
+    private reloadService: ReloadService,
+    public modalService: ModalService
   ) {}
 }

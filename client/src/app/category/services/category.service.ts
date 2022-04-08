@@ -11,6 +11,7 @@ const URL = 'http://localhost:5000/api/category';
 export class CategoryService {
   public categories!: CategoryModel[];
   public activeCategory!: CategoryModel | null;
+  public modalText: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -36,5 +37,9 @@ export class CategoryService {
 
   public updateCategory(categoryId: string, title: string): Observable<any> {
     return this.http.patch(`${URL}/${categoryId}`, { title });
+  }
+
+  public setModalText(val: string): void {
+    this.modalText = val;
   }
 }

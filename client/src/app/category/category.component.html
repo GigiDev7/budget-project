@@ -40,4 +40,9 @@
     type="Category"
     *ngIf="formCardService.isFormCardShown"
   ></app-form-card>
+  <app-modal-card
+    type="category"
+    [text]="categoryService.modalText"
+    *ngIf="modalService.isModalShown"
+  ></app-modal-card>
 </main>

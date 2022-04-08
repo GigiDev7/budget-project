@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalService } from './services/modal-card.service';
 import { InfoCardService } from '../info-card/services/info-card.service';
 import { AccountService } from 'src/app/account-card/services/account.service';
@@ -11,7 +11,11 @@ import { ReloadService } from 'src/app/reload/reload.service';
   styleUrls: ['./modal-card.component.scss'],
 })
 export class ModalCardComponent {
-  public onCloseClick(): void {
+  @Input() public text: string = '';
+  @Input() public type: string = '';
+
+  public onCloseClick(event: Event): void {
+    event.stopPropagation();
     this.modalService.hideModal();
   }
 
