@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { ModalCardComponent } from './shared/modal-card/modal-card.component';
+import { NotificationCardComponent } from './shared/notification-card/notification-card.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ModalCardComponent } from './shared/modal-card/modal-card.component';
     InfoCardFieldComponent,
     FormCardComponent,
     ModalCardComponent,
+    NotificationCardComponent,
   ],
   imports: [
     MatIconModule,
@@ -36,6 +38,7 @@ import { ModalCardComponent } from './shared/modal-card/modal-card.component';
     MatInputModule,
     MatFormFieldModule,
     ModalCardComponent,
+    NotificationCardComponent,
   ],
 })
 export class SharedModule {}

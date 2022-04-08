@@ -5,6 +5,7 @@ import { CurrencyService } from '../currencies/currency.service';
 import { FormCardService } from '../shared/form-card/services/form-card.service';
 import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { ModalService } from '../shared/modal-card/services/modal-card.service';
+import { NotificationService } from '../shared/notification-card/services/notification.service';
 import { TransactionService } from '../transaction-card/services/transaction.service';
 import { TransactionModel } from '../transaction-card/transaction.model';
 
@@ -31,7 +32,8 @@ export class MainComponent implements OnInit {
     public infoCardService: InfoCardService,
     public formCardService: FormCardService,
     public modalService: ModalService,
-    private currencyService: CurrencyService
+    private currencyService: CurrencyService,
+    public notificationService: NotificationService
   ) {}
 
   public ngOnInit(): void {
