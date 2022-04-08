@@ -68,4 +68,7 @@
     [text]="categoryService.modalText"
     *ngIf="modalService.isModalShown"
   ></app-modal-card>
+  <app-notification-card
+    *ngIf="notificationService.isNotificationShown"
+  ></app-notification-card>
 </main>

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ReloadService } from 'src/app/reload/reload.service';
 import { ModalService } from 'src/app/shared/modal-card/services/modal-card.service';
+import { NotificationService } from 'src/app/shared/notification-card/services/notification.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
 import { CategoryModel } from '../category.model';
 import { CategoryService } from '../services/category.service';
@@ -18,6 +19,8 @@ export class CategoryItemComponent {
   public onDeleteClick(): void {
     this.categoryService.deleteCategory(this.category._id).subscribe();
     this.reloadService.reloadComponent();
+    this.notificationService.setNotificationText('Category Deleted');
+    this.notificationService.showNotification();
   }
 
   public onEditClick(event: Event): void {
@@ -59,6 +62,7 @@ export class CategoryItemComponent {
     public categoryService: CategoryService,
     private reloadService: ReloadService,
     public modalService: ModalService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    public notificationService: NotificationService
   ) {}
 }

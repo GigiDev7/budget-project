@@ -3,6 +3,7 @@ import { CategoryService } from './services/category.service';
 import { CategoryModel } from './category.model';
 import { FormCardService } from '../shared/form-card/services/form-card.service';
 import { ModalService } from '../shared/modal-card/services/modal-card.service';
+import { NotificationService } from '../shared/notification-card/services/notification.service';
 
 @Component({
   selector: 'app-category',
@@ -15,7 +16,8 @@ export class CategoryComponent implements OnInit {
   constructor(
     public categoryService: CategoryService,
     public formCardService: FormCardService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    public notificationService: NotificationService
   ) {}
 
   public trackBy(index: number, item: CategoryModel): string {
