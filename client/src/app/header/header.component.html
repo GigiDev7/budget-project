@@ -4,13 +4,15 @@
   </div>
   <div class="header-links">
     <nav mat-tab-nav-bar class="header-links__group">
+      <a routerLink="/category" mat-tab-link [active]="urlPath === '/category'"
+        >Categories
+      </a>
       <a
-        [routerLink]="link === 'Categories' ? '/category' : '/statistics'"
+        routerLink="/statistics"
         mat-tab-link
-        (click)="activeLink = link"
-        [active]="activeLink == link"
-        *ngFor="let link of links"
-        >{{ link }}
+        [active]="urlPath === '/statistics'"
+      >
+        Statistics
       </a>
     </nav>
   </div>
