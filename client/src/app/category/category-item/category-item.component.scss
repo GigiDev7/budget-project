@@ -43,3 +43,8 @@
 .expanse {
   border: 2px solid var.$base-red;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

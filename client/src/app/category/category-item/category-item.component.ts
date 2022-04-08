@@ -18,17 +18,23 @@ export class CategoryItemComponent {
     this.reloadService.reloadComponent();
   }
 
-  public onEditClick(): void {
+  public onEditClick(event:Event): void {
+    event.stopPropagation()
     this.categoryService.setActiveCategory(this.category);
     this.categoryTitle = this.category.title;
   }
 
   public onConfirmClick(): void {
+    if (!this.checkValidation()) return;
     this.categoryService
       .updateCategory(this.category._id, this.categoryTitle)
       .subscribe();
     this.categoryService.setActiveCategory(null);
     this.reloadService.reloadComponent();
+  }
+
+  public checkValidation(): boolean {
+    return /^[a-zA-Z]+$/.test(this.categoryTitle);
   }
 
   constructor(

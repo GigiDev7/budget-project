@@ -18,6 +18,12 @@ export class CategoryComponent implements OnInit {
     return item._id;
   }
 
+  public onClickHandler(): void {
+    if (this.categoryService.activeCategory) {
+      this.categoryService.setActiveCategory(null);
+    }
+  }
+
   public ngOnInit(): void {
     this.categoryService.getCategories().subscribe();
   }
