@@ -6,6 +6,7 @@ import { CurrencyService } from 'src/app/currencies/currency.service';
 import { ReloadService } from 'src/app/reload/reload.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
 import { ModalService } from '../modal-card/services/modal-card.service';
+import { NotificationService } from '../notification-card/services/notification.service';
 import { FormCardService } from './services/form-card.service';
 
 @Component({
@@ -114,11 +115,17 @@ export class FormCardComponent {
           )
           .subscribe();
 
+        this.reloadService.reloadComponent();
+        this.notificationService.setNotificationText('Account Updated');
+        this.notificationService.showNotification();
         //account is creating
       } else {
         this.accountService
           .addAccount(title, currency, description)
           .subscribe();
+        this.reloadService.reloadComponent();
+        this.notificationService.setNotificationText('Account Created');
+        this.notificationService.showNotification();
       }
     } else if (this.type === 'Transaction') {
       const accountId = this.accountService.activeAccount._id;
@@ -143,6 +150,10 @@ export class FormCardComponent {
                 .getTransactions(this.accountService.activeAccount._id)
                 .subscribe(),
           });
+
+        this.reloadService.reloadComponent();
+        this.notificationService.setNotificationText('Transaction Updated');
+        this.notificationService.showNotification();
         //transaction is creating
       } else {
         this.transactionService
@@ -158,6 +169,10 @@ export class FormCardComponent {
           .subscribe({
             next: () => this.accountService.getAccounts().subscribe(),
           });
+
+        this.reloadService.reloadComponent();
+        this.notificationService.setNotificationText('Transaction Created');
+        this.notificationService.showNotification();
       }
 
       //adding category
@@ -166,11 +181,14 @@ export class FormCardComponent {
       this.categoryService.addCategory(this.categoryType, title).subscribe({
         next: () => this.categoryService.getCategories().subscribe(),
       });
+
+      this.reloadService.reloadComponent();
+      this.notificationService.setNotificationText('Category Created');
+      this.notificationService.showNotification();
     }
 
     this.formCardService.setIsEditing(false);
     this.formCardService.closeFormCard();
-    this.reloadService.reloadComponent();
   }
 
   constructor(
@@ -180,6 +198,7 @@ export class FormCardComponent {
     private reloadService: ReloadService,
     public currencyService: CurrencyService,
     private categoryService: CategoryService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private notificationService: NotificationService
   ) {}
 }
