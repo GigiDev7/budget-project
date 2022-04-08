@@ -14,6 +14,8 @@ import { TransactionCardComponent } from '../transaction-card/transaction-card.c
 import { CategoryComponent } from '../category/category.component';
 import { CategoryItemComponent } from '../category/category-item/category-item.component';
 import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { StatisticsComponent } from '../statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,11 @@ const routes: Routes = [
     component: CategoryComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
@@ -36,6 +43,7 @@ const routes: Routes = [
     TransactionCardComponent,
     CategoryComponent,
     CategoryItemComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +54,7 @@ const routes: Routes = [
     MatCardModule,
     SharedModule,
     FormsModule,
+    MatDatepickerModule,
   ],
 })
 export class MainModule {}

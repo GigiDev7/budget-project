@@ -1,1 +1,49 @@
-<p>statistics works!</p>
+<main class="container">
+  <app-header></app-header>
+  <div class="wrapper">
+    <div class="cards">
+      <app-account-card
+        *ngFor="
+          let account of accountService.accounts;
+          let i = index;
+          trackBy: trackBy
+        "
+        [account]="account"
+      ></app-account-card>
+    </div>
+    <div class="main">
+      <div class="main__btn-container">
+        <button
+          (click)="onCategoryStatsClick()"
+          [ngClass]="{ active: activeClass === 'category' }"
+          class="main__btn"
+          mat-stroked-button
+        >
+          Categories Statistic
+        </button>
+        <button
+          (click)="onMonthlyStatsClick()"
+          [ngClass]="{ active: activeClass === 'monthly' }"
+          class="main__btn"
+          mat-stroked-button
+        >
+          Monthly Statistic
+        </button>
+      </div>
+      <div class="main__date-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date" />
+            <input matEndDate placeholder="End date" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</main>
