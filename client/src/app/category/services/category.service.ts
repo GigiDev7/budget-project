@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { CategoryModel } from '../category.model';
+import { CategoryModel } from '../../shared/models/category.model';
 
 const URL = 'http://localhost:5000/api/category';
 

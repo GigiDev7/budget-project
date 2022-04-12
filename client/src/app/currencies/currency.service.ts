@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CurrencyModel } from './currency.model';
+import { CurrencyModel } from '../shared/models/currency.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 

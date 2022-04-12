@@ -10,7 +10,7 @@ import { NotificationService } from '../notification-card/services/notification.
 import { FormCardService } from './services/form-card.service';
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { CategoryModel } from 'src/app/category/category.model';
+import { CategoryModel } from 'src/app/shared/models/category.model';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()

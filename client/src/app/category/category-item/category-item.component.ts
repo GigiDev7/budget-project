@@ -3,7 +3,7 @@ import { ReloadService } from 'src/app/reload/reload.service';
 import { ModalService } from 'src/app/shared/modal-card/services/modal-card.service';
 import { NotificationService } from 'src/app/shared/notification-card/services/notification.service';
 import { TransactionService } from 'src/app/transaction-card/services/transaction.service';
-import { CategoryModel } from '../category.model';
+import { CategoryModel } from '../../shared/models/category.model';
 import { CategoryService } from '../services/category.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 

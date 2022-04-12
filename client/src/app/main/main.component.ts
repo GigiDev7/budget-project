@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountModel } from '../account-card/account.model';
+import { AccountModel } from '../shared/models/account.model';
 import { AccountService } from '../account-card/services/account.service';
 import { CurrencyService } from '../currencies/currency.service';
 import { FormCardService } from '../shared/form-card/services/form-card.service';
@@ -7,7 +7,7 @@ import { InfoCardService } from '../shared/info-card/services/info-card.service'
 import { ModalService } from '../shared/modal-card/services/modal-card.service';
 import { NotificationService } from '../shared/notification-card/services/notification.service';
 import { TransactionService } from '../transaction-card/services/transaction.service';
-import { TransactionModel } from '../transaction-card/transaction.model';
+import { TransactionModel } from '../shared/models/transaction.model';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()

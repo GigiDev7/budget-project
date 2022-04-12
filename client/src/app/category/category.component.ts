@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from './services/category.service';
-import { CategoryModel } from './category.model';
+import { CategoryModel } from '../shared/models/category.model';
 import { FormCardService } from '../shared/form-card/services/form-card.service';
 import { ModalService } from '../shared/modal-card/services/modal-card.service';
 import { NotificationService } from '../shared/notification-card/services/notification.service';

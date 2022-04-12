@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { StatisticsDataModel } from '../statistics.model';
+import { StatisticsDataModel } from '../../shared/models/statistics.model';
 
 const URL = 'http://localhost:5000/api/statistics';
 

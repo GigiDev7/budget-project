@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AccountService } from '../account-card/services/account.service';
 import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { TransactionService } from './services/transaction.service';
-import { TransactionModel } from './transaction.model';
+import { TransactionModel } from '../shared/models/transaction.model';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()

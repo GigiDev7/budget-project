@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccountModel } from '../account-card/account.model';
+import { AccountModel } from '../shared/models/account.model';
 import { AccountService } from '../account-card/services/account.service';
 import { StatisticsService } from './services/statistics.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';

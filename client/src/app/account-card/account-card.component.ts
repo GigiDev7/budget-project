@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { TransactionService } from '../transaction-card/services/transaction.service';
-import { AccountModel } from './account.model';
+import { AccountModel } from '../shared/models/account.model';
 import { AccountService } from './services/account.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
