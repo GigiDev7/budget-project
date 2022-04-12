@@ -6,7 +6,9 @@ import { TransactionService } from 'src/app/transaction-card/services/transactio
 import { ReloadService } from 'src/app/reload/reload.service';
 import { FormCardService } from '../form-card/services/form-card.service';
 import { NotificationService } from '../notification-card/services/notification.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-modal-card',
   templateUrl: './modal-card.component.html',
@@ -28,14 +30,21 @@ export class ModalCardComponent {
       this.reloadService.reloadComponent();
     } else if (this.infoCardService.type === 'Account') {
       const account = this.accountService.singleAccount;
-      this.accountService.deleteAccount(account._id).subscribe();
+      this.accountService
+        .deleteAccount(account._id)
+        .pipe(untilDestroyed(this))
+        .subscribe();
       this.reloadService.reloadComponent();
       this.notificationService.showNotification();
       this.notificationService.setNotificationText('Account Deleted');
     } else {
       const transaction = this.transactionService.singleTransaction;
       this.transactionService.deleteTransaction(transaction._id).subscribe({
-        next: () => this.accountService.getAccounts().subscribe(),
+        next: () =>
+          this.accountService
+            .getAccounts()
+            .pipe(untilDestroyed(this))
+            .subscribe(),
       });
       this.reloadService.reloadComponent();
       this.notificationService.showNotification();

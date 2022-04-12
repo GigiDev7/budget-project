@@ -3,7 +3,9 @@ import { InfoCardService } from '../shared/info-card/services/info-card.service'
 import { TransactionService } from '../transaction-card/services/transaction.service';
 import { AccountModel } from './account.model';
 import { AccountService } from './services/account.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-account-card',
   templateUrl: './account-card.component.html',
@@ -23,7 +25,10 @@ export class AccountCardComponent implements OnInit {
   public onViewAccountClick(): void {
     this.infoCardService.setType('Account');
     this.infoCardService.openInfoCard();
-    this.accountService.getSingleAccount(this.account._id).subscribe();
+    this.accountService
+      .getSingleAccount(this.account._id)
+      .pipe(untilDestroyed(this))
+      .subscribe();
   }
 
   constructor(

@@ -8,7 +8,9 @@ import { ModalService } from '../shared/modal-card/services/modal-card.service';
 import { NotificationService } from '../shared/notification-card/services/notification.service';
 import { TransactionService } from '../transaction-card/services/transaction.service';
 import { TransactionModel } from '../transaction-card/transaction.model';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -81,10 +83,11 @@ export class MainComponent implements OnInit {
         this.accounts.length > 0 &&
           this.transactionService
             .getTransactions(this.accountService.activeAccount._id)
+            .pipe(untilDestroyed(this))
             .subscribe();
       },
     });
 
-    this.currencyService.getCurrencies().subscribe();
+    this.currencyService.getCurrencies().pipe(untilDestroyed(this)).subscribe();
   }
 }

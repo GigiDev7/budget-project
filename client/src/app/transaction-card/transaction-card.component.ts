@@ -3,7 +3,9 @@ import { AccountService } from '../account-card/services/account.service';
 import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { TransactionService } from './services/transaction.service';
 import { TransactionModel } from './transaction.model';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-transaction-card',
   templateUrl: './transaction-card.component.html',
@@ -17,6 +19,7 @@ export class TransactionCardComponent {
     this.infoCardService.openInfoCard();
     this.transactionService
       .getSingleTransaction(this.transaction._id)
+      .pipe(untilDestroyed(this))
       .subscribe();
   }
 

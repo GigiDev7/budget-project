@@ -8,11 +8,12 @@ import { TransactionService } from 'src/app/transaction-card/services/transactio
 import { ModalService } from '../modal-card/services/modal-card.service';
 import { NotificationService } from '../notification-card/services/notification.service';
 import { FormCardService } from './services/form-card.service';
-
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { CategoryModel } from 'src/app/category/category.model';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-form-card',
   templateUrl: './form-card.component.html',
@@ -31,16 +32,22 @@ export class FormCardComponent implements OnInit {
     const value = (event.value || '').trim();
 
     if (value) {
-      this.categoryService.addCategory(this.transactionType, value).subscribe({
-        next: (val) => this.selectedCategories.push(val),
-      });
+      this.categoryService
+        .addCategory(this.transactionType, value)
+        .pipe(untilDestroyed(this))
+        .subscribe({
+          next: (val) => this.selectedCategories.push(val),
+        });
     }
 
     event.chipInput!.clear();
   }
 
   public remove(category: CategoryModel): void {
-    this.categoryService.deleteCategory(category._id).subscribe();
+    this.categoryService
+      .deleteCategory(category._id)
+      .pipe(untilDestroyed(this))
+      .subscribe();
     this.selectedCategories = this.selectedCategories.filter(
       (el) => el._id !== category._id
     );
@@ -143,6 +150,7 @@ export class FormCardComponent implements OnInit {
             description,
             this.accountService.singleAccount._id
           )
+          .pipe(untilDestroyed(this))
           .subscribe();
 
         this.reloadService.reloadComponent();
@@ -152,6 +160,7 @@ export class FormCardComponent implements OnInit {
       } else {
         this.accountService
           .addAccount(title, currency, description)
+          .pipe(untilDestroyed(this))
           .subscribe();
         this.reloadService.reloadComponent();
         this.notificationService.setNotificationText('Account Created');
@@ -174,10 +183,15 @@ export class FormCardComponent implements OnInit {
             description
           )
           .subscribe({
-            next: (v) => this.accountService.getAccounts().subscribe(),
+            next: (v) =>
+              this.accountService
+                .getAccounts()
+                .pipe(untilDestroyed(this))
+                .subscribe(),
             complete: () =>
               this.transactionService
                 .getTransactions(this.accountService.activeAccount._id)
+                .pipe(untilDestroyed(this))
                 .subscribe(),
           });
 
@@ -196,8 +210,13 @@ export class FormCardComponent implements OnInit {
             paymentDate,
             description
           )
+          .pipe(untilDestroyed(this))
           .subscribe({
-            next: () => this.accountService.getAccounts().subscribe(),
+            next: () =>
+              this.accountService
+                .getAccounts()
+                .pipe(untilDestroyed(this))
+                .subscribe(),
           });
 
         this.reloadService.reloadComponent();
@@ -209,7 +228,11 @@ export class FormCardComponent implements OnInit {
     } else if (this.type === 'Category') {
       const { title } = this.categoryForm.value;
       this.categoryService.addCategory(this.categoryType, title).subscribe({
-        next: () => this.categoryService.getCategories().subscribe(),
+        next: () =>
+          this.categoryService
+            .getCategories()
+            .pipe(untilDestroyed(this))
+            .subscribe(),
       });
 
       this.reloadService.reloadComponent();
@@ -245,11 +268,14 @@ export class FormCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe({
-      next: () =>
-        (this.filteredCategories = this.categoryService.categories.filter(
-          (el) => el.type === 'income'
-        )),
-    });
+    this.categoryService
+      .getCategories()
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: () =>
+          (this.filteredCategories = this.categoryService.categories.filter(
+            (el) => el.type === 'income'
+          )),
+      });
   }
 }

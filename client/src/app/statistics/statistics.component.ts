@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountModel } from '../account-card/account.model';
 import { AccountService } from '../account-card/services/account.service';
 import { StatisticsService } from './services/statistics.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -31,6 +33,7 @@ export class StatisticsComponent implements OnInit {
       const { startDate, endDate } = this.dateForm.value;
       this.statisticsService
         .getStats(startDate, endDate, this.accountService.activeAccount._id)
+        .pipe(untilDestroyed(this))
         .subscribe();
     } else {
     }
@@ -49,6 +52,6 @@ export class StatisticsComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.accountService.getAccounts().subscribe();
+    this.accountService.getAccounts().pipe(untilDestroyed(this)).subscribe();
   }
 }
