@@ -2,7 +2,18 @@
 
 .container {
   background-color: var.$app-bg-gray;
-  height: 100%;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.sticky-header {
+  background-color: var.$base-white;
 }
 
 .wrapper {
@@ -49,4 +60,61 @@
 .active {
   border: 1px solid;
   opacity: 1;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.form-btn {
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+}
+
+.table {
+  width: 95%;
+  margin-top: 4rem;
+  border-collapse: collapse;
+  background-color: var.$base-white;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px 1px var.$base-black;
+
+  &__header {
+    background-color: var.$button-bg;
+  }
+}
+
+.table tr {
+  width: 90%;
+  padding: 0 0.5rem;
+  height: 2.5rem;
+}
+
+.table tr:not(:nth-child(1)) {
+  border-bottom: 1px solid;
+}
+
+.table tr th {
+  width: 20%;
+  text-align: center;
+}
+
+.table tr td {
+  width: 20%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.income {
+  color: var.$base-green;
+}
+
+.expanse {
+  color: var.$base-red;
+}
+
+.total,
+.average {
+  font-weight: 600 !important;
 }

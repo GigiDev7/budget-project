@@ -1,5 +1,7 @@
-<main class="container">
-  <app-header></app-header>
+<main (scroll)="handleScroll($event)" class="container">
+  <div class="header" [ngClass]="{ 'sticky-header': scrolltop >= 80 }">
+    <app-header></app-header>
+  </div>
   <div class="wrapper">
     <div class="cards">
       <app-account-card
@@ -31,18 +33,133 @@
         </button>
       </div>
       <div class="main__date-container">
-        <mat-form-field appearance="fill">
-          <mat-label>Enter a date range</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" />
-            <input matEndDate placeholder="End date" />
-          </mat-date-range-input>
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
+        <form [formGroup]="dateForm" class="form">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input
+                formControlName="startDate"
+                matStartDate
+                placeholder="Start date"
+              />
+              <input
+                formControlName="endDate"
+                matEndDate
+                placeholder="End date"
+              />
+            </mat-date-range-input>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+          <button
+            [disabled]="dateForm.invalid"
+            class="form-btn"
+            mat-raised-button
+            type="button"
+            (click)="onGenerateClick()"
+          >
+            Generate
+          </button>
+        </form>
+      </div>
+      <div
+        *ngIf="
+          statisticsService.data && statisticsService.data.stats.length > 0
+        "
+      >
+        <table class="table">
+          <tr class="table__header">
+            <th>Month</th>
+            <th>Income</th>
+            <th>Expanses</th>
+            <th>Economy</th>
+            <th>% of economy</th>
+          </tr>
+          <tr *ngFor="let item of statisticsService.data?.stats">
+            <td>{{ item.month }}</td>
+            <td>
+              {{ item.sumIncomes }}{{ accountService.activeAccount.currency }}
+            </td>
+            <td>
+              {{ item.sumExpanses }}{{ accountService.activeAccount.currency }}
+            </td>
+            <td
+              [ngClass]="{
+                income: item.economy > 0,
+                expanse: item.economy < 0
+              }"
+            >
+              {{ item.economy }}{{ accountService.activeAccount.currency }}
+            </td>
+            <td
+              [ngClass]="{
+                income: item.percentOfEconomy > 0,
+                expanse: item.percentOfEconomy < 0
+              }"
+            >
+              {{ item.percentOfEconomy }}%
+            </td>
+          </tr>
+          <tr>
+            <td class="total">Total</td>
+            <td>
+              {{ statisticsService.data.totalIncome }}
+              {{ accountService.activeAccount.currency }}
+            </td>
+            <td>
+              {{ statisticsService.data.totalExpanses }}
+              {{ accountService.activeAccount.currency }}
+            </td>
+            <td
+              [ngClass]="{
+                income: statisticsService.data.totalEconomy > 0,
+                expanse: statisticsService.data.totalEconomy < 0
+              }"
+            >
+              {{ statisticsService.data.totalEconomy }}
+              {{ accountService.activeAccount.currency }}
+            </td>
+            <td
+              [ngClass]="{
+                income: statisticsService.data.totalPercent > 0,
+                expanse: statisticsService.data.totalPercent < 0
+              }"
+            >
+              {{ statisticsService.data.totalPercent }}%
+            </td>
+          </tr>
+          <tr>
+            <td class="average">Average</td>
+            <td>
+              {{ statisticsService.data.averageIncome }}
+              {{ accountService.activeAccount.currency }}
+            </td>
+            <td>
+              {{ statisticsService.data.averageExpanses }}
+              {{ accountService.activeAccount.currency }}
+            </td>
+            <td
+              [ngClass]="{
+                income: statisticsService.data.averageEconomy > 0,
+                expanse: statisticsService.data.averageEconomy < 0
+              }"
+            >
+              {{ statisticsService.data.averageEconomy }}
+              {{ accountService.activeAccount.currency }}
+            </td>
+            <td
+              [ngClass]="{
+                income: statisticsService.data.averagePercent > 0,
+                expanse: statisticsService.data.averageEconomy < 0
+              }"
+            >
+              {{ statisticsService.data.averagePercent }}%
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
