@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { ModalCardComponent } from './shared/modal-card/modal-card.component';
 import { NotificationCardComponent } from './shared/notification-card/notification-card.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { NotificationCardComponent } from './shared/notification-card/notificati
     MatFormFieldModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatChipsModule,
+    MatAutocompleteModule,
   ],
   exports: [
     CustomButtonComponent,

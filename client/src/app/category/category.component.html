@@ -12,6 +12,7 @@
         type="text"
       />
       <div class="main__categories">
+        <p class="empty" *ngIf="isEmpty">No records to desplay</p>
         <ul
           *ngIf="!categoryService.filteredCategories"
           class="main__categories__list"
@@ -42,16 +43,20 @@
     </div>
 
     <aside class="aside">
-      <app-custom-button
-        type="income"
-        icon="arrow_upward"
-        text="Income"
-      ></app-custom-button>
-      <app-custom-button
-        type="expanse"
-        icon="arrow_downward"
-        text="Expanses"
-      ></app-custom-button>
+      <div (click)="onIncomeClick()">
+        <app-custom-button
+          type="income"
+          icon="arrow_upward"
+          text="Income"
+        ></app-custom-button>
+      </div>
+      <div (click)="onExpanseClick()">
+        <app-custom-button
+          type="expanse"
+          icon="arrow_downward"
+          text="Expanses"
+        ></app-custom-button>
+      </div>
       <app-custom-button
         type="create"
         icon="add"

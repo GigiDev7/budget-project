@@ -46,7 +46,7 @@ export class CategoryItemComponent {
   }
 
   public checkValidation(): boolean {
-    return /^[a-zA-Z]+$/.test(this.categoryTitle);
+    return /^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(this.categoryTitle);
   }
 
   private checkTitle(): boolean {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/account-card/services/account.service';
 import { CategoryService } from 'src/app/category/services/category.service';
@@ -9,13 +9,43 @@ import { ModalService } from '../modal-card/services/modal-card.service';
 import { NotificationService } from '../notification-card/services/notification.service';
 import { FormCardService } from './services/form-card.service';
 
+import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { CategoryModel } from 'src/app/category/category.model';
+
 @Component({
   selector: 'app-form-card',
   templateUrl: './form-card.component.html',
   styleUrls: ['./form-card.component.scss'],
 })
-export class FormCardComponent {
+export class FormCardComponent implements OnInit {
   @Input() type: string = '';
+
+  //
+  public addOnBlur: boolean = true;
+  readonly seperatorKeysCodes = [ENTER, COMMA, SPACE] as const;
+  public selectedCategories: CategoryModel[] = [];
+  public filteredCategories!: CategoryModel[];
+
+  public add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.categoryService.addCategory(this.transactionType, value).subscribe({
+        next: (val) => this.selectedCategories.push(val),
+      });
+    }
+
+    event.chipInput!.clear();
+  }
+
+  public remove(category: CategoryModel): void {
+    this.categoryService.deleteCategory(category._id).subscribe();
+    this.selectedCategories = this.selectedCategories.filter(
+      (el) => el._id !== category._id
+    );
+  }
+  //
 
   //for account
   public accountForm: FormGroup = new FormGroup({
@@ -46,12 +76,6 @@ export class FormCardComponent {
         '',
       [Validators.required]
     ),
-    categories: new FormControl(
-      (this.formCardService.isEditing &&
-        this.transactionService?.singleTransaction?.category) ||
-        '',
-      [Validators.required]
-    ),
     amount: new FormControl(
       (this.formCardService.isEditing &&
         this.transactionService?.singleTransaction?.amount) ||
@@ -73,7 +97,7 @@ export class FormCardComponent {
   public transactionType: string =
     (this.formCardService.isEditing &&
       this.transactionService?.singleTransaction?.type) ||
-    '';
+    'income';
 
   //for category
   public categoryType: string = '';
@@ -87,6 +111,9 @@ export class FormCardComponent {
       this.categoryType = 'income';
     } else {
       this.transactionType = 'income';
+      this.filteredCategories = this.categoryService.categories.filter(
+        (el) => el.type === 'income'
+      );
     }
   }
   public onExpanseClick(): void {
@@ -94,6 +121,9 @@ export class FormCardComponent {
       this.categoryType = 'expanse';
     } else {
       this.transactionType = 'expanse';
+      this.filteredCategories = this.categoryService.categories.filter(
+        (el) => el.type === 'expanse'
+      );
     }
   }
 
@@ -191,14 +221,35 @@ export class FormCardComponent {
     this.formCardService.closeFormCard();
   }
 
+  public isDisabled(): boolean {
+    if (this.type === 'Account') {
+      return this.accountForm.invalid;
+    } else if (this.type === 'Transaction') {
+      return this.transactionForm.invalid || !this.transactionType;
+    } else if (this.type === 'Category') {
+      return this.categoryForm.invalid || !this.categoryType;
+    }
+
+    return true;
+  }
+
   constructor(
     public formCardService: FormCardService,
     private accountService: AccountService,
     private transactionService: TransactionService,
     private reloadService: ReloadService,
     public currencyService: CurrencyService,
-    private categoryService: CategoryService,
+    public categoryService: CategoryService,
     private modalService: ModalService,
     private notificationService: NotificationService
   ) {}
+
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe({
+      next: () =>
+        (this.filteredCategories = this.categoryService.categories.filter(
+          (el) => el.type === 'income'
+        )),
+    });
+  }
 }

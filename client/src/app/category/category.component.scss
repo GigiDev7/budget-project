@@ -3,6 +3,7 @@
 .container {
   background-color: var.$app-bg-gray;
   height: 100%;
+  overflow-y: auto;
 }
 
 .wrapper {
@@ -43,4 +44,10 @@
     display: flex;
     flex-wrap: wrap;
   }
+}
+
+.empty {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
 }

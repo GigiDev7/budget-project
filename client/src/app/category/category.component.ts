@@ -12,6 +12,9 @@ import { NotificationService } from '../shared/notification-card/services/notifi
 })
 export class CategoryComponent implements OnInit {
   public searchQuery: string = '';
+  private incomeClicked: boolean = false;
+  private expanseClicked: boolean = false;
+  public isEmpty: boolean = false;
 
   constructor(
     public categoryService: CategoryService,
@@ -34,10 +37,46 @@ export class CategoryComponent implements OnInit {
   }
 
   public handleInputChange(event: Event): void {
-    const filtered = this.categoryService.categories.filter((el) =>
-      el.title.includes((event.target as HTMLInputElement).value)
-    );
-    this.categoryService.filteredCategories = filtered;
+    this.isEmpty = false;
+    this.searchQuery = (event.target as HTMLInputElement).value;
+    if (!this.searchQuery) {
+      this.categoryService.filteredCategories = null;
+    }
+    if (this.searchQuery.length > 1) {
+      const filtered = this.categoryService.categories.filter((el) =>
+        el.title.toLowerCase().startsWith(this.searchQuery.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        this.isEmpty = true;
+      }
+      this.categoryService.filteredCategories = filtered;
+    }
+  }
+
+  public onIncomeClick(): void {
+    if (this.incomeClicked) {
+      this.incomeClicked = false;
+      this.categoryService.filteredCategories = null;
+    } else {
+      this.incomeClicked = true;
+      const filtered = this.categoryService.categories.filter(
+        (el) => el.type === 'income'
+      );
+      this.categoryService.filteredCategories = filtered;
+    }
+  }
+
+  public onExpanseClick(): void {
+    if (this.expanseClicked) {
+      this.expanseClicked = false;
+      this.categoryService.filteredCategories = null;
+    } else {
+      this.expanseClicked = true;
+      const filtered = this.categoryService.categories.filter(
+        (el) => el.type === 'expanse'
+      );
+      this.categoryService.filteredCategories = filtered;
+    }
   }
 
   public ngOnInit(): void {
