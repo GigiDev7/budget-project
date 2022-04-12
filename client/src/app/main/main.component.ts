@@ -16,6 +16,18 @@ import { TransactionModel } from '../transaction-card/transaction.model';
 })
 export class MainComponent implements OnInit {
   public accounts!: AccountModel[];
+  public searchInput: string = '';
+  public filteredTransactions: TransactionModel[] = [];
+  private incomeClicked: boolean = false;
+  private expanseClicked: boolean = false;
+
+  public handleSearchChange(event: Event): void {
+    this.searchInput = (event.target as HTMLInputElement).value;
+    const filtered = this.transactionService.transactions.filter((el) =>
+      el.title.includes(this.searchInput)
+    );
+    this.filteredTransactions = [...filtered];
+  }
 
   public trackBy(index: number, item: AccountModel | TransactionModel): string {
     return item._id;
@@ -24,6 +36,32 @@ export class MainComponent implements OnInit {
   public onAddAccountClick(): void {
     this.formCardService.setType('Account');
     this.formCardService.openFormCard();
+  }
+
+  public onIncomeClick(): void {
+    if (this.incomeClicked) {
+      this.incomeClicked = false;
+      this.filteredTransactions = [];
+    } else {
+      this.incomeClicked = true;
+      const filtered = this.transactionService.transactions.filter(
+        (el) => el.type === 'income'
+      );
+      this.filteredTransactions = filtered;
+    }
+  }
+
+  public onExpanseClick(): void {
+    if (this.expanseClicked) {
+      this.expanseClicked = false;
+      this.filteredTransactions = [];
+    } else {
+      this.expanseClicked = true;
+      const filtered = this.transactionService.transactions.filter(
+        (el) => el.type === 'expanse'
+      );
+      this.filteredTransactions = filtered;
+    }
   }
 
   constructor(

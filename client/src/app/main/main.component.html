@@ -38,29 +38,54 @@
       >
         You don't have any transactions in this account!
       </p>
-      <app-transaction-card
-        *ngFor="
-          let transaction of transactionService.transactions;
-          let i = index;
-          trackBy: trackBy
-        "
-        [transaction]="transaction"
-      ></app-transaction-card>
+      <mat-icon class="main__search__icon">search</mat-icon>
+      <input
+        (input)="handleSearchChange($event)"
+        [value]="searchInput"
+        class="main__search"
+        placeholder="Search"
+        matInput
+        type="text"
+      />
+      <div *ngIf="filteredTransactions.length === 0">
+        <app-transaction-card
+          *ngFor="
+            let transaction of transactionService.transactions;
+            let i = index;
+            trackBy: trackBy
+          "
+          [transaction]="transaction"
+        ></app-transaction-card>
+      </div>
+      <div *ngIf="filteredTransactions.length > 0">
+        <app-transaction-card
+          *ngFor="
+            let transaction of filteredTransactions;
+            let i = index;
+            trackBy: trackBy
+          "
+          [transaction]="transaction"
+        ></app-transaction-card>
+      </div>
     </div>
 
     <div class="main__aside">
-      <app-custom-button
-        *ngIf="accounts && accounts.length > 0"
-        type="income"
-        icon="arrow_upward"
-        text="Income"
-      ></app-custom-button>
-      <app-custom-button
-        *ngIf="accounts && accounts.length > 0"
-        type="expanse"
-        icon="arrow_downward"
-        text="Expanses"
-      ></app-custom-button>
+      <div (click)="onIncomeClick()">
+        <app-custom-button
+          *ngIf="accounts && accounts.length > 0"
+          type="income"
+          icon="arrow_upward"
+          text="Income"
+        ></app-custom-button>
+      </div>
+      <div (click)="onExpanseClick()">
+        <app-custom-button
+          *ngIf="accounts && accounts.length > 0"
+          type="expanse"
+          icon="arrow_downward"
+          text="Expanses"
+        ></app-custom-button>
+      </div>
       <app-custom-button
         *ngIf="accounts && accounts.length > 0"
         type="create"

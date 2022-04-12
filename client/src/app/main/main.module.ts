@@ -16,6 +16,7 @@ import { CategoryItemComponent } from '../category/category-item/category-item.c
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { StatisticsComponent } from '../statistics/statistics.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     MatDatepickerModule,
+    ReactiveFormsModule,
   ],
 })
 export class MainModule {}
