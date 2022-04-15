@@ -1,0 +1,31 @@
+@use "../variables.scss" as var;
+
+.notification {
+  display: flex;
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translate(-48%, 0);
+  height: 3rem;
+  align-items: center;
+  background-color: var.$base-green;
+  z-index: 100;
+  width: 25rem;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-radius: 5px;
+
+  &__text {
+    margin: 0;
+    color: var.$base-white;
+  }
+
+  &__btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var.$base-white;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+}

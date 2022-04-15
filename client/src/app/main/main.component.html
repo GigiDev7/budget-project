@@ -3,6 +3,7 @@
   <div class="main__wrapper">
     <div class="main__accounts">
       <mat-card
+        (click)="onAddAccountClick()"
         *ngIf="accounts && accounts.length === 0; else existing_accounts"
         class="main__create-account-card"
       >
@@ -16,51 +17,99 @@
 
       <ng-template #existing_accounts>
         <app-account-card
-          *ngFor="let account of accounts; let i = index; trackBy: trackBy"
+          *ngFor="
+            let account of accountService.accounts;
+            let i = index;
+            trackBy: trackBy
+          "
           [account]="account"
         >
         </app-account-card>
       </ng-template>
     </div>
-
-    <div class="main__transactions">
+    <div
+      class="main__fallback"
+      *ngIf="accountService.accounts.length === 0"
+    ></div>
+    <div *ngIf="accountService.accounts.length > 0" class="main__transactions">
       <p
         *ngIf="transactionService.transactions.length === 0"
         class="main__notransactions"
       >
         You don't have any transactions in this account!
       </p>
-      <app-transaction-card
-        *ngFor="
-          let transaction of transactionService.transactions;
-          let i = index;
-          trackBy: trackBy
-        "
-        [transaction]="transaction"
-      ></app-transaction-card>
+      <mat-icon class="main__search__icon">search</mat-icon>
+      <input
+        (input)="handleSearchChange($event)"
+        [value]="searchInput"
+        class="main__search"
+        placeholder="Search"
+        matInput
+        type="text"
+      />
+      <div *ngIf="filteredTransactions.length === 0">
+        <app-transaction-card
+          *ngFor="
+            let transaction of transactionService.transactions;
+            let i = index;
+            trackBy: trackBy
+          "
+          [transaction]="transaction"
+        ></app-transaction-card>
+      </div>
+      <div *ngIf="filteredTransactions.length > 0">
+        <app-transaction-card
+          *ngFor="
+            let transaction of filteredTransactions;
+            let i = index;
+            trackBy: trackBy
+          "
+          [transaction]="transaction"
+        ></app-transaction-card>
+      </div>
     </div>
 
     <div class="main__aside">
+      <div (click)="onIncomeClick()">
+        <app-custom-button
+          *ngIf="accounts && accounts.length > 0"
+          type="income"
+          icon="arrow_upward"
+          text="Income"
+        ></app-custom-button>
+      </div>
+      <div (click)="onExpanseClick()">
+        <app-custom-button
+          *ngIf="accounts && accounts.length > 0"
+          type="expanse"
+          icon="arrow_downward"
+          text="Expanses"
+        ></app-custom-button>
+      </div>
       <app-custom-button
-        type="income"
-        icon="arrow_upward"
-        text="Income"
-      ></app-custom-button>
-      <app-custom-button
-        type="expanse"
-        icon="arrow_downward"
-        text="Expanses"
-      ></app-custom-button>
-      <app-custom-button
+        *ngIf="accounts && accounts.length > 0"
         type="create"
         icon="add"
         text="Add Account"
       ></app-custom-button>
       <app-custom-button
+        *ngIf="accounts && accounts.length > 0"
         type="create"
         icon="add"
         text="Add Transaction"
       ></app-custom-button>
     </div>
   </div>
+  <app-info-card
+    [type]="infoCardService.type"
+    *ngIf="infoCardService.isInfoCardShown"
+  ></app-info-card>
+  <app-form-card
+    [type]="formCardService.type"
+    *ngIf="formCardService.isFormCardShown"
+  ></app-form-card>
+  <app-modal-card *ngIf="modalService.isModalShown"></app-modal-card>
+  <app-notification-card
+    *ngIf="notificationService.isNotificationShown"
+  ></app-notification-card>
 </main>

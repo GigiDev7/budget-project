@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { InfoCardService } from '../shared/info-card/services/info-card.service';
 import { TransactionService } from '../transaction-card/services/transaction.service';
-import { AccountModel } from './account.model';
+import { AccountModel } from '../shared/models/account.model';
 import { AccountService } from './services/account.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-account-card',
   templateUrl: './account-card.component.html',
@@ -13,18 +16,34 @@ export class AccountCardComponent implements OnInit {
 
   public onCardClick(): void {
     this.accountService.activateAccount(this.account._id);
+    this.accountService.setAccount(this.accountService.activeAccount);
     this.transactionService.getTransactions(this.account._id).subscribe({
       next: (data) => (this.transactionService.transactions = data),
     });
   }
 
+  public onViewAccountClick(): void {
+    this.infoCardService.setType('Account');
+    this.infoCardService.openInfoCard();
+    this.accountService
+      .getSingleAccount(this.account._id)
+      .pipe(untilDestroyed(this))
+      .subscribe();
+  }
+
   constructor(
     public accountService: AccountService,
-    private transactionService: TransactionService
+    public transactionService: TransactionService,
+    public infoCardService: InfoCardService
   ) {}
 
   public ngOnInit(): void {
-    const firstAccount = this.accountService.accounts[0];
-    this.accountService.activateAccount(firstAccount._id);
+    let existingAccount = JSON.parse(localStorage.getItem('account')!);
+    if (existingAccount) {
+      this.accountService.activateAccount(existingAccount._id);
+    } else {
+      const firstAccount = this.accountService.accounts[0];
+      this.accountService.activateAccount(firstAccount._id);
+    }
   }
 }

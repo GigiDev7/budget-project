@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormCardService } from '../form-card/services/form-card.service';
 
 @Component({
   selector: 'app-custom-button',
@@ -10,5 +11,18 @@ export class CustomButtonComponent {
   @Input() icon: string = '';
   @Input() type: string = '';
 
-  constructor() {}
+  handleClick(): void {
+    if (this.type === 'create' && this.text === 'Add Account') {
+      this.formCardService.setType('Account');
+      this.formCardService.openFormCard();
+    } else if (this.type === 'create' && this.text === 'Add Transaction') {
+      this.formCardService.setType('Transaction');
+      this.formCardService.openFormCard();
+    } else if (this.type === 'create' && this.text === 'Add Category') {
+      this.formCardService.setType('Category');
+      this.formCardService.openFormCard();
+    }
+  }
+
+  constructor(private formCardService: FormCardService) {}
 }

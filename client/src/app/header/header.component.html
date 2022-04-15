@@ -1,15 +1,18 @@
 <header class="header-container">
   <div class="header-text">
-    <h1 class="header-text__title">Budgetify</h1>
+    <h1 routerLink="/" class="header-text__title">Budgetify</h1>
   </div>
   <div class="header-links">
     <nav mat-tab-nav-bar class="header-links__group">
+      <a routerLink="/category" mat-tab-link [active]="urlPath === '/category'"
+        >Categories
+      </a>
       <a
+        routerLink="/statistics"
         mat-tab-link
-        (click)="activeLink = link"
-        [active]="activeLink == link"
-        *ngFor="let link of links"
-        >{{ link }}
+        [active]="urlPath === '/statistics'"
+      >
+        Statistics
       </a>
     </nav>
   </div>

@@ -1,0 +1,31 @@
+<div class="background"></div>
+<div class="modal">
+  <div class="modal__header">
+    <h2 *ngIf="!text && formCardService.isFormCardShown">Save!</h2>
+    <h2 *ngIf="text">Update!</h2>
+    <h2 *ngIf="!text && !formCardService.isFormCardShown">
+      Delete {{ infoCardService.type }}
+    </h2>
+    <mat-icon (click)="onCloseClick($event)" class="modal__header__icon"
+      >close</mat-icon
+    >
+  </div>
+  <p *ngIf="text" class="modal__text">
+    {{ text }}
+  </p>
+  <p *ngIf="!text && !formCardService.isFormCardShown" class="modal__text">
+    Are you sure you want to delete {{ infoCardService.type | lowercase }}?
+  </p>
+  <p *ngIf="!text && formCardService.isFormCardShown" class="modal__text">
+    The {{ formCardService.type | lowercase }} will not be saved. Are you sure
+    you want to cancel?
+  </p>
+  <div *ngIf="!text" class="modal__button-container">
+    <button (click)="onDeleteConfirm()" class="modal__button btn-yes">
+      Yes
+    </button>
+    <button (click)="onCloseClick($event)" class="modal__button btn-no">
+      No
+    </button>
+  </div>
+</div>

@@ -11,6 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from '../shared.module';
 import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
+import { CategoryComponent } from '../category/category.component';
+import { CategoryItemComponent } from '../category/category-item/category-item.component';
+import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { StatisticsComponent } from '../statistics/statistics.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -18,10 +24,28 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'category',
+    component: CategoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
-  declarations: [MainComponent, HeaderComponent, AccountCardComponent, TransactionCardComponent],
+  declarations: [
+    MainComponent,
+    HeaderComponent,
+    AccountCardComponent,
+    TransactionCardComponent,
+    CategoryComponent,
+    CategoryItemComponent,
+    StatisticsComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -30,6 +54,9 @@ const routes: Routes = [
     HttpClientModule,
     MatCardModule,
     SharedModule,
+    FormsModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
   ],
 })
 export class MainModule {}

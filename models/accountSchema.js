@@ -12,6 +12,10 @@ const accountSchema = new mongoose.Schema(
     currency: {
       type: String,
     },
+    sum: {
+      type: Number,
+      default: 0,
+    },
     userId: {
       type: mongoose.Types.ObjectId,
       ref: "User",

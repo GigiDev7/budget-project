@@ -1,0 +1,53 @@
+@use "../shared/variables.scss" as var;
+
+.container {
+  background-color: var.$app-bg-gray;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.wrapper {
+  width: 85%;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 7rem;
+}
+
+.main {
+  position: relative;
+
+  &__search {
+    width: 20rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+    border: none;
+    outline: none;
+    padding-left: 1.7rem;
+    background-color: var.$base-white;
+
+    &__icon {
+      position: absolute;
+      font-size: 1.2rem;
+      top: 0.3rem;
+      left: 0.4rem;
+    }
+  }
+
+  &__categories__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.empty {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}

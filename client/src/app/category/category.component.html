@@ -1,0 +1,79 @@
+<main (click)="onClickHandler($event)" class="container">
+  <app-header></app-header>
+  <div class="wrapper">
+    <div class="main">
+      <mat-icon class="main__search__icon">search</mat-icon>
+      <input
+        (input)="handleInputChange($event)"
+        [value]="searchQuery"
+        class="main__search"
+        placeholder="Search"
+        matInput
+        type="text"
+      />
+      <div class="main__categories">
+        <p class="empty" *ngIf="isEmpty">No records to desplay</p>
+        <ul
+          *ngIf="!categoryService.filteredCategories"
+          class="main__categories__list"
+        >
+          <app-category-item
+            [category]="category"
+            *ngFor="
+              let category of categoryService.categories;
+              let i = index;
+              trackBy: trackBy
+            "
+          ></app-category-item>
+        </ul>
+        <ul
+          *ngIf="categoryService.filteredCategories"
+          class="main__categories__list"
+        >
+          <app-category-item
+            [category]="category"
+            *ngFor="
+              let category of categoryService.filteredCategories;
+              let i = index;
+              trackBy: trackBy
+            "
+          ></app-category-item>
+        </ul>
+      </div>
+    </div>
+
+    <aside class="aside">
+      <div (click)="onIncomeClick()">
+        <app-custom-button
+          type="income"
+          icon="arrow_upward"
+          text="Income"
+        ></app-custom-button>
+      </div>
+      <div (click)="onExpanseClick()">
+        <app-custom-button
+          type="expanse"
+          icon="arrow_downward"
+          text="Expanses"
+        ></app-custom-button>
+      </div>
+      <app-custom-button
+        type="create"
+        icon="add"
+        text="Add Category"
+      ></app-custom-button>
+    </aside>
+  </div>
+  <app-form-card
+    type="Category"
+    *ngIf="formCardService.isFormCardShown"
+  ></app-form-card>
+  <app-modal-card
+    type="category"
+    [text]="categoryService.modalText"
+    *ngIf="modalService.isModalShown"
+  ></app-modal-card>
+  <app-notification-card
+    *ngIf="notificationService.isNotificationShown"
+  ></app-notification-card>
+</main>

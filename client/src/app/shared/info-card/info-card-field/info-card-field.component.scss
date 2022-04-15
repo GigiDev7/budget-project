@@ -1,0 +1,18 @@
+@use "../../variables.scss" as var;
+
+.info-card-field {
+  display: flex;
+  border-bottom: 2px solid var.$base-black;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+
+  &__title {
+    font-weight: 500;
+    flex: 1;
+  }
+
+  &__desc {
+    flex: 2;
+    margin-left: 2rem;
+  }
+}

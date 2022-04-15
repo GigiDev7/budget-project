@@ -1,0 +1,182 @@
+<div class="background"></div>
+<div class="form-card">
+  <div class="form-card__header">
+    <p>Add {{ type }}</p>
+    <mat-icon (click)="onCloseClick()" class="form-card__header__icon"
+      >close</mat-icon
+    >
+  </div>
+  <form
+    *ngIf="type === 'Account'"
+    [formGroup]="accountForm"
+    class="form-card__form"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input
+        pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$"
+        matInput
+        formControlName="title"
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="currency">
+        <mat-option
+          *ngFor="let currency of currencyService.currencies"
+          [value]="currency.symbol"
+        >
+          {{ currency.currencyCode }}({{ currency.symbol }})</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input
+        pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$"
+        matInput
+        formControlName="description"
+        type="text"
+      />
+    </mat-form-field>
+  </form>
+  <form
+    *ngIf="type === 'Transaction'"
+    [formGroup]="transactionForm"
+    class="form-card__form"
+  >
+    <div>
+      <button
+        [ngClass]="{ 'active-type': transactionType === 'income' }"
+        (click)="onIncomeClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="income"
+          text="Income"
+          icon="arrow_upward"
+        ></app-custom-button>
+      </button>
+      <button
+        [ngClass]="{ 'active-type': transactionType === 'expanse' }"
+        (click)="onExpanseClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="expanse"
+          text="Expanses"
+          icon="arrow_downward"
+        ></app-custom-button>
+      </button>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input
+        pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$"
+        matInput
+        formControlName="title"
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Categories</mat-label>
+      <mat-chip-list #chipList aria-label="Categories">
+        <mat-chip
+          *ngFor="let category of selectedCategories"
+          (removed)="remove(category)"
+        >
+          {{ category.title }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New category..."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="seperatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="amount" type="number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Transaction Date</mat-label>
+      <input matInput formControlName="paymentDate" type="date" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input
+        pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$"
+        matInput
+        formControlName="description"
+        type="text"
+      />
+    </mat-form-field>
+  </form>
+  <form
+    *ngIf="type === 'Category'"
+    [formGroup]="categoryForm"
+    class="form-card__form"
+  >
+    <div>
+      <button
+        [ngClass]="{ 'active-type': categoryType === 'income' }"
+        (click)="onIncomeClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="income"
+          text="Income"
+          icon="arrow_upward"
+        ></app-custom-button>
+      </button>
+      <button
+        [ngClass]="{ 'active-type': categoryType === 'expanse' }"
+        (click)="onExpanseClick()"
+        type="button"
+        class="btn"
+      >
+        <app-custom-button
+          type="expanse"
+          text="Expanses"
+          icon="arrow_downward"
+        ></app-custom-button>
+      </button>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input
+        pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$"
+        matInput
+        formControlName="title"
+        type="text"
+      />
+    </mat-form-field>
+  </form>
+  <div class="form-card__button-container">
+    <button
+      (click)="onCloseClick()"
+      class="form-card__button-container__button btn-cancel"
+    >
+      Cancel
+    </button>
+    <button
+      [disabled]="isDisabled()"
+      (click)="onSaveClick()"
+      type="submit"
+      class="form-card__button-container__button btn-save"
+    >
+      Save
+    </button>
+  </div>
+</div>
