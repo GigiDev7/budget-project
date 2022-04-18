@@ -11,6 +11,21 @@ import { AuthService } from '../auth/services/auth.service';
 export class HeaderComponent implements OnInit {
   public fullname: string = '';
   public urlPath: string = '';
+  public isDropDownShown: boolean = false;
+  public isModalShown: boolean = false;
+
+  public onDropDownToggle(): void {
+    this.isDropDownShown = !this.isDropDownShown;
+  }
+
+  public onModalShow(): void {
+    this.isModalShown = true;
+  }
+
+  public onModalClose(): void {
+    this.isModalShown = false;
+    this.isDropDownShown = false;
+  }
 
   public onLogoutClick(): void {
     this.authService.logout();

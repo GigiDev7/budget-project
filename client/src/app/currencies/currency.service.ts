@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { CurrencyModel } from '../shared/models/currency.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-
-const URL = 'http://localhost:5000/api/currency';
+import { URL } from '../shared/constants/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class CurrencyService {
   constructor(private http: HttpClient) {}
 
   public getCurrencies(): Observable<any> {
-    return this.http.get(URL).pipe(
+    return this.http.get(`${URL}/currency`).pipe(
       tap({
         next: (res: any) => {
           this.currencies = res;

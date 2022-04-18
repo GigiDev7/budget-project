@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { StatisticsComponent } from '../statistics/statistics.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChartComponent } from '../statistics/chart/chart.component';
+import { LineChartComponent } from '../statistics/line-chart/line-chart.component';
 
 const routes: Routes = [
   {
@@ -45,6 +47,8 @@ const routes: Routes = [
     CategoryComponent,
     CategoryItemComponent,
     StatisticsComponent,
+    ChartComponent,
+    LineChartComponent,
   ],
   imports: [
     CommonModule,

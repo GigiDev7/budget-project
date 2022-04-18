@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { CategoryModel } from '../../shared/models/category.model';
-
-const URL = 'http://localhost:5000/api/category';
+import { URL } from '../../shared/constants/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   public getCategories(): Observable<any> {
-    return this.http.get(URL).pipe(
+    return this.http.get(`${URL}/category`).pipe(
       tap({
         next: (res: any) => (this.categories = res),
       })
@@ -25,11 +24,11 @@ export class CategoryService {
   }
 
   public addCategory(type: string, title: string): Observable<any> {
-    return this.http.post(URL, { title, type });
+    return this.http.post(`${URL}/category`, { title, type });
   }
 
   public deleteCategory(categoryId: string): Observable<any> {
-    return this.http.delete(`${URL}/${categoryId}`);
+    return this.http.delete(`${URL}/category/${categoryId}`);
   }
 
   public setActiveCategory(category: CategoryModel | null): void {
@@ -37,7 +36,7 @@ export class CategoryService {
   }
 
   public updateCategory(categoryId: string, title: string): Observable<any> {
-    return this.http.patch(`${URL}/${categoryId}`, { title });
+    return this.http.patch(`${URL}/category/${categoryId}`, { title });
   }
 
   public setModalText(val: string): void {
