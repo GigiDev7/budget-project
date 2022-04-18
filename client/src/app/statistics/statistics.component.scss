@@ -118,3 +118,24 @@
 .average {
   font-weight: 600 !important;
 }
+
+.category-total {
+  display: flex;
+  flex-direction: column;
+  background-color: var.$base-white;
+  border-radius: 5px;
+  width: 60%;
+  height: 5rem;
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+.category-amount {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.category-text {
+  font-size: 1rem;
+  opacity: 0.5;
+  font-weight: 500;
+}

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountModel } from '../shared/models/account.model';
 import { AccountService } from '../account-card/services/account.service';
 import { StatisticsService } from './services/statistics.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ReloadService } from '../reload/reload.service';
 
 @UntilDestroy()
 @Component({
@@ -11,7 +12,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss'],
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent implements OnInit, OnDestroy {
   public activeClass: string = 'category';
   public dateForm: FormGroup = new FormGroup({
     startDate: new FormControl('', [Validators.required]),
@@ -29,14 +30,16 @@ export class StatisticsComponent implements OnInit {
   }
 
   public onGenerateClick(): void {
-    if (this.activeClass === 'monthly') {
-      const { startDate, endDate } = this.dateForm.value;
-      this.statisticsService
-        .getStats(startDate, endDate, this.accountService.activeAccount._id)
-        .pipe(untilDestroyed(this))
-        .subscribe();
-    } else {
-    }
+    const { startDate, endDate } = this.dateForm.value;
+    this.statisticsService
+      .getStats(
+        startDate,
+        endDate,
+        this.accountService.activeAccount._id,
+        this.activeClass
+      )
+      .pipe(untilDestroyed(this))
+      .subscribe();
   }
 
   public onCategoryStatsClick(): void {
@@ -53,5 +56,10 @@ export class StatisticsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.accountService.getAccounts().pipe(untilDestroyed(this)).subscribe();
+  }
+
+  public ngOnDestroy(): void {
+    this.statisticsService.categoryData = null;
+    this.statisticsService.data = null;
   }
 }

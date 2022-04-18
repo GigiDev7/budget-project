@@ -67,7 +67,9 @@
       </div>
       <div
         *ngIf="
-          statisticsService.data && statisticsService.data.stats.length > 0
+          activeClass === 'monthly' &&
+          statisticsService.data &&
+          statisticsService.data.stats.length > 0
         "
       >
         <table class="table">
@@ -160,6 +162,35 @@
             </td>
           </tr>
         </table>
+        <app-line-chart></app-line-chart>
+      </div>
+      <div
+        *ngIf="
+          activeClass === 'category' &&
+          statisticsService.categoryData &&
+          statisticsService.categoryData.stats.length > 0
+        "
+      >
+        <div class="category-total">
+          <p class="category-text">Total Expenses</p>
+          <span class="expanse category-amount">
+            {{ statisticsService.categoryData.sumExpanses }}
+            {{ accountService.activeAccount.currency }}
+          </span>
+        </div>
+        <table class="table">
+          <tr class="table__header">
+            <th>Category</th>
+            <th>Amount</th>
+            <th>% in total</th>
+          </tr>
+          <tr *ngFor="let item of statisticsService.categoryData?.stats">
+            <td>{{ item.category | titlecase }}</td>
+            <td>{{ item.sum }}{{ accountService.activeAccount.currency }}</td>
+            <td>{{ item.percent }}%</td>
+          </tr>
+        </table>
+        <app-chart></app-chart>
       </div>
     </div>
   </div>
