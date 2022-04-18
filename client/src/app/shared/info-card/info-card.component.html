@@ -42,6 +42,7 @@
           {{ transactionService.singleTransaction.title | titlecase }}
         </p>
       </div>
+
       <div>
         <p
           [ngClass]="{
@@ -51,9 +52,20 @@
           class="transaction-info__amount"
         >
           {{ transactionService.singleTransaction.amount | number: "1.2-3" }}
+          {{ accountService.activeAccount.currency }}
         </p>
       </div>
     </div>
+
+    <div class="categories">
+      <p
+        class="categories__title"
+        *ngFor="let category of transactionService.singleTransaction.categories"
+      >
+        {{ category.title | titlecase }}
+      </p>
+    </div>
+
     <app-info-card-field
       title="Date"
       [description]="transactionService.singleTransaction.createdAt"

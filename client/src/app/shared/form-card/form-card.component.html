@@ -1,7 +1,8 @@
 <div class="background"></div>
-<div class="form-card">
+<div class="form-card" (click)="handleHideClick()">
   <div class="form-card__header">
-    <p>Add {{ type }}</p>
+    <p *ngIf="!formCardService.isEditing">Add {{ type }}</p>
+    <p *ngIf="formCardService.isEditing">Edit {{ type }}</p>
     <mat-icon (click)="onCloseClick()" class="form-card__header__icon"
       >close</mat-icon
     >
@@ -82,7 +83,10 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field
+      (click)="handleCategoryInputClick($event)"
+      appearance="outline"
+    >
       <mat-label>Categories</mat-label>
       <mat-chip-list #chipList aria-label="Categories">
         <mat-chip
@@ -95,6 +99,7 @@
           </button>
         </mat-chip>
         <input
+          (input)="onCategoryInputChange($event)"
           placeholder="New category..."
           [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="seperatorKeysCodes"
@@ -103,6 +108,18 @@
         />
       </mat-chip-list>
     </mat-form-field>
+
+    <div *ngIf="isCategoryListShown" class="typeahead">
+      <ul class="typeahead__list">
+        <li
+          class="typeahead__list-item"
+          *ngFor="let category of filteredCategories"
+          (click)="onCategoryItemClick($event, category._id)"
+        >
+          {{ category.title | titlecase }}
+        </li>
+      </ul>
+    </div>
 
     <mat-form-field appearance="outline">
       <mat-label>Amount</mat-label>

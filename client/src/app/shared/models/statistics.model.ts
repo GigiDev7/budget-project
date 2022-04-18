@@ -19,3 +19,14 @@ export interface StatisticsDataModel {
   averageEconomy: number;
   averagePercent: number;
 }
+
+export interface CategoryStatsModel {
+  sumExpanses: number;
+  stats: CategoryS[];
+}
+
+interface CategoryS {
+  category: string;
+  sum: number;
+  percent: number;
+}

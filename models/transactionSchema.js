@@ -14,8 +14,9 @@ const transactionSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    category: {
-      type: [String],
+    categories: {
+      type: [mongoose.Types.ObjectId],
+      ref: "Category",
     },
     currency: {
       type: String,

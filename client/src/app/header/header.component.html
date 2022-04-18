@@ -20,8 +20,31 @@
     <p class="header-user-info__username">
       {{ fullname | titlecase }}
     </p>
-    <button (click)="onLogoutClick()" mat-icon-button aria-label="Logout">
-      <mat-icon class="header-user-info__icon-logout">exit_to_app</mat-icon>
-    </button>
+    <mat-icon (click)="onDropDownToggle()" class="profile-icon"
+      >account_circle</mat-icon
+    >
+    <div *ngIf="isDropDownShown" class="dropdown-menu">
+      <div class="triangle"></div>
+      <div class="dropdown">
+        <p (click)="onModalShow()" class="dropdown__logout">
+          Logout
+          <button mat-icon-button aria-label="Logout">
+            <mat-icon class="header-user-info__icon-logout"
+              >exit_to_app</mat-icon
+            >
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isModalShown" class="background"></div>
+  <div *ngIf="isModalShown" class="modal">
+    <p>Are you sure you want to logout?</p>
+    <div class="btns">
+      <button (click)="onLogoutClick()" mat-raised-button>Yes</button>
+      <button (click)="onModalClose()" mat-raised-button color="primary">
+        No
+      </button>
+    </div>
   </div>
 </header>

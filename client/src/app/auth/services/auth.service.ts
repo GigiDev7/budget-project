@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { UserModel } from '../../shared/models/auth.model';
+import { URL } from '../../shared/constants/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class AuthService {
 
   public login(email: string, password: string): Observable<any> {
     return this.http
-      .post('http://localhost:5000/api/user/login', {
+      .post(`${URL}/user/login`, {
         email,
         password,
       })

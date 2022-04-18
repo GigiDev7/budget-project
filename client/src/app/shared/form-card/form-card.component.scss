@@ -75,3 +75,34 @@
 .active-type {
   opacity: 1;
 }
+
+.typeahead {
+  background-color: var.$base-white;
+  box-shadow: 0px 0px 5px 1px var.$base-black;
+  border-radius: 5px;
+  height: 10rem;
+  width: 87%;
+  z-index: 5;
+  position: absolute;
+  top: 47%;
+  overflow-y: auto;
+
+  &__list {
+    padding-left: 0;
+  }
+
+  &__list-item {
+    list-style: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+
+    &:hover {
+      background-color: var.$base-gray;
+    }
+  }
+}

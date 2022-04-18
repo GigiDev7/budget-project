@@ -9,6 +9,7 @@ const accountRouter = require("./routes/account");
 const transactionsRouter = require("./routes/transactions");
 const categoryRouter = require("./routes/categories");
 const currencyRouter = require("./routes/currency");
+const statisticsRouter = require("./routes/statistics");
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use("/api/myaccount", accountRouter);
 app.use("/api/transactions", transactionsRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/currency", currencyRouter);
+app.use("/api/statistics", statisticsRouter);
 
 module.exports = app;

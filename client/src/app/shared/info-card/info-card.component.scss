@@ -78,3 +78,18 @@
 .income {
   color: var.$base-green;
 }
+
+.categories {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__title {
+    border: 1px solid;
+    width: fit-content;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    margin-left: 0.5rem;
+    font-weight: 500;
+  }
+}

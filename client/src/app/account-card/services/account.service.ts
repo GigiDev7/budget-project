@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { AccountModel } from '../../shared/models/account.model';
-
-const URL = 'http://localhost:5000/api/myaccount';
+import { URL } from '../../shared/constants/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,7 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   public getAccounts(): Observable<any> {
-    return this.http.get(URL).pipe(
+    return this.http.get(`${URL}/myaccount`).pipe(
       tap({
         next: (res: any) => {
           this.accounts = res;
@@ -32,7 +31,7 @@ export class AccountService {
   }
 
   public getSingleAccount(accountId: string): Observable<any> {
-    return this.http.get(`${URL}/${accountId}`).pipe(
+    return this.http.get(`${URL}/myaccount/${accountId}`).pipe(
       tap({
         next: (res: any) => (this.singleAccount = res),
       })
@@ -40,7 +39,7 @@ export class AccountService {
   }
 
   public deleteAccount(accountId: string): Observable<any> {
-    return this.http.delete(`${URL}/${accountId}`);
+    return this.http.delete(`${URL}/myaccount/${accountId}`);
   }
 
   public addAccount(
@@ -48,7 +47,7 @@ export class AccountService {
     currency: string,
     description: string
   ): Observable<any> {
-    return this.http.post(URL, { title, currency, description });
+    return this.http.post(`${URL}/myaccount`, { title, currency, description });
   }
 
   public setAccount(account: AccountModel): void {
@@ -61,7 +60,7 @@ export class AccountService {
     description: string,
     accountId: string
   ): Observable<any> {
-    return this.http.patch(`${URL}/${accountId}`, {
+    return this.http.patch(`${URL}/myaccount/${accountId}`, {
       title,
       currency,
       description,

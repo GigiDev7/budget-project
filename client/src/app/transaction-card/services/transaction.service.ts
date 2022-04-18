@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { TransactionModel } from '../../shared/models/transaction.model';
-
-const URL = 'http://localhost:5000/api/transactions';
+import { URL } from '../../shared/constants/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -16,20 +15,22 @@ export class TransactionService {
 
   public getTransactions(accountId: string): Observable<any> {
     return this.http
-      .get(`${URL}/${accountId}`)
+      .get(`${URL}/transactions/${accountId}`)
       .pipe(tap({ next: (res: any) => (this.transactions = res) }));
   }
 
   public getSingleTransaction(transactionId: string): Observable<any> {
-    return this.http.get(`${URL}/transaction/${transactionId}`).pipe(
-      tap({
-        next: (res: any) => (this.singleTransaction = res),
-      })
-    );
+    return this.http
+      .get(`${URL}/transactions/transaction/${transactionId}`)
+      .pipe(
+        tap({
+          next: (res: any) => (this.singleTransaction = res),
+        })
+      );
   }
 
   public deleteTransaction(transactionId: string): Observable<any> {
-    return this.http.delete(`${URL}/transaction/${transactionId}`);
+    return this.http.delete(`${URL}/transactions/transaction/${transactionId}`);
   }
 
   public addTransaction(
@@ -41,7 +42,7 @@ export class TransactionService {
     transactionDate: Date,
     description: string
   ): Observable<any> {
-    return this.http.post(`${URL}/${accountId}`, {
+    return this.http.post(`${URL}/transactions/${accountId}`, {
       title,
       categories,
       amount,
@@ -60,7 +61,7 @@ export class TransactionService {
     transactionDate: Date,
     description: string
   ): Observable<any> {
-    return this.http.patch(`${URL}/transaction/${transactionId}`, {
+    return this.http.patch(`${URL}/transactions/transaction/${transactionId}`, {
       title,
       categories,
       amount,

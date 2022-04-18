@@ -8,7 +8,7 @@ import { TransactionService } from 'src/app/transaction-card/services/transactio
 import { ModalService } from '../modal-card/services/modal-card.service';
 import { NotificationService } from '../notification-card/services/notification.service';
 import { FormCardService } from './services/form-card.service';
-import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { CategoryModel } from 'src/app/shared/models/category.model';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -21,36 +21,88 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class FormCardComponent implements OnInit {
   @Input() type: string = '';
+  public isCategoryListShown: boolean = false;
 
-  //
-  public addOnBlur: boolean = true;
-  readonly seperatorKeysCodes = [ENTER, COMMA, SPACE] as const;
-  public selectedCategories: CategoryModel[] = [];
+  //typeahead chips
+  public handleCategoryInputClick(event: Event): void {
+    event.stopPropagation();
+    this.isCategoryListShown = true;
+  }
+
+  public handleHideClick(): void {
+    this.isCategoryListShown = false;
+  }
+
+  public onCategoryItemClick(event: Event, id: string) {
+    event.stopPropagation();
+    const category = this.filteredCategories.find((el) => el._id === id);
+    if (category) {
+      this.selectedCategories.push(category);
+    }
+  }
+
+  public onCategoryInputChange(event: Event) {
+    const val = (event.target as HTMLInputElement).value;
+
+    const categories = this.filteredCategories.filter((el) =>
+      el.title.toLowerCase().includes(val.toLowerCase())
+    );
+    if (categories.length > 0) {
+      this.filteredCategories = categories;
+    } else {
+      this.filteredCategories = this.categoryService.categories.filter(
+        (el) => el.type === this.transactionType
+      );
+    }
+  }
+
+  //categories chips
+  public addOnBlur: boolean = false;
+  readonly seperatorKeysCodes = [ENTER, COMMA] as const;
+  public selectedCategories: CategoryModel[] = this.formCardService.isEditing
+    ? this.transactionService?.singleTransaction?.categories
+    : [];
   public filteredCategories!: CategoryModel[];
 
   public add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    if (value) {
-      this.categoryService
-        .addCategory(this.transactionType, value)
-        .pipe(untilDestroyed(this))
-        .subscribe({
-          next: (val) => this.selectedCategories.push(val),
-        });
+    const existingCategory = this.filteredCategories.find(
+      (el) => el.title.toLowerCase() === value.toLowerCase()
+    );
+    if (existingCategory) {
+      this.selectedCategories.push(existingCategory);
+    } else {
+      if (value && !existingCategory) {
+        this.categoryService
+          .addCategory(this.transactionType, value)
+          .pipe(untilDestroyed(this))
+          .subscribe({
+            next: (val) => this.selectedCategories.push(val),
+          });
+      }
     }
 
     event.chipInput!.clear();
   }
 
   public remove(category: CategoryModel): void {
-    this.categoryService
-      .deleteCategory(category._id)
-      .pipe(untilDestroyed(this))
-      .subscribe();
-    this.selectedCategories = this.selectedCategories.filter(
-      (el) => el._id !== category._id
+    const existingCategory = this.filteredCategories.find(
+      (el) => el._id === category._id
     );
+    if (existingCategory) {
+      this.selectedCategories = this.selectedCategories.filter(
+        (el) => el._id !== category._id
+      );
+    } else {
+      this.categoryService
+        .deleteCategory(category._id)
+        .pipe(untilDestroyed(this))
+        .subscribe();
+      this.selectedCategories = this.selectedCategories.filter(
+        (el) => el._id !== category._id
+      );
+    }
   }
   //
 
@@ -168,7 +220,8 @@ export class FormCardComponent implements OnInit {
       }
     } else if (this.type === 'Transaction') {
       const accountId = this.accountService.activeAccount._id;
-      const { title, categories, amount, paymentDate, description } =
+      const categories = this.selectedCategories.map((item) => item._id);
+      const { title, amount, paymentDate, description } =
         this.transactionForm.value;
       //transaction is updating
       if (this.formCardService.isEditing) {
@@ -227,13 +280,16 @@ export class FormCardComponent implements OnInit {
       //adding category
     } else if (this.type === 'Category') {
       const { title } = this.categoryForm.value;
-      this.categoryService.addCategory(this.categoryType, title).subscribe({
-        next: () =>
-          this.categoryService
-            .getCategories()
-            .pipe(untilDestroyed(this))
-            .subscribe(),
-      });
+      this.categoryService
+        .addCategory(this.categoryType, title)
+        .pipe(untilDestroyed(this))
+        .subscribe({
+          next: () =>
+            this.categoryService
+              .getCategories()
+              .pipe(untilDestroyed(this))
+              .subscribe(),
+        });
 
       this.reloadService.reloadComponent();
       this.notificationService.setNotificationText('Category Created');
@@ -267,7 +323,7 @@ export class FormCardComponent implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.categoryService
       .getCategories()
       .pipe(untilDestroyed(this))
