@@ -1,7 +1,7 @@
 const Transaction = require("../models/transactionSchema");
 
 const findAllTransactions = async (accountId) => {
-  const transactions = Transaction.find({ accountId });
+  const transactions = Transaction.find({ accountId }).populate("categories");
   return transactions;
 };
 
@@ -12,14 +12,16 @@ const addTransaction = async (accountId, data, userId) => {
 };
 
 const findSingleTransaction = async (transactionId) => {
-  const transaction = await Transaction.findById(transactionId);
+  const transaction = await Transaction.findById(transactionId).populate(
+    "categories"
+  );
   return transaction;
 };
 
 const findTransactionAndUpdate = async (transactionId, data) => {
   const transaction = await Transaction.findByIdAndUpdate(transactionId, data, {
     new: true,
-  });
+  }).populate("categories");
   return transaction;
 };
 
@@ -28,7 +30,11 @@ const findTransactionAndDelete = async (transactionId) => {
 };
 
 const findTransactionsByCategory = async (accountId, category, type) => {
-  const transactions = await Transaction.find({ accountId, category, type });
+  const transactions = await Transaction.find({
+    accountId,
+    category,
+    type,
+  }).populate("categories");
   return transactions;
 };
 
