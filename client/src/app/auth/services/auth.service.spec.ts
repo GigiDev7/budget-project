@@ -6,6 +6,15 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { URL } from '../../shared/constants/constants';
 
+const data = {
+  email: 'email',
+  id: 'id',
+  token: 'token',
+  firstname: 'firstname',
+  lastname: 'lastname',
+  residence: 'residence',
+};
+
 describe('auth service test', () => {
   let service: AuthService;
   let httpController: HttpTestingController;
@@ -24,18 +33,9 @@ describe('auth service test', () => {
   });
 
   it('should return user data on success', (done: DoneFn) => {
-    const expectedeData = {
-      email: 'email',
-      id: 'id',
-      token: 'token',
-      firstname: 'firstname',
-      lastname: 'lastname',
-      residence: 'residence',
-    };
-
     service.login('email', 'psw').subscribe({
       next: (res) => {
-        expect(res).toEqual(expectedeData);
+        expect(res).toEqual(data);
         done();
       },
     });
@@ -44,30 +44,21 @@ describe('auth service test', () => {
       method: 'POST',
       url: `${URL}/user/login`,
     });
-    req.flush(expectedeData);
+    req.flush(data);
   });
 
   it('setUserData have to call on success', (done: DoneFn) => {
     spyOn(service as any, 'setUserData');
-    const expectedResult = {
-      email: 'email',
-      id: 'id',
-      token: 'token',
-      firstname: 'firstname',
-      lastname: 'lastname',
-      residence: 'residence',
-    };
+
     service.login('email', 'psw').subscribe(() => {
-      expect((service as any).setUserData).toHaveBeenCalledOnceWith(
-        expectedResult
-      );
+      expect((service as any).setUserData).toHaveBeenCalledOnceWith(data);
       done();
     });
     const req = httpController.expectOne({
       method: 'POST',
       url: `${URL}/user/login`,
     });
-    req.flush(expectedResult);
+    req.flush(data);
   });
 
   it('setUserData have not to call on error', (done: DoneFn) => {
