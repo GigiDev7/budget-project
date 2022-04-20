@@ -38,8 +38,13 @@
       >
         You don't have any transactions in this account!
       </p>
-      <mat-icon class="main__search__icon">search</mat-icon>
+      <mat-icon
+        *ngIf="transactionService.transactions.length > 0"
+        class="main__search__icon"
+        >search</mat-icon
+      >
       <input
+        *ngIf="transactionService.transactions.length > 0"
         (input)="handleSearchChange($event)"
         [value]="searchInput"
         class="main__search"

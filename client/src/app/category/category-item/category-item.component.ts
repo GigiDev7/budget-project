@@ -49,6 +49,8 @@ export class CategoryItemComponent {
       .subscribe();
     this.categoryService.setActiveCategory(null);
     this.reloadService.reloadComponent();
+    this.notificationService.setNotificationText('Category Updated');
+    this.notificationService.showNotification();
   }
 
   public checkValidation(): boolean {

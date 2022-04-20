@@ -52,6 +52,7 @@ export class ModalCardComponent {
     }
     this.modalService.hideModal();
     this.infoCardService.closeInfoCard();
+    this.accountService.activateAccount(this.accountService.accounts[0]._id);
   }
 
   constructor(
