@@ -4,6 +4,7 @@ import { TransactionService } from '../transaction-card/services/transaction.ser
 import { AccountModel } from '../shared/models/account.model';
 import { AccountService } from './services/account.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { StatisticsService } from '../statistics/services/statistics.service';
 
 @UntilDestroy()
 @Component({
@@ -20,6 +21,8 @@ export class AccountCardComponent implements OnInit {
     this.transactionService.getTransactions(this.account._id).subscribe({
       next: (data) => (this.transactionService.transactions = data),
     });
+    this.statisticsService.data = null;
+    this.statisticsService.categoryData = null;
   }
 
   public onViewAccountClick(): void {
@@ -34,7 +37,8 @@ export class AccountCardComponent implements OnInit {
   constructor(
     public accountService: AccountService,
     public transactionService: TransactionService,
-    public infoCardService: InfoCardService
+    public infoCardService: InfoCardService,
+    private statisticsService: StatisticsService
   ) {}
 
   public ngOnInit(): void {
