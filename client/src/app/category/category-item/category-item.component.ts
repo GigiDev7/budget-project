@@ -7,7 +7,6 @@ import { CategoryModel } from '../../shared/models/category.model';
 import { CategoryService } from '../services/category.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-@UntilDestroy()
 @Component({
   selector: 'app-category-item',
   templateUrl: './category-item.component.html',
@@ -19,10 +18,7 @@ export class CategoryItemComponent {
   public categoryTitle!: string;
 
   public onDeleteClick(): void {
-    this.categoryService
-      .deleteCategory(this.category._id)
-      .pipe(untilDestroyed(this))
-      .subscribe();
+    this.categoryService.deleteCategory(this.category._id).subscribe();
     this.reloadService.reloadComponent();
     this.notificationService.setNotificationText('Category Deleted');
     this.notificationService.showNotification();
@@ -45,7 +41,6 @@ export class CategoryItemComponent {
     }
     this.categoryService
       .updateCategory(this.category._id, this.categoryTitle)
-      .pipe(untilDestroyed(this))
       .subscribe();
     this.categoryService.setActiveCategory(null);
     this.reloadService.reloadComponent();

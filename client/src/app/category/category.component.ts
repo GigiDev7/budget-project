@@ -6,7 +6,6 @@ import { ModalService } from '../shared/modal-card/services/modal-card.service';
 import { NotificationService } from '../shared/notification-card/services/notification.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-@UntilDestroy()
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -82,6 +81,6 @@ export class CategoryComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.categoryService.getCategories().pipe(untilDestroyed(this)).subscribe();
+    this.categoryService.getCategories().subscribe();
   }
 }

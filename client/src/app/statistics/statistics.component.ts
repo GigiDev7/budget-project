@@ -38,7 +38,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         this.accountService.activeAccount._id,
         this.activeClass
       )
-      .pipe(untilDestroyed(this))
       .subscribe();
   }
 
@@ -55,7 +54,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.accountService.getAccounts().pipe(untilDestroyed(this)).subscribe();
+    this.accountService.getAccounts().subscribe();
   }
 
   public ngOnDestroy(): void {
