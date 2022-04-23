@@ -263,7 +263,6 @@ export class FormCardComponent implements OnInit {
             paymentDate,
             description
           )
-          .pipe(untilDestroyed(this))
           .subscribe({
             next: () =>
               this.accountService

@@ -1,7 +1,7 @@
 <div class="background-layout"></div>
 <div class="info-card">
   <div class="info-card__header">
-    <p class="info-card__header__title">{{ type }} Information</p>
+    <p class="info-card__header__title">{{ type && type }} Information</p>
     <div>
       <mat-icon (click)="onEditClick()" class="info-card__icon">edit</mat-icon>
       <mat-icon (click)="onDeleteClick()" class="info-card__icon"
@@ -36,7 +36,7 @@
     <div class="transaction-info">
       <div>
         <p class="transaction-info__type">
-          {{ transactionService.singleTransaction.type | titlecase }}
+          {{ transactionService?.singleTransaction?.type | titlecase }}
         </p>
         <p class="transaction-info__title">
           {{ transactionService.singleTransaction.title | titlecase }}
@@ -46,8 +46,8 @@
       <div>
         <p
           [ngClass]="{
-            income: transactionService.singleTransaction.type === 'income',
-            expanse: transactionService.singleTransaction.type === 'expanse'
+            income: transactionService.singleTransaction?.type === 'income',
+            expanse: transactionService.singleTransaction?.type === 'expanse'
           }"
           class="transaction-info__amount"
         >
