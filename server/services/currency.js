@@ -1,4 +1,4 @@
-const Currency = require("../models/currencySchema");
+const Currency = require("../server/models/currencySchema");
 
 const findAllCurrencies = async () => {
   let currencies = await Currency.find();

@@ -1,5 +1,5 @@
-const Account = require("../models/accountSchema");
-const Transaction = require("../models/transactionSchema");
+const Account = require("../server/models/accountSchema");
+const Transaction = require("../server/models/transactionSchema");
 
 const findAllAccounts = async (userId) => {
   const accounts = await Account.find({ userId }).sort("createdAt");

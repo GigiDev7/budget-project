@@ -1,6 +1,6 @@
 require("dotenv").config();
 require("./connectDB");
-const countryData = require("./countryData.json");
+const countryData = require("../countryData.json");
 const codeData = require("./countryCodeData.json");
 const symbolsData = require("./symbolsData");
 const Currency = require("./models/currencySchema");

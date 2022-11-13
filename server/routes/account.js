@@ -6,7 +6,7 @@ const {
   updateAccount,
   deleteAccount,
   getAccountSum,
-} = require("../controllers/account");
+} = require("../../controllers/account");
 
 const router = express.Router();
 
