@@ -1,4 +1,4 @@
-const Transaction = require("../server/models/transactionSchema");
+const Transaction = require("../models/transactionSchema");
 
 const monthNames = [
   "January",

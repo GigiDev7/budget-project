@@ -1,4 +1,4 @@
-const Category = require("../server/models/categorySchema");
+const Category = require("../models/categorySchema");
 
 const findAllCategories = (userId) => {
   const categories = Category.find({ userId });

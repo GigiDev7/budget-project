@@ -1,4 +1,4 @@
-const Transaction = require("../server/models/transactionSchema");
+const Transaction = require("../models/transactionSchema");
 
 const findAllTransactions = async (accountId) => {
   const transactions = Transaction.find({ accountId }).populate("categories");
