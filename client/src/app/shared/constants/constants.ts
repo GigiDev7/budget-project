@@ -1,1 +1,1 @@
-export const URL: string = 'http://localhost:5000/api';
+export const URL: string = 'https://budgetify.onrender.com/api';
